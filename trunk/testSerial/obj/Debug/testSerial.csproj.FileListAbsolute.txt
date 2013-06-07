@@ -1,0 +1,8 @@
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\testSerial\bin\Debug\testSerial.exe
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\testSerial\bin\Debug\testSerial.pdb
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\testSerial\obj\Debug\ResolveAssemblyReference.cache
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\testSerial\obj\Debug\testSerial.Form1.resources
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\testSerial\obj\Debug\testSerial.Properties.Resources.resources
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\testSerial\obj\Debug\testSerial.csproj.GenerateResource.Cache
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\testSerial\obj\Debug\testSerial.exe
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\testSerial\obj\Debug\testSerial.pdb

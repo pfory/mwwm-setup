@@ -1,0 +1,16 @@
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\bin\Debug\SmartDeviceProject1.exe
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\bin\Debug\SmartDeviceProject1.pdb
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\obj\Debug\ResolveAssemblyReference.cache
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.Form1.resources
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.Properties.Resources.resources
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\obj\Debug\MWGUI.csproj.GenerateResource.Cache
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.exe
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.pdb
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\obj\Debug\ResolveAssemblyReference.cache
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\obj\Debug\MWGUI.csproj.GenerateResource.Cache
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\bin\Debug\MWGUI.exe
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\bin\Debug\MWGUI.pdb
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\obj\Debug\MWGUI.Properties.Resources.resources
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\obj\Debug\MWGUI.exe
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\obj\Debug\MWGUI.pdb
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\obj\Debug\MWGUI.MWSetup.resources
