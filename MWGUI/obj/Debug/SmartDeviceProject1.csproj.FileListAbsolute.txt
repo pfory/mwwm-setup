@@ -1,0 +1,8 @@
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\bin\Debug\SmartDeviceProject1.exe
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\bin\Debug\SmartDeviceProject1.pdb
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\obj\Debug\ResolveAssemblyReference.cache
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.Form1.resources
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.Properties.Resources.resources
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.csproj.GenerateResource.Cache
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.exe
+C:\Dokumenty\Elektro\Konstrukce\MutliWiiGUI\MWGUI\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.pdb
