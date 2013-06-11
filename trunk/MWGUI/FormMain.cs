@@ -85,13 +85,14 @@ namespace MWGUI
     //PID values
     static PID[] Pid;
 
+    static byte pidIndex;
+
+
     bool isNeedUpdatePIDPanel = false;
 
     public MWSetup()
     {
       InitializeComponent();
-
-
     }
 
     private void Form1_Load(object sender, EventArgs e)
@@ -101,6 +102,8 @@ namespace MWGUI
       //**timer_realtime.Interval = iRefreshIntervals[cb_monitor_rate.SelectedIndex];
       //timer_realtime.Enabled = true;
       //**timer_realtime.Stop();
+      tabPage2.Hide();
+      tabPage3.Hide();
       Pid = new PID[10];          //Max 20 PID values if we have more then we will ignore it
 
       for (int i = 0; i < iPidItems; i++)
@@ -287,6 +290,8 @@ namespace MWGUI
         //MSPquery(MSP_PID);
         //labelTextLastMessage.Text += "Data send";
         tabPage2.Show();
+        tabPage3.Show();
+        tabControl1.SelectedIndex = 1;
 
       }
     }
@@ -813,5 +818,108 @@ namespace MWGUI
     {
       this.Close();
     }
+
+    private void panel1_Click(object sender, EventArgs e)
+    {
+      label19.Text = "Roll";
+      setP.Text = PRoll.Text;
+      setI.Text = IRoll.Text;
+      setD.Text = DRoll.Text;
+      tabControl1.SelectedIndex = 2;
+      pidIndex = 0;
+    }
+
+    private void panel2_Click(object sender, EventArgs e)
+    {
+      label19.Text = "Pitch";
+      setP.Text = PPitch.Text;
+      setI.Text = IPitch.Text;
+      setD.Text = DPitch.Text;
+      tabControl1.SelectedIndex = 2;
+      pidIndex = 1;
+    }
+
+    private void panel3_Click(object sender, EventArgs e)
+    {
+      label19.Text = "Yaw";
+      setP.Text = PYaw.Text;
+      setI.Text = IYaw.Text;
+      setD.Text = DYaw.Text;
+      tabControl1.SelectedIndex = 2;
+      pidIndex = 2;
+
+    }
+
+    private void button8_Click(object sender, EventArgs e)
+    {
+      if (pidIndex==0)
+      {
+        PRoll.Text = setP.Text;
+        IRoll.Text = setI.Text;
+        DRoll.Text = setD.Text;
+      }
+      if (pidIndex == 1)
+      {
+        PPitch.Text = setP.Text;
+        IPitch.Text = setI.Text;
+        DPitch.Text = setD.Text;
+      }
+      if (pidIndex == 2)
+      {
+        PYaw.Text = setP.Text;
+        IYaw.Text = setI.Text;
+        DYaw.Text = setD.Text;
+      }
+      tabControl1.SelectedIndex = 1;
+    }
+
+    private void plusP_Click(object sender, EventArgs e)
+    {
+      if (setP.Text == string.Empty)
+        setP.Text = "0";
+      setP.Text = (Convert.ToDouble(setP.Text) + (1.0 / Pid[pidIndex].Pprec)).ToString();
+      //TODO omezeni rozsahu
+    }
+
+    private void minusP_Click(object sender, EventArgs e)
+    {
+      setP.Text = (Convert.ToDouble(setP.Text) - (1.0 / Pid[pidIndex].Pprec)).ToString();
+      //TODO omezeni rozsahu
+    }
+
+    private void plusI_Click(object sender, EventArgs e)
+    {
+      if (setI.Text == string.Empty)
+        setI.Text = "0";
+      setI.Text = (Convert.ToDouble(setI.Text) + (1.0 / Pid[pidIndex].Iprec)).ToString();
+      //TODO omezeni rozsahu
+    }
+
+    private void minusI_Click(object sender, EventArgs e)
+    {
+      setI.Text = (Convert.ToDouble(setI.Text) - (1.0 / Pid[pidIndex].Iprec)).ToString();
+      //TODO omezeni rozsahu
+    }
+
+    private void plusD_Click(object sender, EventArgs e)
+    {
+      if (setD.Text == string.Empty)
+        setD.Text = "0";
+      setD.Text = (Convert.ToDouble(setD.Text) + (1.0 / Pid[pidIndex].Dprec)).ToString();
+      //TODO omezeni rozsahu
+
+    }
+
+    private void minusD_Click(object sender, EventArgs e)
+    {
+      setD.Text = (Convert.ToDouble(setD.Text) - (1.0 / Pid[pidIndex].Dprec)).ToString();
+      //TODO omezeni rozsahu
+
+    }
+
+
+
+
+
   }
 }
