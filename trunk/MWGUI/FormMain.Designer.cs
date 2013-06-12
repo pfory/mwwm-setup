@@ -34,51 +34,57 @@
       this.menuItem2 = new System.Windows.Forms.MenuItem();
       this.timer1 = new System.Windows.Forms.Timer();
       this.tabPage2 = new System.Windows.Forms.TabPage();
-      this.panel3 = new System.Windows.Forms.Panel();
+      this.panelVel = new System.Windows.Forms.Panel();
+      this.label7 = new System.Windows.Forms.Label();
+      this.PVelocity = new System.Windows.Forms.Label();
+      this.IVelocity = new System.Windows.Forms.Label();
+      this.DVelocity = new System.Windows.Forms.Label();
+      this.panelAlt = new System.Windows.Forms.Panel();
+      this.label4 = new System.Windows.Forms.Label();
+      this.PAlt = new System.Windows.Forms.Label();
+      this.DAlt = new System.Windows.Forms.Label();
+      this.IAlt = new System.Windows.Forms.Label();
+      this.panelMag = new System.Windows.Forms.Panel();
+      this.label6 = new System.Windows.Forms.Label();
+      this.PMag = new System.Windows.Forms.Label();
+      this.panelLevel = new System.Windows.Forms.Panel();
+      this.PLevel = new System.Windows.Forms.Label();
+      this.label5 = new System.Windows.Forms.Label();
+      this.ILevel = new System.Windows.Forms.Label();
+      this.DLevel = new System.Windows.Forms.Label();
+      this.panelYaw = new System.Windows.Forms.Panel();
       this.PYaw = new System.Windows.Forms.Label();
       this.IYaw = new System.Windows.Forms.Label();
       this.DYaw = new System.Windows.Forms.Label();
       this.YawRate = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
-      this.panel2 = new System.Windows.Forms.Panel();
-      this.label2 = new System.Windows.Forms.Label();
+      this.panelPitch = new System.Windows.Forms.Panel();
       this.PPitch = new System.Windows.Forms.Label();
       this.IPitch = new System.Windows.Forms.Label();
       this.DPitch = new System.Windows.Forms.Label();
-      this.panel1 = new System.Windows.Forms.Panel();
-      this.label1 = new System.Windows.Forms.Label();
+      this.label2 = new System.Windows.Forms.Label();
+      this.panelRoll = new System.Windows.Forms.Panel();
       this.PRoll = new System.Windows.Forms.Label();
       this.IRoll = new System.Windows.Forms.Label();
       this.DRoll = new System.Windows.Forms.Label();
       this.RollPitchRate = new System.Windows.Forms.Label();
+      this.label1 = new System.Windows.Forms.Label();
       this.bWrite = new System.Windows.Forms.Button();
-      this.label26 = new System.Windows.Forms.Label();
-      this.ThrPIDAtt = new System.Windows.Forms.Label();
-      this.RCRate = new System.Windows.Forms.Label();
-      this.RCExpo = new System.Windows.Forms.Label();
-      this.DVelocity = new System.Windows.Forms.Label();
-      this.IVelocity = new System.Windows.Forms.Label();
-      this.PVelocity = new System.Windows.Forms.Label();
-      this.PMag = new System.Windows.Forms.Label();
-      this.DLevel = new System.Windows.Forms.Label();
-      this.ILevel = new System.Windows.Forms.Label();
-      this.PLevel = new System.Windows.Forms.Label();
-      this.DAlt = new System.Windows.Forms.Label();
-      this.IAlt = new System.Windows.Forms.Label();
-      this.PAlt = new System.Windows.Forms.Label();
       this.label9 = new System.Windows.Forms.Label();
       this.label8 = new System.Windows.Forms.Label();
-      this.label7 = new System.Windows.Forms.Label();
-      this.label6 = new System.Windows.Forms.Label();
-      this.label5 = new System.Windows.Forms.Label();
       this.label13 = new System.Windows.Forms.Label();
-      this.label12 = new System.Windows.Forms.Label();
-      this.label11 = new System.Windows.Forms.Label();
       this.label10 = new System.Windows.Forms.Label();
-      this.label4 = new System.Windows.Forms.Label();
       this.bRead = new System.Windows.Forms.Button();
       this.labelTextLastMessage = new System.Windows.Forms.Label();
+      this.panelRC = new System.Windows.Forms.Panel();
+      this.RCRate = new System.Windows.Forms.Label();
+      this.RCExpo = new System.Windows.Forms.Label();
+      this.label11 = new System.Windows.Forms.Label();
+      this.label12 = new System.Windows.Forms.Label();
+      this.ThrPIDAtt = new System.Windows.Forms.Label();
+      this.label26 = new System.Windows.Forms.Label();
       this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.labelInfo = new System.Windows.Forms.Label();
       this.cb_serial_speed = new System.Windows.Forms.ComboBox();
       this.label15 = new System.Windows.Forms.Label();
       this.cb_serial_port = new System.Windows.Forms.ComboBox();
@@ -87,6 +93,7 @@
       this.button1 = new System.Windows.Forms.Button();
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage3 = new System.Windows.Forms.TabPage();
+      this.button4 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
       this.button3 = new System.Windows.Forms.Button();
       this.setRate = new System.Windows.Forms.TextBox();
@@ -106,10 +113,16 @@
       this.label17 = new System.Windows.Forms.Label();
       this.label16 = new System.Windows.Forms.Label();
       this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+      this.tabPage4 = new System.Windows.Forms.TabPage();
       this.tabPage2.SuspendLayout();
-      this.panel3.SuspendLayout();
-      this.panel2.SuspendLayout();
-      this.panel1.SuspendLayout();
+      this.panelVel.SuspendLayout();
+      this.panelAlt.SuspendLayout();
+      this.panelMag.SuspendLayout();
+      this.panelLevel.SuspendLayout();
+      this.panelYaw.SuspendLayout();
+      this.panelPitch.SuspendLayout();
+      this.panelRoll.SuspendLayout();
+      this.panelRC.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabControl1.SuspendLayout();
       this.tabPage3.SuspendLayout();
@@ -136,79 +149,220 @@
       // tabPage2
       // 
       this.tabPage2.BackColor = System.Drawing.Color.Black;
-      this.tabPage2.Controls.Add(this.panel3);
-      this.tabPage2.Controls.Add(this.panel2);
-      this.tabPage2.Controls.Add(this.panel1);
+      this.tabPage2.Controls.Add(this.panelVel);
+      this.tabPage2.Controls.Add(this.panelAlt);
+      this.tabPage2.Controls.Add(this.panelMag);
+      this.tabPage2.Controls.Add(this.panelLevel);
+      this.tabPage2.Controls.Add(this.panelYaw);
+      this.tabPage2.Controls.Add(this.panelPitch);
+      this.tabPage2.Controls.Add(this.panelRoll);
       this.tabPage2.Controls.Add(this.bWrite);
-      this.tabPage2.Controls.Add(this.label26);
-      this.tabPage2.Controls.Add(this.ThrPIDAtt);
-      this.tabPage2.Controls.Add(this.RCRate);
-      this.tabPage2.Controls.Add(this.RCExpo);
-      this.tabPage2.Controls.Add(this.DVelocity);
-      this.tabPage2.Controls.Add(this.IVelocity);
-      this.tabPage2.Controls.Add(this.PVelocity);
-      this.tabPage2.Controls.Add(this.PMag);
-      this.tabPage2.Controls.Add(this.DLevel);
-      this.tabPage2.Controls.Add(this.ILevel);
-      this.tabPage2.Controls.Add(this.PLevel);
-      this.tabPage2.Controls.Add(this.DAlt);
-      this.tabPage2.Controls.Add(this.IAlt);
-      this.tabPage2.Controls.Add(this.PAlt);
       this.tabPage2.Controls.Add(this.label9);
       this.tabPage2.Controls.Add(this.label8);
-      this.tabPage2.Controls.Add(this.label7);
-      this.tabPage2.Controls.Add(this.label6);
-      this.tabPage2.Controls.Add(this.label5);
       this.tabPage2.Controls.Add(this.label13);
-      this.tabPage2.Controls.Add(this.label12);
-      this.tabPage2.Controls.Add(this.label11);
       this.tabPage2.Controls.Add(this.label10);
-      this.tabPage2.Controls.Add(this.label4);
       this.tabPage2.Controls.Add(this.bRead);
       this.tabPage2.Controls.Add(this.labelTextLastMessage);
+      this.tabPage2.Controls.Add(this.panelRC);
       this.tabPage2.Location = new System.Drawing.Point(0, 0);
       this.tabPage2.Name = "tabPage2";
-      this.tabPage2.Size = new System.Drawing.Size(240, 317);
+      this.tabPage2.Size = new System.Drawing.Size(232, 314);
       this.tabPage2.Text = "PID";
       // 
-      // panel3
+      // panelVel
       // 
-      this.panel3.BackColor = System.Drawing.Color.Black;
-      this.panel3.Controls.Add(this.PYaw);
-      this.panel3.Controls.Add(this.IYaw);
-      this.panel3.Controls.Add(this.DYaw);
-      this.panel3.Controls.Add(this.YawRate);
-      this.panel3.Controls.Add(this.label3);
-      this.panel3.Location = new System.Drawing.Point(12, 126);
-      this.panel3.Name = "panel3";
-      this.panel3.Size = new System.Drawing.Size(224, 20);
-      this.panel3.Click += new System.EventHandler(this.panel3_Click);
+      this.panelVel.BackColor = System.Drawing.Color.Black;
+      this.panelVel.Controls.Add(this.label7);
+      this.panelVel.Controls.Add(this.PVelocity);
+      this.panelVel.Controls.Add(this.IVelocity);
+      this.panelVel.Controls.Add(this.DVelocity);
+      this.panelVel.Location = new System.Drawing.Point(3, 206);
+      this.panelVel.Name = "panelVel";
+      this.panelVel.Size = new System.Drawing.Size(233, 20);
+      this.panelVel.Click += new System.EventHandler(this.panel_Click);
+      // 
+      // label7
+      // 
+      this.label7.BackColor = System.Drawing.Color.Black;
+      this.label7.ForeColor = System.Drawing.Color.White;
+      this.label7.Location = new System.Drawing.Point(17, 3);
+      this.label7.Name = "label7";
+      this.label7.Size = new System.Drawing.Size(38, 20);
+      this.label7.Text = "Vel.";
+      this.label7.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // PVelocity
+      // 
+      this.PVelocity.BackColor = System.Drawing.Color.White;
+      this.PVelocity.Location = new System.Drawing.Point(62, 0);
+      this.PVelocity.Name = "PVelocity";
+      this.PVelocity.Size = new System.Drawing.Size(33, 20);
+      // 
+      // IVelocity
+      // 
+      this.IVelocity.BackColor = System.Drawing.Color.White;
+      this.IVelocity.Location = new System.Drawing.Point(97, 0);
+      this.IVelocity.Name = "IVelocity";
+      this.IVelocity.Size = new System.Drawing.Size(41, 20);
+      // 
+      // DVelocity
+      // 
+      this.DVelocity.BackColor = System.Drawing.Color.White;
+      this.DVelocity.Location = new System.Drawing.Point(140, 0);
+      this.DVelocity.Name = "DVelocity";
+      this.DVelocity.Size = new System.Drawing.Size(41, 20);
+      // 
+      // panelAlt
+      // 
+      this.panelAlt.BackColor = System.Drawing.Color.Black;
+      this.panelAlt.Controls.Add(this.label4);
+      this.panelAlt.Controls.Add(this.PAlt);
+      this.panelAlt.Controls.Add(this.DAlt);
+      this.panelAlt.Controls.Add(this.IAlt);
+      this.panelAlt.Location = new System.Drawing.Point(6, 146);
+      this.panelAlt.Name = "panelAlt";
+      this.panelAlt.Size = new System.Drawing.Size(233, 20);
+      this.panelAlt.Click += new System.EventHandler(this.panel_Click);
+      // 
+      // label4
+      // 
+      this.label4.BackColor = System.Drawing.Color.Black;
+      this.label4.ForeColor = System.Drawing.Color.White;
+      this.label4.Location = new System.Drawing.Point(25, 0);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(30, 17);
+      this.label4.Text = "Alt.";
+      this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // PAlt
+      // 
+      this.PAlt.BackColor = System.Drawing.Color.White;
+      this.PAlt.Location = new System.Drawing.Point(59, 0);
+      this.PAlt.Name = "PAlt";
+      this.PAlt.Size = new System.Drawing.Size(33, 20);
+      // 
+      // DAlt
+      // 
+      this.DAlt.BackColor = System.Drawing.Color.White;
+      this.DAlt.Location = new System.Drawing.Point(137, 0);
+      this.DAlt.Name = "DAlt";
+      this.DAlt.Size = new System.Drawing.Size(41, 20);
+      // 
+      // IAlt
+      // 
+      this.IAlt.BackColor = System.Drawing.Color.White;
+      this.IAlt.Location = new System.Drawing.Point(94, 0);
+      this.IAlt.Name = "IAlt";
+      this.IAlt.Size = new System.Drawing.Size(41, 20);
+      // 
+      // panelMag
+      // 
+      this.panelMag.BackColor = System.Drawing.Color.Black;
+      this.panelMag.Controls.Add(this.label6);
+      this.panelMag.Controls.Add(this.PMag);
+      this.panelMag.Location = new System.Drawing.Point(3, 186);
+      this.panelMag.Name = "panelMag";
+      this.panelMag.Size = new System.Drawing.Size(233, 20);
+      this.panelMag.Click += new System.EventHandler(this.panel_Click);
+      // 
+      // label6
+      // 
+      this.label6.BackColor = System.Drawing.Color.Black;
+      this.label6.ForeColor = System.Drawing.Color.White;
+      this.label6.Location = new System.Drawing.Point(17, 0);
+      this.label6.Name = "label6";
+      this.label6.Size = new System.Drawing.Size(38, 20);
+      this.label6.Text = "Mag.";
+      this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // PMag
+      // 
+      this.PMag.BackColor = System.Drawing.Color.White;
+      this.PMag.Location = new System.Drawing.Point(62, 0);
+      this.PMag.Name = "PMag";
+      this.PMag.Size = new System.Drawing.Size(33, 20);
+      // 
+      // panelLevel
+      // 
+      this.panelLevel.BackColor = System.Drawing.Color.Black;
+      this.panelLevel.Controls.Add(this.PLevel);
+      this.panelLevel.Controls.Add(this.label5);
+      this.panelLevel.Controls.Add(this.ILevel);
+      this.panelLevel.Controls.Add(this.DLevel);
+      this.panelLevel.Location = new System.Drawing.Point(3, 166);
+      this.panelLevel.Name = "panelLevel";
+      this.panelLevel.Size = new System.Drawing.Size(233, 20);
+      this.panelLevel.Click += new System.EventHandler(this.panel_Click);
+      // 
+      // PLevel
+      // 
+      this.PLevel.BackColor = System.Drawing.Color.White;
+      this.PLevel.Location = new System.Drawing.Point(62, 0);
+      this.PLevel.Name = "PLevel";
+      this.PLevel.Size = new System.Drawing.Size(33, 20);
+      // 
+      // label5
+      // 
+      this.label5.BackColor = System.Drawing.Color.Black;
+      this.label5.ForeColor = System.Drawing.Color.White;
+      this.label5.Location = new System.Drawing.Point(17, 0);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(38, 20);
+      this.label5.Text = "Level";
+      this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // ILevel
+      // 
+      this.ILevel.BackColor = System.Drawing.Color.White;
+      this.ILevel.Location = new System.Drawing.Point(97, 0);
+      this.ILevel.Name = "ILevel";
+      this.ILevel.Size = new System.Drawing.Size(41, 20);
+      // 
+      // DLevel
+      // 
+      this.DLevel.BackColor = System.Drawing.Color.White;
+      this.DLevel.Location = new System.Drawing.Point(140, 0);
+      this.DLevel.Name = "DLevel";
+      this.DLevel.Size = new System.Drawing.Size(41, 20);
+      // 
+      // panelYaw
+      // 
+      this.panelYaw.BackColor = System.Drawing.Color.Black;
+      this.panelYaw.Controls.Add(this.PYaw);
+      this.panelYaw.Controls.Add(this.IYaw);
+      this.panelYaw.Controls.Add(this.DYaw);
+      this.panelYaw.Controls.Add(this.YawRate);
+      this.panelYaw.Controls.Add(this.label3);
+      this.panelYaw.Location = new System.Drawing.Point(3, 126);
+      this.panelYaw.Name = "panelYaw";
+      this.panelYaw.Size = new System.Drawing.Size(233, 20);
+      this.panelYaw.Click += new System.EventHandler(this.panel_Click);
       // 
       // PYaw
       // 
       this.PYaw.BackColor = System.Drawing.Color.White;
-      this.PYaw.Location = new System.Drawing.Point(44, 0);
+      this.PYaw.Location = new System.Drawing.Point(62, 0);
       this.PYaw.Name = "PYaw";
       this.PYaw.Size = new System.Drawing.Size(33, 20);
       // 
       // IYaw
       // 
       this.IYaw.BackColor = System.Drawing.Color.White;
-      this.IYaw.Location = new System.Drawing.Point(81, 0);
+      this.IYaw.Location = new System.Drawing.Point(97, 0);
       this.IYaw.Name = "IYaw";
       this.IYaw.Size = new System.Drawing.Size(41, 20);
       // 
       // DYaw
       // 
       this.DYaw.BackColor = System.Drawing.Color.White;
-      this.DYaw.Location = new System.Drawing.Point(126, 0);
+      this.DYaw.Location = new System.Drawing.Point(140, 0);
       this.DYaw.Name = "DYaw";
       this.DYaw.Size = new System.Drawing.Size(41, 20);
       // 
       // YawRate
       // 
       this.YawRate.BackColor = System.Drawing.Color.White;
-      this.YawRate.Location = new System.Drawing.Point(173, 0);
+      this.YawRate.Location = new System.Drawing.Point(183, 0);
       this.YawRate.Name = "YawRate";
       this.YawRate.Size = new System.Drawing.Size(41, 20);
       // 
@@ -216,22 +370,44 @@
       // 
       this.label3.BackColor = System.Drawing.Color.Black;
       this.label3.ForeColor = System.Drawing.Color.White;
-      this.label3.Location = new System.Drawing.Point(3, 0);
+      this.label3.Location = new System.Drawing.Point(25, 0);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(30, 17);
       this.label3.Text = "Yaw";
+      this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
-      // panel2
+      // panelPitch
       // 
-      this.panel2.BackColor = System.Drawing.Color.Black;
-      this.panel2.Controls.Add(this.label2);
-      this.panel2.Controls.Add(this.PPitch);
-      this.panel2.Controls.Add(this.IPitch);
-      this.panel2.Controls.Add(this.DPitch);
-      this.panel2.Location = new System.Drawing.Point(18, 106);
-      this.panel2.Name = "panel2";
-      this.panel2.Size = new System.Drawing.Size(217, 20);
-      this.panel2.Click += new System.EventHandler(this.panel2_Click);
+      this.panelPitch.BackColor = System.Drawing.Color.Black;
+      this.panelPitch.Controls.Add(this.PPitch);
+      this.panelPitch.Controls.Add(this.IPitch);
+      this.panelPitch.Controls.Add(this.DPitch);
+      this.panelPitch.Controls.Add(this.label2);
+      this.panelPitch.Location = new System.Drawing.Point(3, 106);
+      this.panelPitch.Name = "panelPitch";
+      this.panelPitch.Size = new System.Drawing.Size(233, 20);
+      this.panelPitch.Click += new System.EventHandler(this.panel_Click);
+      // 
+      // PPitch
+      // 
+      this.PPitch.BackColor = System.Drawing.Color.White;
+      this.PPitch.Location = new System.Drawing.Point(62, 0);
+      this.PPitch.Name = "PPitch";
+      this.PPitch.Size = new System.Drawing.Size(33, 20);
+      // 
+      // IPitch
+      // 
+      this.IPitch.BackColor = System.Drawing.Color.White;
+      this.IPitch.Location = new System.Drawing.Point(97, 0);
+      this.IPitch.Name = "IPitch";
+      this.IPitch.Size = new System.Drawing.Size(41, 20);
+      // 
+      // DPitch
+      // 
+      this.DPitch.BackColor = System.Drawing.Color.White;
+      this.DPitch.Location = new System.Drawing.Point(140, 0);
+      this.DPitch.Name = "DPitch";
+      this.DPitch.Size = new System.Drawing.Size(41, 20);
       // 
       // label2
       // 
@@ -239,79 +415,60 @@
       this.label2.ForeColor = System.Drawing.Color.White;
       this.label2.Location = new System.Drawing.Point(3, 0);
       this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(33, 15);
+      this.label2.Size = new System.Drawing.Size(52, 15);
       this.label2.Text = "Pitch";
+      this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
-      // PPitch
+      // panelRoll
       // 
-      this.PPitch.BackColor = System.Drawing.Color.White;
-      this.PPitch.Location = new System.Drawing.Point(38, 0);
-      this.PPitch.Name = "PPitch";
-      this.PPitch.Size = new System.Drawing.Size(33, 20);
-      // 
-      // IPitch
-      // 
-      this.IPitch.BackColor = System.Drawing.Color.White;
-      this.IPitch.Location = new System.Drawing.Point(75, 0);
-      this.IPitch.Name = "IPitch";
-      this.IPitch.Size = new System.Drawing.Size(41, 20);
-      // 
-      // DPitch
-      // 
-      this.DPitch.BackColor = System.Drawing.Color.White;
-      this.DPitch.Location = new System.Drawing.Point(120, 0);
-      this.DPitch.Name = "DPitch";
-      this.DPitch.Size = new System.Drawing.Size(41, 20);
-      // 
-      // panel1
-      // 
-      this.panel1.BackColor = System.Drawing.Color.Black;
-      this.panel1.Controls.Add(this.label1);
-      this.panel1.Controls.Add(this.PRoll);
-      this.panel1.Controls.Add(this.IRoll);
-      this.panel1.Controls.Add(this.DRoll);
-      this.panel1.Controls.Add(this.RollPitchRate);
-      this.panel1.Location = new System.Drawing.Point(18, 86);
-      this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(218, 20);
-      this.panel1.Click += new System.EventHandler(this.panel1_Click);
-      // 
-      // label1
-      // 
-      this.label1.BackColor = System.Drawing.Color.Black;
-      this.label1.ForeColor = System.Drawing.Color.White;
-      this.label1.Location = new System.Drawing.Point(3, 0);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(33, 17);
-      this.label1.Text = "Roll";
+      this.panelRoll.BackColor = System.Drawing.Color.Black;
+      this.panelRoll.Controls.Add(this.PRoll);
+      this.panelRoll.Controls.Add(this.IRoll);
+      this.panelRoll.Controls.Add(this.DRoll);
+      this.panelRoll.Controls.Add(this.RollPitchRate);
+      this.panelRoll.Controls.Add(this.label1);
+      this.panelRoll.Location = new System.Drawing.Point(3, 86);
+      this.panelRoll.Name = "panelRoll";
+      this.panelRoll.Size = new System.Drawing.Size(233, 20);
+      this.panelRoll.Click += new System.EventHandler(this.panel_Click);
       // 
       // PRoll
       // 
       this.PRoll.BackColor = System.Drawing.Color.White;
-      this.PRoll.Location = new System.Drawing.Point(38, 0);
+      this.PRoll.Location = new System.Drawing.Point(62, 0);
       this.PRoll.Name = "PRoll";
       this.PRoll.Size = new System.Drawing.Size(33, 20);
       // 
       // IRoll
       // 
       this.IRoll.BackColor = System.Drawing.Color.White;
-      this.IRoll.Location = new System.Drawing.Point(75, 0);
+      this.IRoll.Location = new System.Drawing.Point(97, 0);
       this.IRoll.Name = "IRoll";
       this.IRoll.Size = new System.Drawing.Size(41, 20);
       // 
       // DRoll
       // 
       this.DRoll.BackColor = System.Drawing.Color.White;
-      this.DRoll.Location = new System.Drawing.Point(120, 0);
+      this.DRoll.Location = new System.Drawing.Point(140, 0);
       this.DRoll.Name = "DRoll";
       this.DRoll.Size = new System.Drawing.Size(41, 20);
       // 
       // RollPitchRate
       // 
       this.RollPitchRate.BackColor = System.Drawing.Color.White;
-      this.RollPitchRate.Location = new System.Drawing.Point(167, 0);
+      this.RollPitchRate.Location = new System.Drawing.Point(183, 0);
       this.RollPitchRate.Name = "RollPitchRate";
       this.RollPitchRate.Size = new System.Drawing.Size(41, 20);
+      // 
+      // label1
+      // 
+      this.label1.BackColor = System.Drawing.Color.Black;
+      this.label1.ForeColor = System.Drawing.Color.White;
+      this.label1.Location = new System.Drawing.Point(22, 0);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(33, 17);
+      this.label1.Text = "Roll";
+      this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // bWrite
       // 
@@ -323,106 +480,6 @@
       this.bWrite.TabIndex = 174;
       this.bWrite.Text = "Write";
       this.bWrite.Click += new System.EventHandler(this.bWrite_Click);
-      // 
-      // label26
-      // 
-      this.label26.BackColor = System.Drawing.Color.Black;
-      this.label26.ForeColor = System.Drawing.Color.White;
-      this.label26.Location = new System.Drawing.Point(101, 247);
-      this.label26.Name = "label26";
-      this.label26.Size = new System.Drawing.Size(88, 20);
-      this.label26.Text = "Thr.PID ATT";
-      // 
-      // ThrPIDAtt
-      // 
-      this.ThrPIDAtt.BackColor = System.Drawing.Color.White;
-      this.ThrPIDAtt.Location = new System.Drawing.Point(191, 249);
-      this.ThrPIDAtt.Name = "ThrPIDAtt";
-      this.ThrPIDAtt.Size = new System.Drawing.Size(41, 20);
-      // 
-      // RCRate
-      // 
-      this.RCRate.BackColor = System.Drawing.Color.White;
-      this.RCRate.Location = new System.Drawing.Point(62, 249);
-      this.RCRate.Name = "RCRate";
-      this.RCRate.Size = new System.Drawing.Size(33, 20);
-      // 
-      // RCExpo
-      // 
-      this.RCExpo.BackColor = System.Drawing.Color.White;
-      this.RCExpo.Location = new System.Drawing.Point(62, 229);
-      this.RCExpo.Name = "RCExpo";
-      this.RCExpo.Size = new System.Drawing.Size(33, 20);
-      // 
-      // DVelocity
-      // 
-      this.DVelocity.BackColor = System.Drawing.Color.White;
-      this.DVelocity.Location = new System.Drawing.Point(144, 209);
-      this.DVelocity.Name = "DVelocity";
-      this.DVelocity.Size = new System.Drawing.Size(41, 20);
-      // 
-      // IVelocity
-      // 
-      this.IVelocity.BackColor = System.Drawing.Color.White;
-      this.IVelocity.Location = new System.Drawing.Point(99, 209);
-      this.IVelocity.Name = "IVelocity";
-      this.IVelocity.Size = new System.Drawing.Size(41, 20);
-      // 
-      // PVelocity
-      // 
-      this.PVelocity.BackColor = System.Drawing.Color.White;
-      this.PVelocity.Location = new System.Drawing.Point(62, 209);
-      this.PVelocity.Name = "PVelocity";
-      this.PVelocity.Size = new System.Drawing.Size(33, 20);
-      // 
-      // PMag
-      // 
-      this.PMag.BackColor = System.Drawing.Color.White;
-      this.PMag.Location = new System.Drawing.Point(62, 189);
-      this.PMag.Name = "PMag";
-      this.PMag.Size = new System.Drawing.Size(33, 20);
-      // 
-      // DLevel
-      // 
-      this.DLevel.BackColor = System.Drawing.Color.White;
-      this.DLevel.Location = new System.Drawing.Point(144, 169);
-      this.DLevel.Name = "DLevel";
-      this.DLevel.Size = new System.Drawing.Size(41, 20);
-      // 
-      // ILevel
-      // 
-      this.ILevel.BackColor = System.Drawing.Color.White;
-      this.ILevel.Location = new System.Drawing.Point(99, 169);
-      this.ILevel.Name = "ILevel";
-      this.ILevel.Size = new System.Drawing.Size(41, 20);
-      // 
-      // PLevel
-      // 
-      this.PLevel.BackColor = System.Drawing.Color.White;
-      this.PLevel.Location = new System.Drawing.Point(62, 169);
-      this.PLevel.Name = "PLevel";
-      this.PLevel.Size = new System.Drawing.Size(33, 20);
-      // 
-      // DAlt
-      // 
-      this.DAlt.BackColor = System.Drawing.Color.White;
-      this.DAlt.Location = new System.Drawing.Point(144, 149);
-      this.DAlt.Name = "DAlt";
-      this.DAlt.Size = new System.Drawing.Size(41, 20);
-      // 
-      // IAlt
-      // 
-      this.IAlt.BackColor = System.Drawing.Color.White;
-      this.IAlt.Location = new System.Drawing.Point(99, 149);
-      this.IAlt.Name = "IAlt";
-      this.IAlt.Size = new System.Drawing.Size(41, 20);
-      // 
-      // PAlt
-      // 
-      this.PAlt.BackColor = System.Drawing.Color.White;
-      this.PAlt.Location = new System.Drawing.Point(62, 149);
-      this.PAlt.Name = "PAlt";
-      this.PAlt.Size = new System.Drawing.Size(33, 20);
       // 
       // label9
       // 
@@ -436,38 +493,11 @@
       // label8
       // 
       this.label8.ForeColor = System.Drawing.Color.White;
-      this.label8.Location = new System.Drawing.Point(62, 69);
+      this.label8.Location = new System.Drawing.Point(66, 69);
       this.label8.Name = "label8";
       this.label8.Size = new System.Drawing.Size(33, 20);
       this.label8.Text = "P";
       this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-      // 
-      // label7
-      // 
-      this.label7.BackColor = System.Drawing.Color.Black;
-      this.label7.ForeColor = System.Drawing.Color.White;
-      this.label7.Location = new System.Drawing.Point(10, 209);
-      this.label7.Name = "label7";
-      this.label7.Size = new System.Drawing.Size(38, 20);
-      this.label7.Text = "Vel.";
-      // 
-      // label6
-      // 
-      this.label6.BackColor = System.Drawing.Color.Black;
-      this.label6.ForeColor = System.Drawing.Color.White;
-      this.label6.Location = new System.Drawing.Point(10, 189);
-      this.label6.Name = "label6";
-      this.label6.Size = new System.Drawing.Size(38, 20);
-      this.label6.Text = "Mag.";
-      // 
-      // label5
-      // 
-      this.label5.BackColor = System.Drawing.Color.Black;
-      this.label5.ForeColor = System.Drawing.Color.White;
-      this.label5.Location = new System.Drawing.Point(10, 169);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(38, 20);
-      this.label5.Text = "Level";
       // 
       // label13
       // 
@@ -479,41 +509,14 @@
       this.label13.Text = "Rate";
       this.label13.TextAlign = System.Drawing.ContentAlignment.TopCenter;
       // 
-      // label12
-      // 
-      this.label12.BackColor = System.Drawing.Color.Black;
-      this.label12.ForeColor = System.Drawing.Color.White;
-      this.label12.Location = new System.Drawing.Point(9, 249);
-      this.label12.Name = "label12";
-      this.label12.Size = new System.Drawing.Size(65, 20);
-      this.label12.Text = "RC Rate";
-      // 
-      // label11
-      // 
-      this.label11.BackColor = System.Drawing.Color.Black;
-      this.label11.ForeColor = System.Drawing.Color.White;
-      this.label11.Location = new System.Drawing.Point(10, 229);
-      this.label11.Name = "label11";
-      this.label11.Size = new System.Drawing.Size(64, 20);
-      this.label11.Text = "RC Exp.";
-      // 
       // label10
       // 
       this.label10.ForeColor = System.Drawing.Color.White;
-      this.label10.Location = new System.Drawing.Point(144, 69);
+      this.label10.Location = new System.Drawing.Point(143, 69);
       this.label10.Name = "label10";
       this.label10.Size = new System.Drawing.Size(41, 20);
       this.label10.Text = "D";
       this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-      // 
-      // label4
-      // 
-      this.label4.BackColor = System.Drawing.Color.Black;
-      this.label4.ForeColor = System.Drawing.Color.White;
-      this.label4.Location = new System.Drawing.Point(10, 149);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(38, 20);
-      this.label4.Text = "Alt.";
       // 
       // bRead
       // 
@@ -533,9 +536,74 @@
       this.labelTextLastMessage.Name = "labelTextLastMessage";
       this.labelTextLastMessage.Size = new System.Drawing.Size(233, 42);
       // 
+      // panelRC
+      // 
+      this.panelRC.BackColor = System.Drawing.Color.Black;
+      this.panelRC.Controls.Add(this.RCRate);
+      this.panelRC.Controls.Add(this.RCExpo);
+      this.panelRC.Controls.Add(this.label11);
+      this.panelRC.Controls.Add(this.label12);
+      this.panelRC.Controls.Add(this.ThrPIDAtt);
+      this.panelRC.Controls.Add(this.label26);
+      this.panelRC.Location = new System.Drawing.Point(3, 232);
+      this.panelRC.Name = "panelRC";
+      this.panelRC.Size = new System.Drawing.Size(233, 45);
+      // 
+      // RCRate
+      // 
+      this.RCRate.BackColor = System.Drawing.Color.White;
+      this.RCRate.Location = new System.Drawing.Point(62, 20);
+      this.RCRate.Name = "RCRate";
+      this.RCRate.Size = new System.Drawing.Size(33, 20);
+      // 
+      // RCExpo
+      // 
+      this.RCExpo.BackColor = System.Drawing.Color.White;
+      this.RCExpo.Location = new System.Drawing.Point(62, 0);
+      this.RCExpo.Name = "RCExpo";
+      this.RCExpo.Size = new System.Drawing.Size(33, 20);
+      // 
+      // label11
+      // 
+      this.label11.BackColor = System.Drawing.Color.Black;
+      this.label11.ForeColor = System.Drawing.Color.White;
+      this.label11.Location = new System.Drawing.Point(0, 0);
+      this.label11.Name = "label11";
+      this.label11.Size = new System.Drawing.Size(55, 20);
+      this.label11.Text = "RC Exp.";
+      this.label11.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // label12
+      // 
+      this.label12.BackColor = System.Drawing.Color.Black;
+      this.label12.ForeColor = System.Drawing.Color.White;
+      this.label12.Location = new System.Drawing.Point(1, 20);
+      this.label12.Name = "label12";
+      this.label12.Size = new System.Drawing.Size(54, 20);
+      this.label12.Text = "RC Rate";
+      this.label12.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
+      // ThrPIDAtt
+      // 
+      this.ThrPIDAtt.BackColor = System.Drawing.Color.White;
+      this.ThrPIDAtt.Location = new System.Drawing.Point(183, 20);
+      this.ThrPIDAtt.Name = "ThrPIDAtt";
+      this.ThrPIDAtt.Size = new System.Drawing.Size(41, 20);
+      // 
+      // label26
+      // 
+      this.label26.BackColor = System.Drawing.Color.Black;
+      this.label26.ForeColor = System.Drawing.Color.White;
+      this.label26.Location = new System.Drawing.Point(99, 20);
+      this.label26.Name = "label26";
+      this.label26.Size = new System.Drawing.Size(82, 20);
+      this.label26.Text = "Thr.PID ATT";
+      this.label26.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
       // tabPage1
       // 
       this.tabPage1.BackColor = System.Drawing.Color.Black;
+      this.tabPage1.Controls.Add(this.labelInfo);
       this.tabPage1.Controls.Add(this.cb_serial_speed);
       this.tabPage1.Controls.Add(this.label15);
       this.tabPage1.Controls.Add(this.cb_serial_port);
@@ -546,6 +614,13 @@
       this.tabPage1.Name = "tabPage1";
       this.tabPage1.Size = new System.Drawing.Size(240, 317);
       this.tabPage1.Text = "Main";
+      // 
+      // labelInfo
+      // 
+      this.labelInfo.ForeColor = System.Drawing.Color.Yellow;
+      this.labelInfo.Location = new System.Drawing.Point(3, 113);
+      this.labelInfo.Name = "labelInfo";
+      this.labelInfo.Size = new System.Drawing.Size(234, 96);
       // 
       // cb_serial_speed
       // 
@@ -582,7 +657,7 @@
       this.b_connect.BackColor = System.Drawing.Color.White;
       this.b_connect.Location = new System.Drawing.Point(3, 34);
       this.b_connect.Name = "b_connect";
-      this.b_connect.Size = new System.Drawing.Size(234, 172);
+      this.b_connect.Size = new System.Drawing.Size(234, 76);
       this.b_connect.TabIndex = 71;
       this.b_connect.Text = "Connect";
       this.b_connect.Click += new System.EventHandler(this.b_connect_Click);
@@ -602,6 +677,7 @@
       this.tabControl1.Controls.Add(this.tabPage1);
       this.tabControl1.Controls.Add(this.tabPage2);
       this.tabControl1.Controls.Add(this.tabPage3);
+      this.tabControl1.Controls.Add(this.tabPage4);
       this.tabControl1.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular);
       this.tabControl1.Location = new System.Drawing.Point(0, 0);
       this.tabControl1.Name = "tabControl1";
@@ -612,6 +688,7 @@
       // tabPage3
       // 
       this.tabPage3.BackColor = System.Drawing.Color.Black;
+      this.tabPage3.Controls.Add(this.button4);
       this.tabPage3.Controls.Add(this.button2);
       this.tabPage3.Controls.Add(this.button3);
       this.tabPage3.Controls.Add(this.setRate);
@@ -632,8 +709,19 @@
       this.tabPage3.Controls.Add(this.label16);
       this.tabPage3.Location = new System.Drawing.Point(0, 0);
       this.tabPage3.Name = "tabPage3";
-      this.tabPage3.Size = new System.Drawing.Size(240, 317);
+      this.tabPage3.Size = new System.Drawing.Size(232, 314);
       this.tabPage3.Text = "Set";
+      // 
+      // button4
+      // 
+      this.button4.BackColor = System.Drawing.Color.White;
+      this.button4.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
+      this.button4.ForeColor = System.Drawing.Color.Black;
+      this.button4.Location = new System.Drawing.Point(89, 244);
+      this.button4.Name = "button4";
+      this.button4.Size = new System.Drawing.Size(72, 50);
+      this.button4.TabIndex = 28;
+      this.button4.Text = "Back";
       // 
       // button2
       // 
@@ -679,7 +767,7 @@
       this.button8.BackColor = System.Drawing.Color.White;
       this.button8.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
       this.button8.ForeColor = System.Drawing.Color.Black;
-      this.button8.Location = new System.Drawing.Point(82, 249);
+      this.button8.Location = new System.Drawing.Point(11, 244);
       this.button8.Name = "button8";
       this.button8.Size = new System.Drawing.Size(72, 50);
       this.button8.TabIndex = 13;
@@ -819,6 +907,18 @@
       this.label16.Text = "P";
       this.label16.TextAlign = System.Drawing.ContentAlignment.TopCenter;
       // 
+      // serialPort1
+      // 
+      this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+      // 
+      // tabPage4
+      // 
+      this.tabPage4.BackColor = System.Drawing.Color.Black;
+      this.tabPage4.Location = new System.Drawing.Point(0, 0);
+      this.tabPage4.Name = "tabPage4";
+      this.tabPage4.Size = new System.Drawing.Size(240, 317);
+      this.tabPage4.Text = "RC";
+      // 
       // MWSetup
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -833,9 +933,14 @@
       this.Load += new System.EventHandler(this.Form1_Load);
       this.Closing += new System.ComponentModel.CancelEventHandler(this.FormMain_Closing);
       this.tabPage2.ResumeLayout(false);
-      this.panel3.ResumeLayout(false);
-      this.panel2.ResumeLayout(false);
-      this.panel1.ResumeLayout(false);
+      this.panelVel.ResumeLayout(false);
+      this.panelAlt.ResumeLayout(false);
+      this.panelMag.ResumeLayout(false);
+      this.panelLevel.ResumeLayout(false);
+      this.panelYaw.ResumeLayout(false);
+      this.panelPitch.ResumeLayout(false);
+      this.panelRoll.ResumeLayout(false);
+      this.panelRC.ResumeLayout(false);
       this.tabPage1.ResumeLayout(false);
       this.tabControl1.ResumeLayout(false);
       this.tabPage3.ResumeLayout(false);
@@ -889,7 +994,6 @@
     private System.Windows.Forms.Label PRoll;
     private System.Windows.Forms.Label label11;
     private System.Windows.Forms.Label label10;
-    private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Label label1;
@@ -915,13 +1019,22 @@
     private System.Windows.Forms.TextBox setP;
     private System.Windows.Forms.Button minusP;
     private System.Windows.Forms.Button button8;
-    private System.Windows.Forms.Panel panel1;
-    private System.Windows.Forms.Panel panel2;
+    private System.Windows.Forms.Panel panelRoll;
+    private System.Windows.Forms.Panel panelPitch;
     private System.Windows.Forms.Button button2;
     private System.Windows.Forms.Button button3;
     private System.Windows.Forms.TextBox setRate;
     private System.Windows.Forms.Label label20;
-    private System.Windows.Forms.Panel panel3;
+    private System.Windows.Forms.Panel panelYaw;
+    private System.Windows.Forms.Button button4;
+    private System.Windows.Forms.Panel panelVel;
+    private System.Windows.Forms.Panel panelMag;
+    private System.Windows.Forms.Panel panelLevel;
+    private System.Windows.Forms.Panel panelAlt;
+    private System.Windows.Forms.Label label4;
+    private System.Windows.Forms.Label labelInfo;
+    private System.Windows.Forms.Panel panelRC;
+    private System.Windows.Forms.TabPage tabPage4;
 
   }
 }

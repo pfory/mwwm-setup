@@ -16,140 +16,140 @@ namespace MWGUI
     public class GUI_settings
     {
 
-        public string sSettingsFolder { get; set; }
+//        public string sSettingsFolder { get; set; }
         public int iSoftwareVersion { get; set; }
 
-        public byte MSP_STATUS_rate_divider { get; set; }
-        public byte MSP_RAW_IMU_rate_divider { get; set; }
-        public byte MSP_SERVO_rate_divider { get; set; }
-        public byte MSP_MOTOR_rate_divider { get; set; }
-        public byte MSP_RAW_GPS_rate_divider { get; set; }
-        public byte MSP_COMP_GPS_rate_divider { get; set; }
-        public byte MSP_ATTITUDE_rate_divider { get; set; }
-        public byte MSP_ALTITUDE_rate_divider { get; set; }
-        public byte MSP_BAT_rate_divider { get; set; }
-        public byte MSP_RC_rate_divider { get; set; }
-        public byte MSP_MISC_rate_divider { get; set; }
-        public byte MSP_DEBUG_rate_divider { get; set; }
+//        public byte MSP_STATUS_rate_divider { get; set; }
+//        public byte MSP_RAW_IMU_rate_divider { get; set; }
+//        public byte MSP_SERVO_rate_divider { get; set; }
+//        public byte MSP_MOTOR_rate_divider { get; set; }
+//        public byte MSP_RAW_GPS_rate_divider { get; set; }
+//        public byte MSP_COMP_GPS_rate_divider { get; set; }
+//        public byte MSP_ATTITUDE_rate_divider { get; set; }
+//        public byte MSP_ALTITUDE_rate_divider { get; set; }
+//        public byte MSP_BAT_rate_divider { get; set; }
+//        public byte MSP_RC_rate_divider { get; set; }
+//        public byte MSP_MISC_rate_divider { get; set; }
+//        public byte MSP_DEBUG_rate_divider { get; set; }
 
 
-        //Constructor, set default values
-        public GUI_settings()
-        {
-            //sSettingsFolder = Directory.GetCurrentDirectory();
-            iSoftwareVersion = 21;
+//        //Constructor, set default values
+//        public GUI_settings()
+//        {
+//            //sSettingsFolder = Directory.GetCurrentDirectory();
+//            iSoftwareVersion = 21;
 
-            //Refreh rate dividers (based on 20Hz refresh rate)
-            // 1 = 20Hz, 2=10Hz, 4=5Hz, 8=2.5Hz 10=2Hz 20=1Hz
+//            //Refreh rate dividers (based on 20Hz refresh rate)
+//            // 1 = 20Hz, 2=10Hz, 4=5Hz, 8=2.5Hz 10=2Hz 20=1Hz
 
-            MSP_STATUS_rate_divider = 10;
-            MSP_RAW_IMU_rate_divider = 1;
-            MSP_SERVO_rate_divider = 4;
-            MSP_MOTOR_rate_divider = 4;
-            MSP_RAW_GPS_rate_divider = 2;
-            MSP_COMP_GPS_rate_divider = 2;
-            MSP_ATTITUDE_rate_divider = 1;
-            MSP_ALTITUDE_rate_divider = 10;
-            MSP_BAT_rate_divider = 20;
-            MSP_RC_rate_divider = 2;
-            MSP_MISC_rate_divider = 10;
-            MSP_DEBUG_rate_divider = 2;
+//            MSP_STATUS_rate_divider = 10;
+//            MSP_RAW_IMU_rate_divider = 1;
+//            MSP_SERVO_rate_divider = 4;
+//            MSP_MOTOR_rate_divider = 4;
+//            MSP_RAW_GPS_rate_divider = 2;
+//            MSP_COMP_GPS_rate_divider = 2;
+//            MSP_ATTITUDE_rate_divider = 1;
+//            MSP_ALTITUDE_rate_divider = 10;
+//            MSP_BAT_rate_divider = 20;
+//            MSP_RC_rate_divider = 2;
+//            MSP_MISC_rate_divider = 10;
+//            MSP_DEBUG_rate_divider = 2;
 
-        }
-
-
-        public void save_to_xml(string filename)
-        {
-            XmlTextWriter tw = new XmlTextWriter(filename, null);
-            tw.Formatting = Formatting.Indented;
-            tw.Indentation = 4;
-            tw.WriteStartDocument();
-
-            // Get the name and version of the current assembly.
-            Assembly assem = Assembly.GetExecutingAssembly();
-            AssemblyName assemName = assem.GetName();
-            Version ver = assemName.Version;
-            tw.WriteComment(String.Format("{0}, Version {1}", assemName.Name, ver.ToString()));
-            tw.WriteComment("GUI Settings");
-            tw.WriteComment("Do not change this file manually, unless you know what are you doing");
-
-            tw.WriteStartElement("PARAMETERS");
-
-            tw.WriteStartElement("FCVERSION value=\"" + iSoftwareVersion + "\""); tw.WriteEndElement();
-            tw.WriteStartElement("SETTINGSFOLDER value=\"" + sSettingsFolder + "\""); tw.WriteEndElement();
-
-            tw.WriteStartElement("MSP_STATUS_RATE_DIV value=\"" + MSP_STATUS_rate_divider + "\""); tw.WriteEndElement();
-            tw.WriteStartElement("MSP_RAW_IMU_RATE_DIV value=\"" + MSP_RAW_IMU_rate_divider + "\""); tw.WriteEndElement();
-            tw.WriteStartElement("MSP_SERVO_RATE_DIV value=\"" + MSP_SERVO_rate_divider + "\""); tw.WriteEndElement();
-            tw.WriteStartElement("MSP_MOTOR_RATE_DIV value=\"" + MSP_MOTOR_rate_divider + "\""); tw.WriteEndElement();
-            tw.WriteStartElement("MSP_RAW_GPS_RATE_DIV value=\"" + MSP_RAW_GPS_rate_divider + "\""); tw.WriteEndElement();
-            tw.WriteStartElement("MSP_COMP_GPS_RATE_DIV value=\"" + MSP_COMP_GPS_rate_divider + "\""); tw.WriteEndElement();
-            tw.WriteStartElement("MSP_ATTITUDE_RATE_DIV value=\"" + MSP_ATTITUDE_rate_divider + "\""); tw.WriteEndElement();
-            tw.WriteStartElement("MSP_ALTITUDE_RATE_DIV value=\"" + MSP_ALTITUDE_rate_divider + "\""); tw.WriteEndElement();
-            tw.WriteStartElement("MSP_BAT_RATE_DIV value=\"" + MSP_BAT_rate_divider + "\""); tw.WriteEndElement();
-            tw.WriteStartElement("MSP_RC_RATE_DIV value=\"" + MSP_RC_rate_divider + "\""); tw.WriteEndElement();
-            tw.WriteStartElement("MSP_MISC_RATE_DIV value=\"" + MSP_MISC_rate_divider + "\""); tw.WriteEndElement();
-            tw.WriteStartElement("MSP_DEBUG_RATE_DIV value=\"" + MSP_DEBUG_rate_divider + "\""); tw.WriteEndElement();
-
-            tw.WriteEndElement();
-
-            tw.WriteEndDocument();
-            tw.Close();
-        }
+//        }
 
 
-        public bool read_from_xml(string filename)
-        {
-            XmlTextReader reader;
+//        public void save_to_xml(string filename)
+//        {
+//            XmlTextWriter tw = new XmlTextWriter(filename, null);
+//            tw.Formatting = Formatting.Indented;
+//            tw.Indentation = 4;
+//            tw.WriteStartDocument();
 
-            if (!File.Exists(filename))
-            {
-                //MessageBoxEx.Show("Error opening config file :" + filename + "\r\nUnable to continue!!", "Config File not found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return (false);
-            }
-            reader = new XmlTextReader(filename);
-            try
-            {
-                while (reader.Read())
-                {
-                    switch (reader.NodeType)
-                    {
-                        case XmlNodeType.Element:
+//            // Get the name and version of the current assembly.
+//            Assembly assem = Assembly.GetExecutingAssembly();
+//            AssemblyName assemName = assem.GetName();
+//            Version ver = assemName.Version;
+//            tw.WriteComment(String.Format("{0}, Version {1}", assemName.Name, ver.ToString()));
+//            tw.WriteComment("GUI Settings");
+//            tw.WriteComment("Do not change this file manually, unless you know what are you doing");
 
-                            if (String.Compare(reader.Name, "fcversion", true) == 0 && reader.HasAttributes) { iSoftwareVersion = Convert.ToInt16(reader.GetAttribute("value")); }
-                            if (String.Compare(reader.Name, "settingsfolder", true) == 0 && reader.HasAttributes) { sSettingsFolder = reader.GetAttribute("value"); }
-                            if (String.Compare(reader.Name, "msp_status_rate_divider", true) == 0 && reader.HasAttributes) { MSP_STATUS_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
-                            if (String.Compare(reader.Name, "msp_raw_imu_rate_divider", true) == 0 && reader.HasAttributes) { MSP_RAW_IMU_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
-                            if (String.Compare(reader.Name, "msp_servo_rate_divider", true) == 0 && reader.HasAttributes) { MSP_SERVO_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
-                            if (String.Compare(reader.Name, "msp_motor_rate_divider", true) == 0 && reader.HasAttributes) { MSP_MOTOR_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
-                            if (String.Compare(reader.Name, "msp_raw_gps_rate_divider", true) == 0 && reader.HasAttributes) { MSP_RAW_GPS_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
-                            if (String.Compare(reader.Name, "msp_comp_gps_rate_divider", true) == 0 && reader.HasAttributes) { MSP_COMP_GPS_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
-                            if (String.Compare(reader.Name, "msp_attitude_rate_divider", true) == 0 && reader.HasAttributes) { MSP_ATTITUDE_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
-                            if (String.Compare(reader.Name, "msp_altitude_rate_divider", true) == 0 && reader.HasAttributes) { MSP_ALTITUDE_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
-                            if (String.Compare(reader.Name, "msp_bat_rate_divider", true) == 0 && reader.HasAttributes) { MSP_BAT_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
-                            if (String.Compare(reader.Name, "msp_rc_rate_divider", true) == 0 && reader.HasAttributes) { MSP_RC_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
-                            if (String.Compare(reader.Name, "msp_misc_rate_divider", true) == 0 && reader.HasAttributes) { MSP_MISC_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
-                            if (String.Compare(reader.Name, "msp_debug_rate_divider", true) == 0 && reader.HasAttributes) { MSP_DEBUG_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
+//            tw.WriteStartElement("PARAMETERS");
 
-                            break;
-                    }
-                }
-            }
-            catch
-            {
-//                MessageBoxEx.Show("Options file contains invalid data around Line : " + reader.LineNumber + "\r\nUnable to continue!!", "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return (false);
+//            tw.WriteStartElement("FCVERSION value=\"" + iSoftwareVersion + "\""); tw.WriteEndElement();
+//            tw.WriteStartElement("SETTINGSFOLDER value=\"" + sSettingsFolder + "\""); tw.WriteEndElement();
 
-            }
+//            tw.WriteStartElement("MSP_STATUS_RATE_DIV value=\"" + MSP_STATUS_rate_divider + "\""); tw.WriteEndElement();
+//            tw.WriteStartElement("MSP_RAW_IMU_RATE_DIV value=\"" + MSP_RAW_IMU_rate_divider + "\""); tw.WriteEndElement();
+//            tw.WriteStartElement("MSP_SERVO_RATE_DIV value=\"" + MSP_SERVO_rate_divider + "\""); tw.WriteEndElement();
+//            tw.WriteStartElement("MSP_MOTOR_RATE_DIV value=\"" + MSP_MOTOR_rate_divider + "\""); tw.WriteEndElement();
+//            tw.WriteStartElement("MSP_RAW_GPS_RATE_DIV value=\"" + MSP_RAW_GPS_rate_divider + "\""); tw.WriteEndElement();
+//            tw.WriteStartElement("MSP_COMP_GPS_RATE_DIV value=\"" + MSP_COMP_GPS_rate_divider + "\""); tw.WriteEndElement();
+//            tw.WriteStartElement("MSP_ATTITUDE_RATE_DIV value=\"" + MSP_ATTITUDE_rate_divider + "\""); tw.WriteEndElement();
+//            tw.WriteStartElement("MSP_ALTITUDE_RATE_DIV value=\"" + MSP_ALTITUDE_rate_divider + "\""); tw.WriteEndElement();
+//            tw.WriteStartElement("MSP_BAT_RATE_DIV value=\"" + MSP_BAT_rate_divider + "\""); tw.WriteEndElement();
+//            tw.WriteStartElement("MSP_RC_RATE_DIV value=\"" + MSP_RC_rate_divider + "\""); tw.WriteEndElement();
+//            tw.WriteStartElement("MSP_MISC_RATE_DIV value=\"" + MSP_MISC_rate_divider + "\""); tw.WriteEndElement();
+//            tw.WriteStartElement("MSP_DEBUG_RATE_DIV value=\"" + MSP_DEBUG_rate_divider + "\""); tw.WriteEndElement();
 
-            finally
-            {
-                if (reader != null)
-                    reader.Close();
-            }
+//            tw.WriteEndElement();
 
-            return (true);
-        }
+//            tw.WriteEndDocument();
+//            tw.Close();
+//        }
+
+
+//        public bool read_from_xml(string filename)
+//        {
+//            XmlTextReader reader;
+
+//            if (!File.Exists(filename))
+//            {
+//                //MessageBoxEx.Show("Error opening config file :" + filename + "\r\nUnable to continue!!", "Config File not found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+//                return (false);
+//            }
+//            reader = new XmlTextReader(filename);
+//            try
+//            {
+//                while (reader.Read())
+//                {
+//                    switch (reader.NodeType)
+//                    {
+//                        case XmlNodeType.Element:
+
+//                            if (String.Compare(reader.Name, "fcversion", true) == 0 && reader.HasAttributes) { iSoftwareVersion = Convert.ToInt16(reader.GetAttribute("value")); }
+//                            if (String.Compare(reader.Name, "settingsfolder", true) == 0 && reader.HasAttributes) { sSettingsFolder = reader.GetAttribute("value"); }
+//                            if (String.Compare(reader.Name, "msp_status_rate_divider", true) == 0 && reader.HasAttributes) { MSP_STATUS_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
+//                            if (String.Compare(reader.Name, "msp_raw_imu_rate_divider", true) == 0 && reader.HasAttributes) { MSP_RAW_IMU_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
+//                            if (String.Compare(reader.Name, "msp_servo_rate_divider", true) == 0 && reader.HasAttributes) { MSP_SERVO_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
+//                            if (String.Compare(reader.Name, "msp_motor_rate_divider", true) == 0 && reader.HasAttributes) { MSP_MOTOR_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
+//                            if (String.Compare(reader.Name, "msp_raw_gps_rate_divider", true) == 0 && reader.HasAttributes) { MSP_RAW_GPS_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
+//                            if (String.Compare(reader.Name, "msp_comp_gps_rate_divider", true) == 0 && reader.HasAttributes) { MSP_COMP_GPS_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
+//                            if (String.Compare(reader.Name, "msp_attitude_rate_divider", true) == 0 && reader.HasAttributes) { MSP_ATTITUDE_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
+//                            if (String.Compare(reader.Name, "msp_altitude_rate_divider", true) == 0 && reader.HasAttributes) { MSP_ALTITUDE_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
+//                            if (String.Compare(reader.Name, "msp_bat_rate_divider", true) == 0 && reader.HasAttributes) { MSP_BAT_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
+//                            if (String.Compare(reader.Name, "msp_rc_rate_divider", true) == 0 && reader.HasAttributes) { MSP_RC_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
+//                            if (String.Compare(reader.Name, "msp_misc_rate_divider", true) == 0 && reader.HasAttributes) { MSP_MISC_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
+//                            if (String.Compare(reader.Name, "msp_debug_rate_divider", true) == 0 && reader.HasAttributes) { MSP_DEBUG_rate_divider = Convert.ToByte(reader.GetAttribute("value")); }
+
+//                            break;
+//                    }
+//                }
+//            }
+//            catch
+//            {
+////                MessageBoxEx.Show("Options file contains invalid data around Line : " + reader.LineNumber + "\r\nUnable to continue!!", "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+//                return (false);
+
+//            }
+
+//            finally
+//            {
+//                if (reader != null)
+//                    reader.Close();
+//            }
+
+//            return (true);
+//        }
 
 
     }
@@ -265,17 +265,17 @@ namespace MWGUI
         const int MSP_DEBUG = 254;
 
         //Constructor
-        public mw_settings(int pidItems, int checkboxItems, int iSoftwareVersion)
+        public mw_settings(int pidItems) //, int checkboxItems, int iSoftwareVersion)
         {
 
             pidP = new byte[pidItems];
             pidI = new byte[pidItems];
             pidD = new byte[pidItems];
-            activation = new Int16[checkboxItems];
+            //activation = new Int16[checkboxItems];
 
-            iPIDItems = pidItems;
-            iCheckBoxItems = checkboxItems;
-            iSwVer = iSoftwareVersion;
+            //iPIDItems = pidItems;
+            //iCheckBoxItems = checkboxItems;
+            //iSwVer = iSoftwareVersion;
 
             pidnames = new string[pidItems];
 
@@ -517,27 +517,27 @@ namespace MWGUI
     public class mw_data_gui
     {
 
-        public int ax;          //AccSmooth
-        public int ay;          //AccSmooth
-        public int az;          //AccSmooth
-        public int gx;          //Gyro Smooth
-        public int gy;          //Gyro Smooth
-        public int gz;          //Gyro Smooth
-        public int magx;    //Magnetometer 
-        public int magy;    //Magnetometer 
-        public int magz;   //Magnetometer 
-        public int baro;
-        public int heading;
-        public int[] servos;
-        public int[] motors;
-        public int rcRoll, rcPitch, rcYaw, rcThrottle;
-        public int rcAux1, rcAux2, rcAux3, rcAux4;
-        public int present;            //What sensors are present?
-        public UInt32 mode;               //What mode are we in ?
-        public int i2cErrors;
-        public int cycleTime;
-        public int angx;                //Must be /10
-        public int angy;                //Must be /10
+        //public int ax;          //AccSmooth
+        //public int ay;          //AccSmooth
+        //public int az;          //AccSmooth
+        //public int gx;          //Gyro Smooth
+        //public int gy;          //Gyro Smooth
+        //public int gz;          //Gyro Smooth
+        //public int magx;    //Magnetometer 
+        //public int magy;    //Magnetometer 
+        //public int magz;   //Magnetometer 
+        //public int baro;
+        //public int heading;
+        //public int[] servos;
+        //public int[] motors;
+        //public int rcRoll, rcPitch, rcYaw, rcThrottle;
+        //public int rcAux1, rcAux2, rcAux3, rcAux4;
+        //public int present;            //What sensors are present?
+        //public UInt32 mode;               //What mode are we in ?
+        //public int i2cErrors;
+        //public int cycleTime;
+        //public int angx;                //Must be /10
+        //public int angy;                //Must be /10
         public byte multiType;
         public byte version;
         public byte protocol_version;
@@ -550,47 +550,47 @@ namespace MWGUI
         public byte RollPitchRate;
         public byte YawRate;
         public byte DynThrPID;
-        public byte ThrottleMID;
-        public byte ThrottleEXPO;
-        public Int16[] activation;
-        public int GPS_distanceToHome;
-        public int GPS_directionToHome;
-        public byte GPS_numSat;
-        public byte GPS_fix;
-        public byte GPS_update;
-        public int GPS_latitude;
-        public int GPS_longitude;
-        public int GPS_altitude;
-        public int GPS_speed;
-        public int GPS_home_lat;
-        public int GPS_home_lon;
-        public int GPS_home_alt;
-        public int GPS_poshold_lat;
-        public int GPS_poshold_lon;
-        public int GPS_poshold_alt;
-        public int pMeterSum;
-        public int powerTrigger;
-        public byte vBat;
-        public int debug1, debug2, debug3, debug4;
+        //public byte ThrottleMID;
+        //public byte ThrottleEXPO;
+        //public Int16[] activation;
+        //public int GPS_distanceToHome;
+        //public int GPS_directionToHome;
+        //public byte GPS_numSat;
+        //public byte GPS_fix;
+        //public byte GPS_update;
+        //public int GPS_latitude;
+        //public int GPS_longitude;
+        //public int GPS_altitude;
+        //public int GPS_speed;
+        //public int GPS_home_lat;
+        //public int GPS_home_lon;
+        //public int GPS_home_alt;
+        //public int GPS_poshold_lat;
+        //public int GPS_poshold_lon;
+        //public int GPS_poshold_alt;
+        //public int pMeterSum;
+        //public int powerTrigger;
+        //public byte vBat;
+        //public int debug1, debug2, debug3, debug4;
 
         private int iPIDItems, iCheckBoxItems;
         private int iSwVer;
         //private bool bCompatibilityMode;
 
         //Constructor
-        public mw_data_gui(int pidItems, int checkboxItems, int iSoftwareVersion)
+        public mw_data_gui(int pidItems) //, int checkboxItems, int iSoftwareVersion)
         {
-            motors = new int[8];
-            servos = new int[8];
+            //motors = new int[8];
+            //servos = new int[8];
             pidP = new byte[pidItems];
             pidI = new byte[pidItems];
             pidD = new byte[pidItems];
 
-            activation = new Int16[checkboxItems];
+            //activation = new Int16[checkboxItems];
 
             iPIDItems = pidItems;
-            iCheckBoxItems = checkboxItems;
-            iSwVer = iSoftwareVersion;
+            //iCheckBoxItems = checkboxItems;
+            //iSwVer = iSoftwareVersion;
 
 
         }
