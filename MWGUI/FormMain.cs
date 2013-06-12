@@ -68,6 +68,8 @@ namespace MWGUI
     const byte HEADER_CMD = 5;
     const byte HEADER_ERR = 6;
 
+    enum CopterType { Tri = 1, QuadP, QuadX, BI, Gimbal, Y6, Hex6, FlyWing, Y4, Hex6X, Octo8Coax, Octo8P, Octo8X, Airplane, Heli120, Heli90, Vtail };
+
     public byte[] inBuf = new byte[300];
     //public bool dataReceived = false;
     //int cyklus = 0;
@@ -80,7 +82,7 @@ namespace MWGUI
     static GUI_settings gui_settings;
     int command = 0;
 
-    static int iCheckBoxItems = 14;                          //number of checkboxItems (readed from optionsconfig.xml
+    //static int iCheckBoxItems = 14;                          //number of checkboxItems (readed from optionsconfig.xml
 
     //PID values
     static PID[] Pid;
@@ -89,6 +91,7 @@ namespace MWGUI
 
 
     bool isNeedUpdatePIDPanel = false;
+    bool isNeedUpdateInfoPanel = false;
 
     public MWSetup()
     {
@@ -102,8 +105,8 @@ namespace MWGUI
       //**timer_realtime.Interval = iRefreshIntervals[cb_monitor_rate.SelectedIndex];
       //timer_realtime.Enabled = true;
       //**timer_realtime.Stop();
-      tabPage2.Hide();
-      tabPage3.Hide();
+      //tabPage2.Hide();
+      //tabPage3.Hide();
       Pid = new PID[10];          //Max 20 PID values if we have more then we will ignore it
 
       for (int i = 0; i < iPidItems; i++)
@@ -113,8 +116,8 @@ namespace MWGUI
 
       gui_settings = new GUI_settings();
 
-      mw_gui = new mw_data_gui(iPidItems, iCheckBoxItems, gui_settings.iSoftwareVersion);
-      mw_params = new mw_settings(iPidItems, iCheckBoxItems, gui_settings.iSoftwareVersion);
+      mw_gui = new mw_data_gui(iPidItems); //, iCheckBoxItems, gui_settings.iSoftwareVersion);
+      mw_params = new mw_settings(iPidItems); //, iCheckBoxItems, gui_settings.iSoftwareVersion);
 
 
       Pid[0].Pprec = 10;
@@ -287,11 +290,13 @@ namespace MWGUI
 
         //bOptions_needs_refresh = true;
         //update_gui();
-        //MSPquery(MSP_PID);
+        MSPquery(MSP_IDENT);
+
+        isNeedUpdateInfoPanel = true;
         //labelTextLastMessage.Text += "Data send";
-        tabPage2.Show();
-        tabPage3.Show();
-        tabControl1.SelectedIndex = 1;
+        //tabPage2.Show();
+        //tabPage3.Show();
+        //tabControl1.SelectedIndex = 1;
 
       }
     }
@@ -538,89 +543,89 @@ namespace MWGUI
           break;
         case MSP_STATUS:
           ptr = 0;
-          mw_gui.cycleTime = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.i2cErrors = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.present = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.mode = BitConverter.ToUInt32(inBuf, ptr); ptr += 4;
+          //mw_gui.cycleTime = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.i2cErrors = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.present = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.mode = BitConverter.ToUInt32(inBuf, ptr); ptr += 4;
           break;
         case MSP_RAW_IMU:
           ptr = 0;
-          mw_gui.ax = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.ay = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.az = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.ax = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.ay = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.az = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
 
-          mw_gui.gx = BitConverter.ToInt16(inBuf, ptr) / 8; ptr += 2;
-          mw_gui.gy = BitConverter.ToInt16(inBuf, ptr) / 8; ptr += 2;
-          mw_gui.gz = BitConverter.ToInt16(inBuf, ptr) / 8; ptr += 2;
+          //mw_gui.gx = BitConverter.ToInt16(inBuf, ptr) / 8; ptr += 2;
+          //mw_gui.gy = BitConverter.ToInt16(inBuf, ptr) / 8; ptr += 2;
+          //mw_gui.gz = BitConverter.ToInt16(inBuf, ptr) / 8; ptr += 2;
 
-          mw_gui.magx = BitConverter.ToInt16(inBuf, ptr) / 3; ptr += 2;
-          mw_gui.magy = BitConverter.ToInt16(inBuf, ptr) / 3; ptr += 2;
-          mw_gui.magz = BitConverter.ToInt16(inBuf, ptr) / 3; ptr += 2;
+          //mw_gui.magx = BitConverter.ToInt16(inBuf, ptr) / 3; ptr += 2;
+          //mw_gui.magy = BitConverter.ToInt16(inBuf, ptr) / 3; ptr += 2;
+          //mw_gui.magz = BitConverter.ToInt16(inBuf, ptr) / 3; ptr += 2;
           break;
         case MSP_SERVO:
           ptr = 0;
           for (int i = 0; i < 8; i++)
           {
-            mw_gui.servos[i] = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+            //mw_gui.servos[i] = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
           }
           break;
         case MSP_MOTOR:
           ptr = 0;
           for (int i = 0; i < 8; i++)
           {
-            mw_gui.motors[i] = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+            //mw_gui.motors[i] = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
           }
           break;
         case MSP_RC:
           ptr = 0;
-          mw_gui.rcRoll = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.rcPitch = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.rcYaw = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.rcThrottle = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.rcAux1 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.rcAux2 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.rcAux3 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.rcAux4 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.rcRoll = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.rcPitch = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.rcYaw = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.rcThrottle = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.rcAux1 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.rcAux2 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.rcAux3 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.rcAux4 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
           break;
         case MSP_RAW_GPS:
           ptr = 0;
-          mw_gui.GPS_fix = (byte)inBuf[ptr++];
-          mw_gui.GPS_numSat = (byte)inBuf[ptr++];
-          mw_gui.GPS_latitude = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
-          mw_gui.GPS_longitude = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
-          mw_gui.GPS_altitude = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.GPS_speed = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.GPS_fix = (byte)inBuf[ptr++];
+          //mw_gui.GPS_numSat = (byte)inBuf[ptr++];
+          //mw_gui.GPS_latitude = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
+          //mw_gui.GPS_longitude = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
+          //mw_gui.GPS_altitude = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.GPS_speed = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
           break;
         case MSP_COMP_GPS:
           ptr = 0;
-          mw_gui.GPS_distanceToHome = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.GPS_directionToHome = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.GPS_update = (byte)inBuf[ptr++];
+          //mw_gui.GPS_distanceToHome = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.GPS_directionToHome = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.GPS_update = (byte)inBuf[ptr++];
           break;
         case MSP_ATTITUDE:
           ptr = 0;
-          mw_gui.angx = BitConverter.ToInt16(inBuf, ptr) / 10; ptr += 2;
-          mw_gui.angy = BitConverter.ToInt16(inBuf, ptr) / 10; ptr += 2;
-          mw_gui.heading = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.angx = BitConverter.ToInt16(inBuf, ptr) / 10; ptr += 2;
+          //mw_gui.angy = BitConverter.ToInt16(inBuf, ptr) / 10; ptr += 2;
+          //mw_gui.heading = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
           break;
         case MSP_ALTITUDE:
           ptr = 0;
-          mw_gui.baro = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
+          //mw_gui.baro = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
           break;
         case MSP_BAT:
           ptr = 0;
-          mw_gui.vBat = (byte)inBuf[ptr++];
-          mw_gui.pMeterSum = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.vBat = (byte)inBuf[ptr++];
+          //mw_gui.pMeterSum = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
           break;
         case MSP_RC_TUNING:
           ptr = 0;
-          mw_gui.rcRate = (byte)inBuf[ptr++];
-          mw_gui.rcExpo = (byte)inBuf[ptr++];
-          mw_gui.RollPitchRate = (byte)inBuf[ptr++];
-          mw_gui.YawRate = (byte)inBuf[ptr++];
-          mw_gui.DynThrPID = (byte)inBuf[ptr++];
-          mw_gui.ThrottleMID = (byte)inBuf[ptr++];
-          mw_gui.ThrottleEXPO = (byte)inBuf[ptr++];
+          //mw_gui.rcRate = (byte)inBuf[ptr++];
+          //mw_gui.rcExpo = (byte)inBuf[ptr++];
+          //mw_gui.RollPitchRate = (byte)inBuf[ptr++];
+          //mw_gui.YawRate = (byte)inBuf[ptr++];
+          //mw_gui.DynThrPID = (byte)inBuf[ptr++];
+          //mw_gui.ThrottleMID = (byte)inBuf[ptr++];
+          //mw_gui.ThrottleEXPO = (byte)inBuf[ptr++];
           break;
         case MSP_PID:
           ptr = 0;
@@ -642,30 +647,30 @@ namespace MWGUI
           break;
         case MSP_MISC:
           ptr = 0;
-          mw_gui.powerTrigger = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.powerTrigger = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
           break;
         case MSP_DEBUG:
           ptr = 0;
-          mw_gui.debug1 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.debug2 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.debug3 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          mw_gui.debug4 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.debug1 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.debug2 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.debug3 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          //mw_gui.debug4 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
           break;
         case MSP_WP:
           ptr = 0;
           byte wp_no = (byte)inBuf[ptr++];
           if (wp_no == 0)
           {
-            mw_gui.GPS_home_lat = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
-            mw_gui.GPS_home_lon = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
-            mw_gui.GPS_home_alt = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+            //mw_gui.GPS_home_lat = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
+            //mw_gui.GPS_home_lon = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
+            //mw_gui.GPS_home_alt = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
             //flag comes here but not care
           }
           if (wp_no == 16)
           {
-            mw_gui.GPS_poshold_lat = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
-            mw_gui.GPS_poshold_lon = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
-            mw_gui.GPS_poshold_alt = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+            //mw_gui.GPS_poshold_lat = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
+            //mw_gui.GPS_poshold_lon = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
+            //mw_gui.GPS_poshold_alt = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
           }
           break;
 
@@ -673,28 +678,50 @@ namespace MWGUI
     }
 
 
+
+    private void bRead_Click(object sender, EventArgs e)
+    {
+      if (isConnected)
+      {
+        MSPquery(MSP_PID);
+        /*MSPquery(MSP_RC_TUNING);
+        MSPquery(MSP_IDENT);
+        MSPquery(MSP_BOX);
+        MSPquery(MSP_MISC);*/
+      }
+    }
+
+    private void bWrite_Click(object sender, EventArgs e)
+    {
+      timer1.Enabled = false;
+      update_params();
+      mw_params.write_settings(serialPort1);
+      timer1.Enabled = true;
+    }
+
     private void update_params()
     {
       //Get parameters from GUI
 
-      //for (int i = 0; i < iPidItems; i++)
-      //{
-      //  if (Pid[i].Pshown) { mw_gui.pidP[i] = (byte)(Pid[i].Pfield.Value * Pid[i].Pprec); }
-      //  if (Pid[i].Ishown) { mw_gui.pidI[i] = (byte)(Pid[i].Ifield.Value * Pid[i].Iprec); }
-      //  if (Pid[i].Dshown) { mw_gui.pidD[i] = (byte)(Pid[i].Dfield.Value * Pid[i].Dprec); }
+      mw_gui.pidP[0] = (byte)(Pid[0].P * Pid[0].Pprec);
+        //if (Pid[i].Pshown) { mw_gui.pidP[i] = (byte)(Pid[i].Pfield.Value * Pid[i].Pprec); }
+        //if (Pid[i].Ishown) { mw_gui.pidI[i] = (byte)(Pid[i].Ifield.Value * Pid[i].Iprec); }
+        //if (Pid[i].Dshown) { mw_gui.pidD[i] = (byte)(Pid[i].Dfield.Value * Pid[i].Dprec); }
 
-      //  mw_params.pidP[i] = mw_gui.pidP[i];
-      //  mw_params.pidI[i] = mw_gui.pidI[i];
-      //  mw_params.pidD[i] = mw_gui.pidD[i];
-      //}
+      for (int i = 0; i < iPidItems; i++)
+      {
+        mw_params.pidP[i] = mw_gui.pidP[i];
+        mw_params.pidI[i] = mw_gui.pidI[i];
+        mw_params.pidD[i] = mw_gui.pidD[i];
+      }
 
-      //mw_params.RollPitchRate = (byte)(nRATE_rp.Value * 100);
-      //mw_params.YawRate = (byte)(nRATE_yaw.Value * 100);
-      //mw_params.DynThrPID = (byte)(nRATE_tpid.Value * 100);
+      mw_params.RollPitchRate = (byte)(Convert.ToDouble(RollPitchRate.Text) * 100);
+      mw_params.YawRate = (byte)(Convert.ToDouble(YawRate.Text) * 100);
+      mw_params.DynThrPID = (byte)(Convert.ToDouble(ThrPIDAtt.Text) * 100);
 
-      //mw_params.rcExpo = (byte)(nRCExpo.Value * 100);
-      //mw_params.rcRate = (byte)(nRCRate.Value * 100);
-      //mw_params.ThrottleMID = (byte)(nTMID.Value * 100);
+      mw_params.rcExpo = (byte)(Convert.ToDouble(RCExpo.Text) * 100);
+      mw_params.rcRate = (byte)(Convert.ToDouble(RCRate.Text) * 100);
+      //mw_params.ThrottleMID = (byte)(TMID.Value * 100);
       //mw_params.ThrottleEXPO = (byte)(nTEXPO.Value * 100);
 
       //mw_params.PowerTrigger = (int)nPAlarm.Value;
@@ -714,21 +741,16 @@ namespace MWGUI
 
     }
 
-    private void bRead_Click(object sender, EventArgs e)
+    private void timer1_Tick(object sender, EventArgs e)
     {
-      if (isConnected)
+      if (isNeedUpdatePIDPanel = !isNeedUpdatePIDPanel)
       {
-        MSPquery(MSP_PID);
-        /*MSPquery(MSP_RC_TUNING);
-        MSPquery(MSP_IDENT);
-        MSPquery(MSP_BOX);
-        MSPquery(MSP_MISC);*/
+        update_pid_panel();
       }
-    }
-
-    private void bWrite_Click(object sender, EventArgs e)
-    {
-
+      if (isNeedUpdateInfoPanel = !isNeedUpdateInfoPanel)
+      {
+        update_info_panel();
+      }
     }
 
     private void update_pid_panel()
@@ -767,51 +789,53 @@ namespace MWGUI
       YawRate.Text = ((decimal)mw_gui.YawRate / 100).ToString("F2");
       ThrPIDAtt.Text = ((decimal)mw_gui.DynThrPID / 100).ToString("F2");
 
-/*      for (int i = 0; i < iPidItems; i++)
-      {
-        if (Pid[i].Pshown) { Pid[i].Pfield.Value = (decimal)mw_gui.pidP[i] / Pid[i].Pprec; Pid[i].Pfield.BackColor = Color.White; }
-        if (Pid[i].Ishown) { Pid[i].Ifield.Value = (decimal)mw_gui.pidI[i] / Pid[i].Iprec; Pid[i].Ifield.BackColor = Color.White; }
-        if (Pid[i].Dshown) { Pid[i].Dfield.Value = (decimal)mw_gui.pidD[i] / Pid[i].Dprec; Pid[i].Dfield.BackColor = Color.White; }
+      /*      for (int i = 0; i < iPidItems; i++)
+            {
+              if (Pid[i].Pshown) { Pid[i].Pfield.Value = (decimal)mw_gui.pidP[i] / Pid[i].Pprec; Pid[i].Pfield.BackColor = Color.White; }
+              if (Pid[i].Ishown) { Pid[i].Ifield.Value = (decimal)mw_gui.pidI[i] / Pid[i].Iprec; Pid[i].Ifield.BackColor = Color.White; }
+              if (Pid[i].Dshown) { Pid[i].Dfield.Value = (decimal)mw_gui.pidD[i] / Pid[i].Dprec; Pid[i].Dfield.BackColor = Color.White; }
 
-      }
+            }
 
-      nRATE_rp.Value = (decimal)mw_gui.RollPitchRate / 100;
-      nRATE_rp.BackColor = Color.White;
-      nRATE_yaw.Value = (decimal)mw_gui.YawRate / 100;
-      nRATE_yaw.BackColor = Color.White;
-      nRATE_tpid.Value = (decimal)mw_gui.DynThrPID / 100;
-      nRATE_tpid.BackColor = Color.White;
+            nRATE_rp.Value = (decimal)mw_gui.RollPitchRate / 100;
+            nRATE_rp.BackColor = Color.White;
+            nRATE_yaw.Value = (decimal)mw_gui.YawRate / 100;
+            nRATE_yaw.BackColor = Color.White;
+            nRATE_tpid.Value = (decimal)mw_gui.DynThrPID / 100;
+            nRATE_tpid.BackColor = Color.White;
 
-      trackbar_RC_Expo.Value = mw_gui.rcExpo;
-      nRCExpo.Value = (decimal)mw_gui.rcExpo / 100;
-      nRCExpo.BackColor = Color.White;
-      trackbar_RC_Rate.Value = mw_gui.rcRate;
-      nRCRate.Value = (decimal)mw_gui.rcRate / 100;
-      nRCRate.BackColor = Color.White;
+            trackbar_RC_Expo.Value = mw_gui.rcExpo;
+            nRCExpo.Value = (decimal)mw_gui.rcExpo / 100;
+            nRCExpo.BackColor = Color.White;
+            trackbar_RC_Rate.Value = mw_gui.rcRate;
+            nRCRate.Value = (decimal)mw_gui.rcRate / 100;
+            nRCRate.BackColor = Color.White;
 
-      rc_expo_control1.SetRCExpoParameters((double)mw_gui.rcRate / 100, (double)mw_gui.rcExpo / 100);
+            rc_expo_control1.SetRCExpoParameters((double)mw_gui.rcRate / 100, (double)mw_gui.rcExpo / 100);
 
-      nTEXPO.Value = (decimal)mw_gui.ThrottleEXPO / 100;
-      nTEXPO.BackColor = Color.White;
-      trackBar_T_EXPO.Value = mw_gui.ThrottleEXPO;
-      nTMID.Value = (decimal)mw_gui.ThrottleMID / 100;
-      nTMID.BackColor = Color.White;
-      trackBar_T_MID.Value = mw_gui.ThrottleMID;
-      throttle_expo_control1.SetRCExpoParameters((double)mw_gui.ThrottleMID / 100, (double)mw_gui.ThrottleEXPO / 100, mw_gui.rcThrottle);
+            nTEXPO.Value = (decimal)mw_gui.ThrottleEXPO / 100;
+            nTEXPO.BackColor = Color.White;
+            trackBar_T_EXPO.Value = mw_gui.ThrottleEXPO;
+            nTMID.Value = (decimal)mw_gui.ThrottleMID / 100;
+            nTMID.BackColor = Color.White;
+            trackBar_T_MID.Value = mw_gui.ThrottleMID;
+            throttle_expo_control1.SetRCExpoParameters((double)mw_gui.ThrottleMID / 100, (double)mw_gui.ThrottleEXPO / 100, mw_gui.rcThrottle);
 
-      nPAlarm.Value = mw_gui.powerTrigger;
-      nPAlarm.BackColor = Color.White;
-      */
+            nPAlarm.Value = mw_gui.powerTrigger;
+            nPAlarm.BackColor = Color.White;
+            */
 
 
     }
 
-    private void timer1_Tick(object sender, EventArgs e)
+
+    private void update_info_panel()
     {
-      if (isNeedUpdatePIDPanel = !isNeedUpdatePIDPanel)
-      {
-        update_pid_panel();
-      }
+      labelInfo.Text = "INFO";
+      labelInfo.Text += "\nVersion:" + mw_gui.version.ToString();
+      labelInfo.Text += "\nMultitype:" + mw_gui.multiType;
+      labelInfo.Text += "\nGUI version:" + mw_gui.protocol_version;
+      labelInfo.Text += "\nGUI capability:" + mw_gui.capability;
     }
 
     private void end_Click(object sender, EventArgs e)
@@ -819,35 +843,80 @@ namespace MWGUI
       this.Close();
     }
 
-    private void panel1_Click(object sender, EventArgs e)
+    private void panel_Click(object sender, EventArgs e)
     {
-      label19.Text = "Roll";
-      setP.Text = PRoll.Text;
-      setI.Text = IRoll.Text;
-      setD.Text = DRoll.Text;
-      tabControl1.SelectedIndex = 2;
-      pidIndex = 0;
-    }
+      Panel p = (Panel)sender;
+      if (p.Name == "panelRoll")
+      {
+        label19.Text = "Roll";
+        setP.Text = PRoll.Text;
+        setI.Text = IRoll.Text;
+        setD.Text = DRoll.Text;
+        pidIndex = 0;
+      }
+      if (p.Name == "panelPitch")
+      {
+        label19.Text = "Pitch";
+        setP.Text = PPitch.Text;
+        setI.Text = IPitch.Text;
+        setD.Text = DPitch.Text;
+        pidIndex = 1;
+      }
+      if (p.Name == "panelYaw")
+      {
+        label19.Text = "Yaw";
+        setP.Text = PYaw.Text;
+        setI.Text = IYaw.Text;
+        setD.Text = DYaw.Text;
+        pidIndex = 2;
+      }
+      if (p.Name == "panelAlt")
+      {
+        label19.Text = "Altitude";
+        setP.Text = PAlt.Text;
+        setI.Text = IAlt.Text;
+        setD.Text = DAlt.Text;
+        pidIndex = 3;
+      }
+      if (p.Name == "panelPosHold")
+      {
+        pidIndex = 4;
+      }
+      if (p.Name == "panelPosHoldRate")
+      {
+        pidIndex = 5;
+      }
+      if (p.Name == "panelNavigationRate")
+      {
+        pidIndex = 6;
+      }
 
-    private void panel2_Click(object sender, EventArgs e)
-    {
-      label19.Text = "Pitch";
-      setP.Text = PPitch.Text;
-      setI.Text = IPitch.Text;
-      setD.Text = DPitch.Text;
-      tabControl1.SelectedIndex = 2;
-      pidIndex = 1;
-    }
+      if (p.Name == "panelLevel")
+      {
+        label19.Text = "Level";
+        setP.Text = PLevel.Text;
+        setI.Text = ILevel.Text;
+        setD.Text = DLevel.Text;
+        pidIndex = 7;
+      }
+      if (p.Name == "panelMag")
+      {
+        label19.Text = "Mag";
+        setP.Text = PMag.Text;
+        pidIndex = 8;
+      }
+      if (p.Name == "panelVel")
+      {
+        label19.Text = "Velocity";
+        setP.Text = PVelocity.Text;
+        setI.Text = IVelocity.Text;
+        setD.Text = DVelocity.Text;
+        pidIndex = 9;
+      }
 
-    private void panel3_Click(object sender, EventArgs e)
-    {
-      label19.Text = "Yaw";
-      setP.Text = PYaw.Text;
-      setI.Text = IYaw.Text;
-      setD.Text = DYaw.Text;
-      tabControl1.SelectedIndex = 2;
-      pidIndex = 2;
 
+
+      tabControl1.SelectedIndex = 2;
     }
 
     private void button8_Click(object sender, EventArgs e)
@@ -916,6 +985,7 @@ namespace MWGUI
       //TODO omezeni rozsahu
 
     }
+
 
 
 
