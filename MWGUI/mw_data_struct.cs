@@ -163,7 +163,7 @@ namespace MWGUI
         //public fields
 
         public string name;
-        //public string description;
+        public string description;
         //public Label pidLabel;
 
         public byte P;
@@ -433,7 +433,7 @@ namespace MWGUI
             tw.Close();
         }
 
-        public bool read_from_xml(string filename)
+/*        public bool read_from_xml(string filename)
         {
 
                 XmlTextReader reader = new XmlTextReader(filename);
@@ -509,7 +509,7 @@ namespace MWGUI
     
     }
 
-
+*/
     #endregion
 
     #region mw_data_gui

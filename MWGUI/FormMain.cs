@@ -119,50 +119,118 @@ namespace MWGUI
       mw_gui = new mw_data_gui(iPidItems); //, iCheckBoxItems, gui_settings.iSoftwareVersion);
       mw_params = new mw_settings(iPidItems); //, iCheckBoxItems, gui_settings.iSoftwareVersion);
 
-
+      //TODO - read this values from optionsconfig21.xml -> read_option_config(filename)
+      sOptionsConfigFilename = sOptionsConfigFilename + gui_settings.iSoftwareVersion + ".xml";
+      read_options_config();                  //read and parse optionsconfig.xml file. sets iCheckBoxItems
+      Pid[0].description = "Roll Rate control";
+      Pid[0].Pmin = 0;
+      Pid[0].Pmax = 20.0;
       Pid[0].Pprec = 10;
-      Pid[1].Pprec = 10;
-      Pid[2].Pprec = 10;
-      Pid[3].Pprec = 10;
-      Pid[4].Pprec = 100;
-      Pid[5].Pprec = 10;
-      Pid[6].Pprec = 10;
-      Pid[7].Pprec = 10;
-      Pid[8].Pprec = 10;
-      Pid[9].Pprec = 10;
-
+      Pid[0].Imin = 0;
+      Pid[0].Imax = 0.250;
       Pid[0].Iprec = 1000;
-      Pid[1].Iprec = 1000;
-      Pid[2].Iprec = 1000;
-      Pid[3].Iprec = 1000;
-      Pid[4].Iprec = 100;
-      Pid[5].Iprec = 100;
-      Pid[6].Iprec = 100;
-      Pid[7].Iprec = 100;
-      Pid[8].Iprec = 100;
-      Pid[9].Iprec = 100;
-
+      Pid[0].Dmin = 0;
+      Pid[0].Dmax = 100;
       Pid[0].Dprec = 1;
+
+      Pid[1].description = "Pitch Rate control";
+      Pid[1].Pmin = 0;
+      Pid[1].Pmax = 20.0;
+      Pid[1].Pprec = 10;
+      Pid[1].Imin = 0;
+      Pid[1].Imax = 0.250;
+      Pid[1].Iprec = 1000;
+      Pid[1].Dmin = 0;
+      Pid[1].Dmax = 100;
       Pid[1].Dprec = 1;
+
+      Pid[2].description = "Yaw Rate control";
+      Pid[2].Pmin = 0;
+      Pid[2].Pmax = 20.0;
+      Pid[2].Pprec = 10;
+      Pid[2].Imin = 0;
+      Pid[2].Imax = 0.250;
+      Pid[2].Iprec = 1000;
+      Pid[2].Dmin = 0;
+      Pid[2].Dmax = 100;
       Pid[2].Dprec = 1;
+
+      Pid[3].Pmin = 0;
+      Pid[3].Pmax = 20.0;
+      Pid[3].Pprec = 10;
+      Pid[3].Imin = 0;
+      Pid[3].Imax = 0.250;
+      Pid[3].Iprec = 1000;
+      Pid[3].Dmin = 0;
+      Pid[3].Dmax = 100;
       Pid[3].Dprec = 1;
+
+      Pid[4].description = "Position Hold control";
+      Pid[4].Pmin = 0;
+      Pid[4].Pmax = 2.54;
+      Pid[4].Pprec = 100;
+      Pid[4].Imin = 0;
+      Pid[4].Imax = 2.54;
+      Pid[4].Iprec = 100;
+      Pid[4].Dmin = 0;
+      Pid[4].Dmax = 100;
       Pid[4].Dprec = 1;
+      
+      Pid[5].description = "Position Hold Rate control";
+      Pid[5].Pmin = 0;
+      Pid[5].Pmax = 20.0;
+      Pid[5].Pprec = 10;
+      Pid[5].Imin = 0;
+      Pid[5].Imax = 2.54;
+      Pid[5].Iprec = 100;
+      Pid[5].Dmin = 0;
+      Pid[5].Dmax = 0.254;
       Pid[5].Dprec = 1000;
+
+      Pid[6].description = "Navigation Rate control";
+      Pid[6].Pmin = 0;
+      Pid[6].Pmax = 20.0;
+      Pid[6].Pprec = 10;
+      Pid[6].Imin = 0;
+      Pid[6].Imax = 2.54;
+      Pid[6].Iprec = 100;
+      Pid[6].Dmin = 0;
+      Pid[6].Dmax = 0.254;
       Pid[6].Dprec = 1000;
+      
+      Pid[7].description = "Autolevel control";
+      Pid[7].Pmin = 0;
+      Pid[7].Pmax = 20.0;
+      Pid[7].Pprec = 10;
+      Pid[7].Imin = 0;
+      Pid[7].Imax = 2.54;
+      Pid[7].Iprec = 100;
+      Pid[7].Dmin = 0;
+      Pid[7].Dmax = 100;
       Pid[7].Dprec = 1;
+      
+      Pid[8].description = "Heading hold control";
+      Pid[8].Pmin = 0;
+      Pid[8].Pmax = 20.0;
+      Pid[8].Pprec = 10;
+      Pid[8].Imin = 0;
+      Pid[8].Imax = 2.54;
+      Pid[8].Iprec = 100;
+      Pid[8].Dmin = 0;
+      Pid[8].Dmax = 100;
       Pid[8].Dprec = 1;
+      
+      Pid[9].description = "Velocity control for Altitude hold";
+      Pid[9].Pmin = 0;
+      Pid[9].Pmax = 20.0;
+      Pid[9].Pprec = 10;
+      Pid[9].Imin = 0;
+      Pid[9].Imax = 2.54;
+      Pid[9].Iprec = 100;
+      Pid[9].Dmin = 0;
+      Pid[9].Dmax = 100;
       Pid[9].Dprec = 1;
 
-      Pid[0].name = "Roll";
-      Pid[1].name = "Pitch";
-      Pid[2].name = "Yaw";
-      Pid[3].name = "Altitude";
-      Pid[4].name = "PosHold";
-      Pid[5].name = "PosHoldRate";
-      Pid[6].name = "Navigation Rate";
-      Pid[7].name = "Level";
-      Pid[8].name = "Mag";
-      Pid[9].name = "Velocity";
       //Quick hack to get pid names to mw_params untill redo the structures
       for (int i = 0; i < iPidItems; i++)
       {
@@ -986,6 +1054,134 @@ namespace MWGUI
 
     }
 
+        private void read_options_config()
+        {
+
+            option_names = new string[20];
+            option_indicators = new string[20];
+            option_desc = new string[100];
+
+
+            int iPidID = 0;
+
+            Pid = new PID[20];          //Max 20 PID values if we have more then we will ignore it
+
+            iCheckBoxItems = 0;
+            iPidItems = 0;
+
+            if (File.Exists(sOptionsConfigFilename))
+            {
+                reader = new XmlTextReader(sOptionsConfigFilename);
+            }
+            else
+            {
+                MessageBoxEx.Show(this, "Options file " + sOptionsConfigFilename + " not found", "File not found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Environment.Exit(-1);
+            }
+            try
+            {
+                while (reader.Read())
+                {
+                    switch (reader.NodeType)
+                    {
+                        case XmlNodeType.Element:
+
+                            if (String.Compare(reader.Name, "aux_option", true) == 0 && reader.HasAttributes)
+                            {
+                                for (int i = 0; i < reader.AttributeCount; i++)
+                                {
+                                    reader.MoveToAttribute(i);
+                                    if (String.Compare(reader.Name, "name", true) == 0)
+                                    {
+                                        option_names[iCheckBoxItems] = reader.Value;
+                                    }
+                                    if (String.Compare(reader.Name, "desc", true) == 0)
+                                    {
+                                        option_desc[iCheckBoxItems] = reader.Value;
+                                    }
+                                    if (String.Compare(reader.Name, "ind", true) == 0)
+                                    {
+                                        option_indicators[iCheckBoxItems] = reader.Value;
+                                    }
+
+                                }
+                                iCheckBoxItems++;
+                            }
+
+
+
+
+                            if (String.Compare(reader.Name, "pid", true) == 0 && reader.HasAttributes)
+                            {
+                                reader.MoveToAttribute("id");
+                                iPidID = Convert.ToInt16(reader.GetAttribute("id"));
+                                Pid[iPidID] = new PID();
+                                reader.MoveToAttribute("name");
+                                Pid[iPidID].name = reader.GetAttribute("name");
+                                reader.MoveToAttribute("desc");
+                                Pid[iPidID].description = reader.GetAttribute("desc");
+                                iPidItems++;
+                            }
+                            if (String.Compare(reader.Name, "p", true) == 0 && reader.HasAttributes)
+                            {
+                                reader.MoveToAttribute("id");
+                                iPidID = Convert.ToInt16(reader.GetAttribute("id"));
+                                reader.MoveToAttribute("shown");
+                                Pid[iPidID].Pshown = Convert.ToBoolean(reader.GetAttribute("shown"));
+                                reader.MoveToAttribute("min");
+                                Pid[iPidID].Pmin = Convert.ToDecimal(reader.GetAttribute("min"),culture);
+                                reader.MoveToAttribute("max");
+                                Pid[iPidID].Pmax = Convert.ToDecimal(reader.GetAttribute("max"),culture);
+                                reader.MoveToAttribute("prec");
+                                Pid[iPidID].Pprec = Convert.ToInt16(reader.GetAttribute("prec"));
+                            }
+                            if (String.Compare(reader.Name, "i", true) == 0 && reader.HasAttributes)
+                            {
+                                reader.MoveToAttribute("id");
+                                iPidID = Convert.ToInt16(reader.GetAttribute("id"));
+                                reader.MoveToAttribute("shown");
+                                Pid[iPidID].Ishown = Convert.ToBoolean(reader.GetAttribute("shown"));
+                                reader.MoveToAttribute("min");
+                                Pid[iPidID].Imin = Convert.ToDecimal(reader.GetAttribute("min"),culture);
+                                reader.MoveToAttribute("max");
+                                Pid[iPidID].Imax = Convert.ToDecimal(reader.GetAttribute("max"),culture);
+                                reader.MoveToAttribute("prec");
+                                Pid[iPidID].Iprec = Convert.ToInt16(reader.GetAttribute("prec"));
+                            }
+                            if (String.Compare(reader.Name, "d", true) == 0 && reader.HasAttributes)
+                            {
+                                reader.MoveToAttribute("id");
+                                iPidID = Convert.ToInt16(reader.GetAttribute("id"));
+                                reader.MoveToAttribute("shown");
+                                Pid[iPidID].Dshown = Convert.ToBoolean(reader.GetAttribute("shown"));
+                                reader.MoveToAttribute("min");
+                                Pid[iPidID].Dmin = Convert.ToDecimal(reader.GetAttribute("min"),culture);
+                                reader.MoveToAttribute("max");
+                                Pid[iPidID].Dmax = Convert.ToDecimal(reader.GetAttribute("max"),culture);
+                                reader.MoveToAttribute("prec");
+                                Pid[iPidID].Dprec = Convert.ToInt16(reader.GetAttribute("prec"));
+                            }
+
+
+                            
+                            
+                            break;
+
+                    }
+                }
+            }
+            catch
+            {
+                MessageBoxEx.Show(this, "Options file contains invalid data around Line : " + reader.LineNumber, "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Environment.Exit(-1);
+            }
+
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+            }
+        }
 
 
 
