@@ -160,40 +160,39 @@ namespace MWGUI
 
     public class PID
     {
-        //public fields
+      //public fields
 
-        public string name;
+
+      public string name;
         public string description;
-        //public Label pidLabel;
+      //public Label pidLabel;
 
-        public byte P;
-        //public bool Pshown;
-        public decimal Pmin;
-        public decimal Pmax;
-        public int Pprec;
+      public byte P;
+      //public bool Pshown;
+      public decimal Pmin;
+      public decimal Pmax;
+      public int Pprec;
 
-        public byte I;
-        //public bool Ishown;
-        public decimal Imin;
-        public decimal Imax;
-        public int Iprec;
-        //public Label Ilabel;
+      public byte I;
+      //public bool Ishown;
+      public decimal Imin;
+      public decimal Imax;
+      public int Iprec;
+      //public Label Ilabel;
 
-        public byte D;
-        //public bool Dshown;
-        public decimal Dmin;
-        public decimal Dmax;
-        public int Dprec;
-        //public Label Dlabel;
+      public byte D;
+      //public bool Dshown;
+      public decimal Dmin;
+      public decimal Dmax;
+      public int Dprec;
+      //public Label Dlabel;
 
-        public PID()
-        {
-
-            P = 0;
-        }
-
-
-
+      public PID()
+      {
+        P = 0;
+        I = 0;
+        D = 0;
+      }
     }
 
 
@@ -273,7 +272,7 @@ namespace MWGUI
             pidD = new byte[pidItems];
             //activation = new Int16[checkboxItems];
 
-            //iPIDItems = pidItems;
+            iPIDItems = pidItems;
             //iCheckBoxItems = checkboxItems;
             //iSwVer = iSoftwareVersion;
 
@@ -294,24 +293,24 @@ namespace MWGUI
             {
 
                 //Write RC_TUNING
-                bptr = 0;
-                checksum = 0;
-                buffer[bptr++] = (byte)'$';
-                buffer[bptr++] = (byte)'M';
-                buffer[bptr++] = (byte)'<';
-                buffer[bptr++] = 7;
-                buffer[bptr++] = (byte)MSP_SET_RC_TUNING;
+                //bptr = 0;
+                //checksum = 0;
+                //buffer[bptr++] = (byte)'$';
+                //buffer[bptr++] = (byte)'M';
+                //buffer[bptr++] = (byte)'<';
+                //buffer[bptr++] = 7;
+                //buffer[bptr++] = (byte)MSP_SET_RC_TUNING;
 
-                buffer[bptr++] = rcRate;
-                buffer[bptr++] = rcExpo;
-                buffer[bptr++] = RollPitchRate;
-                buffer[bptr++] = YawRate;
-                buffer[bptr++] = DynThrPID;
-                buffer[bptr++] = ThrottleMID;
-                buffer[bptr++] = ThrottleEXPO;
-                for (int i = 3; i < bptr; i++) checksum ^= buffer[i];
-                buffer[bptr++] = checksum;
-                serialport.Write(buffer, 0, bptr);
+                //buffer[bptr++] = rcRate;
+                //buffer[bptr++] = rcExpo;
+                //buffer[bptr++] = RollPitchRate;
+                //buffer[bptr++] = YawRate;
+                //buffer[bptr++] = DynThrPID;
+                //buffer[bptr++] = ThrottleMID;
+                //buffer[bptr++] = ThrottleEXPO;
+                //for (int i = 3; i < bptr; i++) checksum ^= buffer[i];
+                //buffer[bptr++] = checksum;
+                //serialport.Write(buffer, 0, bptr);
 
                 //Write PID's 
                 bptr = 0;
@@ -333,54 +332,54 @@ namespace MWGUI
 
                 //Then write checkboxitems
 
-                bptr = 0;
-                checksum = 0;
-                buffer[bptr++] = (byte)'$';
-                buffer[bptr++] = (byte)'M';
-                buffer[bptr++] = (byte)'<';
-                buffer[bptr++] = (byte)(2 * iCheckBoxItems);
-                buffer[bptr++] = (byte)MSP_SET_BOX;
+                //bptr = 0;
+                //checksum = 0;
+                //buffer[bptr++] = (byte)'$';
+                //buffer[bptr++] = (byte)'M';
+                //buffer[bptr++] = (byte)'<';
+                //buffer[bptr++] = (byte)(2 * iCheckBoxItems);
+                //buffer[bptr++] = (byte)MSP_SET_BOX;
 
-                for (int i = 0; i < iCheckBoxItems; i++)
-                {
-                    buffer[bptr++] = (byte)(activation[i] & 0x00ff);
-                    buffer[bptr++] = (byte)((activation[i] >> 8) & 0x00ff);
-                }
-                for (int i = 3; i < bptr; i++) checksum ^= buffer[i];
-                buffer[bptr++] = checksum;
-                serialport.Write(buffer, 0, bptr);
+                //for (int i = 0; i < iCheckBoxItems; i++)
+                //{
+                //    buffer[bptr++] = (byte)(activation[i] & 0x00ff);
+                //    buffer[bptr++] = (byte)((activation[i] >> 8) & 0x00ff);
+                //}
+                //for (int i = 3; i < bptr; i++) checksum ^= buffer[i];
+                //buffer[bptr++] = checksum;
+                //serialport.Write(buffer, 0, bptr);
 
 
                 //
 
                 //then the rest
-                bptr = 0;
-                checksum = 0;
-                buffer[bptr++] = (byte)'$';
-                buffer[bptr++] = (byte)'M';
-                buffer[bptr++] = (byte)'<';
-                buffer[bptr++] = (byte)(2);
-                buffer[bptr++] = (byte)MSP_SET_MISC;
+                //bptr = 0;
+                //checksum = 0;
+                //buffer[bptr++] = (byte)'$';
+                //buffer[bptr++] = (byte)'M';
+                //buffer[bptr++] = (byte)'<';
+                //buffer[bptr++] = (byte)(2);
+                //buffer[bptr++] = (byte)MSP_SET_MISC;
 
-                buffer[bptr++] = (byte)(PowerTrigger & 0x00ff);
-                buffer[bptr++] = (byte)((PowerTrigger >> 8) & 0x00ff);
+                //buffer[bptr++] = (byte)(PowerTrigger & 0x00ff);
+                //buffer[bptr++] = (byte)((PowerTrigger >> 8) & 0x00ff);
 
-                for (int i = 3; i < bptr; i++) checksum ^= buffer[i];
-                buffer[bptr++] = checksum;
-                serialport.Write(buffer, 0, bptr);
+                //for (int i = 3; i < bptr; i++) checksum ^= buffer[i];
+                //buffer[bptr++] = checksum;
+                //serialport.Write(buffer, 0, bptr);
 
 
-                byte c = 0;
-                byte[] o;
-                o = new byte[10];
-                // with checksum 
-                o[0] = (byte)'$';
-                o[1] = (byte)'M';
-                o[2] = (byte)'<';
-                o[3] = (byte)0; c ^= o[3];       //no payload 
-                o[4] = (byte)MSP_EEPROM_WRITE; c ^= o[4];
-                o[5] = (byte)c;
-                serialport.Write(o, 0, 6);
+                //byte c = 0;
+                //byte[] o;
+                //o = new byte[10];
+                //// with checksum 
+                //o[0] = (byte)'$';
+                //o[1] = (byte)'M';
+                //o[2] = (byte)'<';
+                //o[3] = (byte)0; c ^= o[3];       //no payload 
+                //o[4] = (byte)MSP_EEPROM_WRITE; c ^= o[4];
+                //o[5] = (byte)c;
+                //serialport.Write(o, 0, 6);
 
 
             }
@@ -552,7 +551,7 @@ namespace MWGUI
         public byte DynThrPID;
         //public byte ThrottleMID;
         //public byte ThrottleEXPO;
-        //public Int16[] activation;
+        public Int16[] activation;
         //public int GPS_distanceToHome;
         //public int GPS_directionToHome;
         //public byte GPS_numSat;

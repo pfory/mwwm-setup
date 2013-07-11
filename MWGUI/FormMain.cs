@@ -82,7 +82,7 @@ namespace MWGUI
     static GUI_settings gui_settings;
     int command = 0;
 
-    //static int iCheckBoxItems = 14;                          //number of checkboxItems (readed from optionsconfig.xml
+    static int iCheckBoxItems = 14;                          //number of checkboxItems (readed from optionsconfig.xml
 
     //PID values
     static PID[] Pid;
@@ -92,6 +92,7 @@ namespace MWGUI
 
     bool isNeedUpdatePIDPanel = false;
     bool isNeedUpdateInfoPanel = false;
+    bool isNeedUpdateAuxPanel = false;
 
     public MWSetup()
     {
@@ -708,10 +709,11 @@ namespace MWGUI
           break;
         case MSP_BOX:
           ptr = 0;
-          //for (int i = 0; i < iCheckBoxItems; i++)
-          //{
-          //  mw_gui.activation[i] = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          //}
+          for (int i = 0; i < iCheckBoxItems; i++)
+          {
+            mw_gui.activation[i] = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          }
+          isNeedUpdateAuxPanel = true;
           break;
         case MSP_MISC:
           ptr = 0;
@@ -769,15 +771,11 @@ namespace MWGUI
 
     private void update_params()
     {
-      //Get parameters from GUI
-
-      mw_gui.pidP[0] = (byte)(Pid[0].P * Pid[0].Pprec);
-        //if (Pid[i].Pshown) { mw_gui.pidP[i] = (byte)(Pid[i].Pfield.Value * Pid[i].Pprec); }
-        //if (Pid[i].Ishown) { mw_gui.pidI[i] = (byte)(Pid[i].Ifield.Value * Pid[i].Iprec); }
-        //if (Pid[i].Dshown) { mw_gui.pidD[i] = (byte)(Pid[i].Dfield.Value * Pid[i].Dprec); }
-
       for (int i = 0; i < iPidItems; i++)
       {
+        mw_gui.pidP[i] = Pid[i].P;
+        mw_gui.pidI[i] = Pid[i].I;
+        mw_gui.pidD[i] = Pid[i].D;
         mw_params.pidP[i] = mw_gui.pidP[i];
         mw_params.pidI[i] = mw_gui.pidI[i];
         mw_params.pidD[i] = mw_gui.pidD[i];
@@ -816,6 +814,10 @@ namespace MWGUI
         update_pid_panel();
       }
       if (isNeedUpdateInfoPanel = !isNeedUpdateInfoPanel)
+      {
+        update_info_panel();
+      }
+      if (isNeedUpdateAuxPanel = !isNeedUpdateAuxPanel)
       {
         update_info_panel();
       }
@@ -906,6 +908,47 @@ namespace MWGUI
       labelInfo.Text += "\nGUI capability:" + mw_gui.capability;
     }
 
+    private void update_aux_panel()
+    {
+      for (int i = 0; i < iCheckBoxItems; i++)
+      {
+        label21.Text += i.ToString();
+        label21.Text += " ";
+        //aux[0, 0, i].Checked = (mw_gui.activation[i] & (1 << 0)) == 0 ? false : true;
+        //aux[0, 1, i].Checked = (mw_gui.activation[i] & (1 << 1)) == 0 ? false : true;
+        //aux[0, 2, i].Checked = (mw_gui.activation[i] & (1 << 2)) == 0 ? false : true;
+        //aux[1, 0, i].Checked = (mw_gui.activation[i] & (1 << 3)) == 0 ? false : true;
+        //aux[1, 1, i].Checked = (mw_gui.activation[i] & (1 << 4)) == 0 ? false : true;
+        //aux[1, 2, i].Checked = (mw_gui.activation[i] & (1 << 5)) == 0 ? false : true;
+        //aux[2, 0, i].Checked = (mw_gui.activation[i] & (1 << 6)) == 0 ? false : true;
+        //aux[2, 1, i].Checked = (mw_gui.activation[i] & (1 << 7)) == 0 ? false : true;
+        //aux[2, 2, i].Checked = (mw_gui.activation[i] & (1 << 8)) == 0 ? false : true;
+        //aux[3, 0, i].Checked = (mw_gui.activation[i] & (1 << 9)) == 0 ? false : true;
+        //aux[3, 1, i].Checked = (mw_gui.activation[i] & (1 << 10)) == 0 ? false : true;
+        //aux[3, 2, i].Checked = (mw_gui.activation[i] & (1 << 11)) == 0 ? false : true;
+      }
+
+      for (int i = 0; i < iCheckBoxItems; i++)
+      {
+
+        //aux[0, 0, i].IsHighlighted = (aux[0, 0, i].Checked == ((mw_gui.activation[i] & (1 << 0)) == 0)) ? true : false;
+        //aux[0, 1, i].IsHighlighted = (aux[0, 1, i].Checked == ((mw_gui.activation[i] & (1 << 1)) == 0)) ? true : false;
+        //aux[0, 2, i].IsHighlighted = (aux[0, 2, i].Checked == ((mw_gui.activation[i] & (1 << 2)) == 0)) ? true : false;
+        //aux[1, 0, i].IsHighlighted = (aux[1, 0, i].Checked == ((mw_gui.activation[i] & (1 << 3)) == 0)) ? true : false;
+        //aux[1, 1, i].IsHighlighted = (aux[1, 1, i].Checked == ((mw_gui.activation[i] & (1 << 4)) == 0)) ? true : false;
+        //aux[1, 2, i].IsHighlighted = (aux[1, 2, i].Checked == ((mw_gui.activation[i] & (1 << 5)) == 0)) ? true : false;
+        //aux[2, 0, i].IsHighlighted = (aux[2, 0, i].Checked == ((mw_gui.activation[i] & (1 << 6)) == 0)) ? true : false;
+        //aux[2, 1, i].IsHighlighted = (aux[2, 1, i].Checked == ((mw_gui.activation[i] & (1 << 7)) == 0)) ? true : false;
+        //aux[2, 2, i].IsHighlighted = (aux[2, 2, i].Checked == ((mw_gui.activation[i] & (1 << 8)) == 0)) ? true : false;
+        //aux[3, 0, i].IsHighlighted = (aux[3, 0, i].Checked == ((mw_gui.activation[i] & (1 << 9)) == 0)) ? true : false;
+        //aux[3, 1, i].IsHighlighted = (aux[3, 1, i].Checked == ((mw_gui.activation[i] & (1 << 10)) == 0)) ? true : false;
+        //aux[3, 2, i].IsHighlighted = (aux[3, 2, i].Checked == ((mw_gui.activation[i] & (1 << 11)) == 0)) ? true : false;
+      }
+
+
+    }
+
+
     private void end_Click(object sender, EventArgs e)
     {
       this.Close();
@@ -989,24 +1032,9 @@ namespace MWGUI
 
     private void button8_Click(object sender, EventArgs e)
     {
-      if (pidIndex==0)
-      {
-        PRoll.Text = setP.Text;
-        IRoll.Text = setI.Text;
-        DRoll.Text = setD.Text;
-      }
-      if (pidIndex == 1)
-      {
-        PPitch.Text = setP.Text;
-        IPitch.Text = setI.Text;
-        DPitch.Text = setD.Text;
-      }
-      if (pidIndex == 2)
-      {
-        PYaw.Text = setP.Text;
-        IYaw.Text = setI.Text;
-        DYaw.Text = setD.Text;
-      }
+      mw_gui.pidP[pidIndex] = (byte)double.Parse(setP.Text.Replace(".", ","));
+      mw_gui.pidI[pidIndex] = (byte)double.Parse(setI.Text.Replace(".", ","));
+      mw_gui.pidD[pidIndex] = (byte)double.Parse(setD.Text.Replace(".", ","));
       tabControl1.SelectedIndex = 1;
     }
 
@@ -1054,26 +1082,178 @@ namespace MWGUI
 
     }
 
+    private void button5_Click(object sender, EventArgs e)
+    {
+      if (isConnected)
+      {
+        MSPquery(MSP_BOX);
+        isNeedUpdateAuxPanel = true;
+      }
+    }
         private void read_options_config()
         {
 
-            option_names = new string[20];
+<<<<<<< .mine    private void button6_Click(object sender, EventArgs e)
+    {
+      mw_gui.pidP[0] = 33;
+      mw_gui.pidI[0] = 30;
+      mw_gui.pidD[0] = 23;
+      mw_gui.pidP[1] = 33;
+      mw_gui.pidI[1] = 30;
+      mw_gui.pidD[1] = 23;
+      mw_gui.pidP[2] = 68;
+      mw_gui.pidI[2] = 45;
+      mw_gui.pidD[2] = 0;
+      mw_gui.pidP[3] = 64;
+      mw_gui.pidI[3] = 25;
+      mw_gui.pidD[3] = 24;
+      mw_gui.pidP[4] = 11;
+      mw_gui.pidI[4] = 0;
+      //mw_gui.pidD[4] = 0;
+      mw_gui.pidP[5] = 20;
+      mw_gui.pidI[5] = 8;
+      mw_gui.pidD[5] = 45;
+      mw_gui.pidP[6] = 14;
+      mw_gui.pidI[6] = 20;
+      mw_gui.pidD[6] = 80;
+      mw_gui.pidP[7] = 90;
+      mw_gui.pidI[7] = 10;
+      mw_gui.pidD[7] = 100;
+      mw_gui.pidP[8] = 40;
+      //mw_gui.pidI[8] = 0;
+      //mw_gui.pidD[8] = 0;
+=======            option_names = new string[20];
             option_indicators = new string[20];
             option_desc = new string[100];
+>>>>>>> .theirs
+      update_pid_panel();
+    }
 
-
-            int iPidID = 0;
-
-            Pid = new PID[20];          //Max 20 PID values if we have more then we will ignore it
-
-            iCheckBoxItems = 0;
+<<<<<<< .mine    //Roll
+    private void PRoll_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 0, "P");
+    }
+=======            int iPidID = 0;
+>>>>>>> .theirs
+<<<<<<< .mine    private void IRoll_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 0, "I");
+    }
+=======            Pid = new PID[20];          //Max 20 PID values if we have more then we will ignore it
+>>>>>>> .theirs
+<<<<<<< .mine    private void DRoll_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 0, "D");
+    }
+=======            iCheckBoxItems = 0;
             iPidItems = 0;
 
             if (File.Exists(sOptionsConfigFilename))
             {
                 reader = new XmlTextReader(sOptionsConfigFilename);
             }
-            else
+>>>>>>> .theirs<<<<<<< .mine
+    //Pitch
+    private void PPitch_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 1, "P");
+    }
+
+    private void IPitch_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 1, "I");
+    }
+
+    private void DPitch_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 1, "D");
+    }
+
+    //Yaw
+    private void PYaw_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 2, "P");
+    }
+
+    private void IYaw_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 2, "I");
+    }
+
+    private void DYaw_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 2, "D");
+    }
+
+    //Altitude
+    private void PAlt_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 3, "P");
+    }
+
+    private void IAlt_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 3, "I");
+    }
+
+    private void DAlt_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 3, "D");
+    }
+
+    /*Pid[4].name = "PosHold";
+    Pid[5].name = "PosHoldRate";
+    Pid[6].name = "Navigation Rate";
+    */
+    //Level
+    private void PLevel_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 7, "P");
+    }
+
+    private void ILevel_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 7, "I");
+    }
+
+    private void DLevel_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 7, "D");
+    }
+
+    //Mag
+    private void PMag_TextChanged(object sender, EventArgs e)
+    {
+      textPIDChange(sender, 8, "P");
+    }
+
+    //Pid[9].name = "Velocity";
+
+
+    private void textPIDChange(object sender, int pid, string part)
+    {
+      try
+      {
+        Label tb = (Label)sender;
+        if (tb.Text.Length > 0 && !string.IsNullOrEmpty(tb.Text))
+        {
+          if (part == "P")
+            Pid[pid].P = (byte)double.Parse(tb.Text.Replace(".", ","));
+          if (part == "I")
+            Pid[pid].I = (byte)double.Parse(tb.Text.Replace(".", ","));
+          if (part == "D")
+            Pid[pid].D = (byte)double.Parse(tb.Text.Replace(".", ","));
+        }
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message);
+      }
+    }
+
+  }
+=======            else
             {
                 MessageBoxEx.Show(this, "Options file " + sOptionsConfigFilename + " not found", "File not found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 Environment.Exit(-1);
@@ -1188,4 +1368,4 @@ namespace MWGUI
 
 
   }
-}
+>>>>>>> .theirs}

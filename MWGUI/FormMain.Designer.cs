@@ -34,6 +34,7 @@
       this.menuItem2 = new System.Windows.Forms.MenuItem();
       this.timer1 = new System.Windows.Forms.Timer();
       this.tabPage2 = new System.Windows.Forms.TabPage();
+      this.button6 = new System.Windows.Forms.Button();
       this.panelVel = new System.Windows.Forms.Panel();
       this.label7 = new System.Windows.Forms.Label();
       this.PVelocity = new System.Windows.Forms.Label();
@@ -112,8 +113,10 @@
       this.label18 = new System.Windows.Forms.Label();
       this.label17 = new System.Windows.Forms.Label();
       this.label16 = new System.Windows.Forms.Label();
-      this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
       this.tabPage4 = new System.Windows.Forms.TabPage();
+      this.button5 = new System.Windows.Forms.Button();
+      this.label21 = new System.Windows.Forms.Label();
+      this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
       this.tabPage2.SuspendLayout();
       this.panelVel.SuspendLayout();
       this.panelAlt.SuspendLayout();
@@ -126,6 +129,7 @@
       this.tabPage1.SuspendLayout();
       this.tabControl1.SuspendLayout();
       this.tabPage3.SuspendLayout();
+      this.tabPage4.SuspendLayout();
       this.SuspendLayout();
       // 
       // mainMenu1
@@ -149,6 +153,7 @@
       // tabPage2
       // 
       this.tabPage2.BackColor = System.Drawing.Color.Black;
+      this.tabPage2.Controls.Add(this.button6);
       this.tabPage2.Controls.Add(this.panelVel);
       this.tabPage2.Controls.Add(this.panelAlt);
       this.tabPage2.Controls.Add(this.panelMag);
@@ -166,8 +171,19 @@
       this.tabPage2.Controls.Add(this.panelRC);
       this.tabPage2.Location = new System.Drawing.Point(0, 0);
       this.tabPage2.Name = "tabPage2";
-      this.tabPage2.Size = new System.Drawing.Size(232, 314);
+      this.tabPage2.Size = new System.Drawing.Size(240, 317);
       this.tabPage2.Text = "PID";
+      // 
+      // button6
+      // 
+      this.button6.BackColor = System.Drawing.Color.White;
+      this.button6.ForeColor = System.Drawing.Color.Black;
+      this.button6.Location = new System.Drawing.Point(161, 7);
+      this.button6.Name = "button6";
+      this.button6.Size = new System.Drawing.Size(66, 48);
+      this.button6.TabIndex = 181;
+      this.button6.Text = "Defaults";
+      this.button6.Click += new System.EventHandler(this.button6_Click);
       // 
       // panelVel
       // 
@@ -240,6 +256,7 @@
       this.PAlt.Location = new System.Drawing.Point(59, 0);
       this.PAlt.Name = "PAlt";
       this.PAlt.Size = new System.Drawing.Size(33, 20);
+      this.PAlt.TextChanged += new System.EventHandler(this.PAlt_TextChanged);
       // 
       // DAlt
       // 
@@ -247,6 +264,7 @@
       this.DAlt.Location = new System.Drawing.Point(137, 0);
       this.DAlt.Name = "DAlt";
       this.DAlt.Size = new System.Drawing.Size(41, 20);
+      this.DAlt.TextChanged += new System.EventHandler(this.DAlt_TextChanged);
       // 
       // IAlt
       // 
@@ -254,6 +272,7 @@
       this.IAlt.Location = new System.Drawing.Point(94, 0);
       this.IAlt.Name = "IAlt";
       this.IAlt.Size = new System.Drawing.Size(41, 20);
+      this.IAlt.TextChanged += new System.EventHandler(this.IAlt_TextChanged);
       // 
       // panelMag
       // 
@@ -281,6 +300,7 @@
       this.PMag.Location = new System.Drawing.Point(62, 0);
       this.PMag.Name = "PMag";
       this.PMag.Size = new System.Drawing.Size(33, 20);
+      this.PMag.TextChanged += new System.EventHandler(this.PMag_TextChanged);
       // 
       // panelLevel
       // 
@@ -300,6 +320,7 @@
       this.PLevel.Location = new System.Drawing.Point(62, 0);
       this.PLevel.Name = "PLevel";
       this.PLevel.Size = new System.Drawing.Size(33, 20);
+      this.PLevel.TextChanged += new System.EventHandler(this.PLevel_TextChanged);
       // 
       // label5
       // 
@@ -317,6 +338,7 @@
       this.ILevel.Location = new System.Drawing.Point(97, 0);
       this.ILevel.Name = "ILevel";
       this.ILevel.Size = new System.Drawing.Size(41, 20);
+      this.ILevel.TextChanged += new System.EventHandler(this.ILevel_TextChanged);
       // 
       // DLevel
       // 
@@ -324,6 +346,7 @@
       this.DLevel.Location = new System.Drawing.Point(140, 0);
       this.DLevel.Name = "DLevel";
       this.DLevel.Size = new System.Drawing.Size(41, 20);
+      this.DLevel.TextChanged += new System.EventHandler(this.DLevel_TextChanged);
       // 
       // panelYaw
       // 
@@ -344,6 +367,7 @@
       this.PYaw.Location = new System.Drawing.Point(62, 0);
       this.PYaw.Name = "PYaw";
       this.PYaw.Size = new System.Drawing.Size(33, 20);
+      this.PYaw.TextChanged += new System.EventHandler(this.PYaw_TextChanged);
       // 
       // IYaw
       // 
@@ -351,6 +375,7 @@
       this.IYaw.Location = new System.Drawing.Point(97, 0);
       this.IYaw.Name = "IYaw";
       this.IYaw.Size = new System.Drawing.Size(41, 20);
+      this.IYaw.TextChanged += new System.EventHandler(this.IYaw_TextChanged);
       // 
       // DYaw
       // 
@@ -358,6 +383,7 @@
       this.DYaw.Location = new System.Drawing.Point(140, 0);
       this.DYaw.Name = "DYaw";
       this.DYaw.Size = new System.Drawing.Size(41, 20);
+      this.DYaw.TextChanged += new System.EventHandler(this.DYaw_TextChanged);
       // 
       // YawRate
       // 
@@ -394,6 +420,7 @@
       this.PPitch.Location = new System.Drawing.Point(62, 0);
       this.PPitch.Name = "PPitch";
       this.PPitch.Size = new System.Drawing.Size(33, 20);
+      this.PPitch.TextChanged += new System.EventHandler(this.PPitch_TextChanged);
       // 
       // IPitch
       // 
@@ -401,6 +428,7 @@
       this.IPitch.Location = new System.Drawing.Point(97, 0);
       this.IPitch.Name = "IPitch";
       this.IPitch.Size = new System.Drawing.Size(41, 20);
+      this.IPitch.TextChanged += new System.EventHandler(this.IPitch_TextChanged);
       // 
       // DPitch
       // 
@@ -408,6 +436,7 @@
       this.DPitch.Location = new System.Drawing.Point(140, 0);
       this.DPitch.Name = "DPitch";
       this.DPitch.Size = new System.Drawing.Size(41, 20);
+      this.DPitch.TextChanged += new System.EventHandler(this.DPitch_TextChanged);
       // 
       // label2
       // 
@@ -438,6 +467,7 @@
       this.PRoll.Location = new System.Drawing.Point(62, 0);
       this.PRoll.Name = "PRoll";
       this.PRoll.Size = new System.Drawing.Size(33, 20);
+      this.PRoll.TextChanged += new System.EventHandler(this.PRoll_TextChanged);
       // 
       // IRoll
       // 
@@ -445,6 +475,7 @@
       this.IRoll.Location = new System.Drawing.Point(97, 0);
       this.IRoll.Name = "IRoll";
       this.IRoll.Size = new System.Drawing.Size(41, 20);
+      this.IRoll.TextChanged += new System.EventHandler(this.IRoll_TextChanged);
       // 
       // DRoll
       // 
@@ -452,6 +483,7 @@
       this.DRoll.Location = new System.Drawing.Point(140, 0);
       this.DRoll.Name = "DRoll";
       this.DRoll.Size = new System.Drawing.Size(41, 20);
+      this.DRoll.TextChanged += new System.EventHandler(this.DRoll_TextChanged);
       // 
       // RollPitchRate
       // 
@@ -474,9 +506,9 @@
       // 
       this.bWrite.BackColor = System.Drawing.Color.White;
       this.bWrite.ForeColor = System.Drawing.Color.Black;
-      this.bWrite.Location = new System.Drawing.Point(129, 7);
+      this.bWrite.Location = new System.Drawing.Point(81, 7);
       this.bWrite.Name = "bWrite";
-      this.bWrite.Size = new System.Drawing.Size(103, 48);
+      this.bWrite.Size = new System.Drawing.Size(60, 48);
       this.bWrite.TabIndex = 174;
       this.bWrite.Text = "Write";
       this.bWrite.Click += new System.EventHandler(this.bWrite_Click);
@@ -524,7 +556,7 @@
       this.bRead.ForeColor = System.Drawing.Color.Black;
       this.bRead.Location = new System.Drawing.Point(7, 7);
       this.bRead.Name = "bRead";
-      this.bRead.Size = new System.Drawing.Size(103, 48);
+      this.bRead.Size = new System.Drawing.Size(64, 48);
       this.bRead.TabIndex = 134;
       this.bRead.Text = "Read";
       this.bRead.Click += new System.EventHandler(this.bRead_Click);
@@ -907,17 +939,35 @@
       this.label16.Text = "P";
       this.label16.TextAlign = System.Drawing.ContentAlignment.TopCenter;
       // 
-      // serialPort1
-      // 
-      this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
-      // 
       // tabPage4
       // 
       this.tabPage4.BackColor = System.Drawing.Color.Black;
+      this.tabPage4.Controls.Add(this.button5);
+      this.tabPage4.Controls.Add(this.label21);
       this.tabPage4.Location = new System.Drawing.Point(0, 0);
       this.tabPage4.Name = "tabPage4";
-      this.tabPage4.Size = new System.Drawing.Size(240, 317);
+      this.tabPage4.Size = new System.Drawing.Size(232, 314);
       this.tabPage4.Text = "RC";
+      // 
+      // button5
+      // 
+      this.button5.Location = new System.Drawing.Point(46, 262);
+      this.button5.Name = "button5";
+      this.button5.Size = new System.Drawing.Size(141, 34);
+      this.button5.TabIndex = 1;
+      this.button5.Text = "Read";
+      this.button5.Click += new System.EventHandler(this.button5_Click);
+      // 
+      // label21
+      // 
+      this.label21.ForeColor = System.Drawing.Color.White;
+      this.label21.Location = new System.Drawing.Point(8, 8);
+      this.label21.Name = "label21";
+      this.label21.Size = new System.Drawing.Size(225, 230);
+      // 
+      // serialPort1
+      // 
+      this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
       // 
       // MWSetup
       // 
@@ -944,6 +994,7 @@
       this.tabPage1.ResumeLayout(false);
       this.tabControl1.ResumeLayout(false);
       this.tabPage3.ResumeLayout(false);
+      this.tabPage4.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -1035,6 +1086,9 @@
     private System.Windows.Forms.Label labelInfo;
     private System.Windows.Forms.Panel panelRC;
     private System.Windows.Forms.TabPage tabPage4;
+    private System.Windows.Forms.Button button5;
+    private System.Windows.Forms.Label label21;
+    private System.Windows.Forms.Button button6;
 
   }
 }
