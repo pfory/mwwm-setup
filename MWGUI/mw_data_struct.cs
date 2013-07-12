@@ -162,27 +162,30 @@ namespace MWGUI
   {
     //public fields
     public string name;
-    //public string description;
+    public string description;
     //public Label pidLabel;
 
-    public byte P;
+    //public byte P;
     //public bool Pshown;
     public decimal Pmin;
     public decimal Pmax;
     public int Pprec;
+    public byte Pdef;
 
-    public byte I;
+    //public byte I;
     //public bool Ishown;
     public decimal Imin;
     public decimal Imax;
     public int Iprec;
+    public byte Idef;
     //public Label Ilabel;
-
-    public byte D;
+    
+    //public byte D;
     //public bool Dshown;
     public decimal Dmin;
     public decimal Dmax;
     public int Dprec;
+    public byte Ddef;
     //public Label Dlabel;
 
     public PID()
@@ -262,17 +265,17 @@ namespace MWGUI
     const int MSP_DEBUG = 254;
 
     //Constructor
-    public mw_settings(int pidItems) //, int checkboxItems, int iSoftwareVersion)
+    public mw_settings(int pidItems, int checkboxItems, int iSoftwareVersion)
     {
 
       pidP = new byte[pidItems];
       pidI = new byte[pidItems];
       pidD = new byte[pidItems];
-      //activation = new Int16[checkboxItems];
+      activation = new Int16[checkboxItems];
 
       iPIDItems = pidItems;
-      //iCheckBoxItems = checkboxItems;
-      //iSwVer = iSoftwareVersion;
+      iCheckBoxItems = checkboxItems;
+      iSwVer = iSoftwareVersion;
 
       pidnames = new string[pidItems];
 
@@ -575,7 +578,7 @@ namespace MWGUI
     //private bool bCompatibilityMode;
 
     //Constructor
-    public mw_data_gui(int pidItems) //, int checkboxItems, int iSoftwareVersion)
+    public mw_data_gui(int pidItems, int checkboxItems, int iSoftwareVersion)
     {
       //motors = new int[8];
       //servos = new int[8];
@@ -583,11 +586,11 @@ namespace MWGUI
       pidI = new byte[pidItems];
       pidD = new byte[pidItems];
 
-      //activation = new Int16[checkboxItems];
+      activation = new Int16[checkboxItems];
 
       iPIDItems = pidItems;
-      //iCheckBoxItems = checkboxItems;
-      //iSwVer = iSoftwareVersion;
+      iCheckBoxItems = checkboxItems;
+      iSwVer = iSoftwareVersion;
 
 
     }
