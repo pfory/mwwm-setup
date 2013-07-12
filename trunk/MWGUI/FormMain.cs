@@ -117,10 +117,11 @@ namespace MWGUI
 
       gui_settings = new GUI_settings();
 
-      mw_gui = new mw_data_gui(iPidItems); //, iCheckBoxItems, gui_settings.iSoftwareVersion);
+      mw_gui = new mw_data_gui(iPidItems, iCheckBoxItems, gui_settings.iSoftwareVersion);
       mw_params = new mw_settings(iPidItems); //, iCheckBoxItems, gui_settings.iSoftwareVersion);
 
 
+      //TODO - read values from settings file
       Pid[0].Pprec = 10;
       Pid[1].Pprec = 10;
       Pid[2].Pprec = 10;
@@ -164,6 +165,112 @@ namespace MWGUI
       Pid[7].name = "Level";
       Pid[8].name = "Mag";
       Pid[9].name = "Velocity";
+
+      Pid[0].description = "Roll Rate control";
+      Pid[1].description = "Pitch Rate control";
+      Pid[2].description = "Yaw Rate control";
+      Pid[3].description = "Altitude hold control";
+      Pid[4].description = "Position Hold control";
+      Pid[5].description = "Position Hold Rate control";
+      Pid[6].description = "Navigation Rate control";
+      Pid[7].description = "Autolevel control";
+      Pid[8].description = "Heading hold control";
+      Pid[9].description = "Velocity control for Altitude hold";
+      
+      Pid[0].Pmin = 0;
+      Pid[1].Pmin = 0;
+      Pid[2].Pmin = 0;
+      Pid[3].Pmin = 0;
+      Pid[4].Pmin = 0;
+      Pid[5].Pmin = 0;
+      Pid[6].Pmin = 0;
+      Pid[7].Pmin = 0;
+      Pid[8].Pmin = 0;
+      Pid[9].Pmin = 0;
+      
+      Pid[0].Pmax = 20.0;
+      Pid[1].Pmax = 20.0;
+      Pid[2].Pmax = 20.0;
+      Pid[3].Pmax = 20.0;
+      Pid[4].Pmax = 2.54;
+      Pid[5].Pmax = 20.0;
+      Pid[6].Pmax = 20.0;
+      Pid[7].Pmax = 20.0;
+      Pid[8].Pmax = 20.0;
+      Pid[9].Pmax = 20.0;
+
+      Pid[0].Imin = 0;
+      Pid[1].Imin = 0;
+      Pid[2].Imin = 0;
+      Pid[3].Imin = 0;
+      Pid[4].Imin = 0;
+      Pid[5].Imin = 0;
+      Pid[6].Imin = 0;
+      Pid[7].Imin = 0;
+      Pid[8].Imin = 0;
+      Pid[9].Imin = 0;
+      
+      Pid[0].Imax = 0.250;
+      Pid[1].Imax = 0.250;
+      Pid[2].Imax = 0.250;
+      Pid[3].Imax = 0.250;
+      Pid[4].Imax = 2.54;
+      Pid[5].Imax = 2.54;
+      Pid[6].Imax = 2.54;
+      Pid[7].Imax = 2.54;
+      Pid[8].Imax = 2.54;
+      Pid[9].Imax = 2.54;
+      
+      Pid[0].Dmin = 0;
+      Pid[1].Dmin = 0;
+      Pid[2].Dmin = 0;
+      Pid[3].Dmin = 0;
+      Pid[4].Dmin = 0;
+      Pid[5].Dmin = 0;
+      Pid[6].Dmin = 0;
+      Pid[7].Dmin = 0;
+      Pid[8].Dmin = 0;
+      Pid[9].Dmin = 0;
+      
+      Pid[0].Dmax = 100;
+      Pid[1].Dmax = 100;
+      Pid[2].Dmax = 100;
+      Pid[3].Dmax = 100;
+      Pid[4].Dmax = 100;
+      Pid[5].Dmax = 0.254;
+      Pid[6].Dmax = 0.254;
+      Pid[7].Dmax = 100;
+      Pid[8].Dmax = 100;
+      Pid[9].Dmax = 100;
+
+      Pid[0].Pdef = 33;
+      Pid[0].Idef = 30;
+      Pid[0].Ddef = 23;
+      Pid[1].Pdef = 33;
+      Pid[1].Idef = 30;
+      Pid[1].Ddef = 23;
+      Pid[2].Pdef = 68;
+      Pid[2].Idef = 45;
+      Pid[2].Ddef = 0;
+      Pid[3].Pdef = 64;
+      Pid[3].Idef = 25;
+      Pid[3].Ddef = 24;
+      Pid[4].Pdef = 11;
+      Pid[4].Idef = 0;
+      //Pid[4].Ddef = 0;
+      Pid[5].Pdef = 20;
+      Pid[5].Idef = 8;
+      Pid[5].Ddef = 45;
+      Pid[6].Pdef = 14;
+      Pid[6].Idef = 20;
+      Pid[6].Ddef = 80;
+      Pid[7].Pdef = 90;
+      Pid[7].Idef = 10;
+      Pid[7].Ddef = 100;
+      Pid[8].Pdef = 40;
+      //Pid[8].Idef = 0;
+      //Pid[8].Ddef = 0;
+      
       //Quick hack to get pid names to mw_params untill redo the structures
       for (int i = 0; i < iPidItems; i++)
       {
@@ -636,7 +743,6 @@ namespace MWGUI
             mw_gui.pidP[i] = (byte)inBuf[ptr++];
             mw_gui.pidI[i] = (byte)inBuf[ptr++];
             mw_gui.pidD[i] = (byte)inBuf[ptr++];
-
             isNeedUpdatePIDPanel = true;
           }
           break;
@@ -706,9 +812,10 @@ namespace MWGUI
     {
       for (int i = 0; i < iPidItems; i++)
       {
-        mw_gui.pidP[i] = Pid[i].P;
+/*      mw_gui.pidP[i] = Pid[i].P;
         mw_gui.pidI[i] = Pid[i].I;
         mw_gui.pidD[i] = Pid[i].D;
+*/
         mw_params.pidP[i] = mw_gui.pidP[i];
         mw_params.pidI[i] = mw_gui.pidI[i];
         mw_params.pidD[i] = mw_gui.pidD[i];
@@ -752,7 +859,7 @@ namespace MWGUI
       }
       if (isNeedUpdateAuxPanel = !isNeedUpdateAuxPanel)
       {
-        update_info_panel();
+        update_aux_panel();
       }
     }
 
@@ -845,8 +952,8 @@ namespace MWGUI
     {
       for (int i = 0; i < iCheckBoxItems; i++)
       {
-        label21.Text += i.ToString();
-        label21.Text += " ";
+        //label21.Text += i.ToString();
+        //label21.Text += " ";
         //aux[0, 0, i].Checked = (mw_gui.activation[i] & (1 << 0)) == 0 ? false : true;
         //aux[0, 1, i].Checked = (mw_gui.activation[i] & (1 << 1)) == 0 ? false : true;
         //aux[0, 2, i].Checked = (mw_gui.activation[i] & (1 << 2)) == 0 ? false : true;
@@ -1026,34 +1133,12 @@ namespace MWGUI
 
     private void button6_Click(object sender, EventArgs e)
     {
-      mw_gui.pidP[0] = 33;
-      mw_gui.pidI[0] = 30;
-      mw_gui.pidD[0] = 23;
-      mw_gui.pidP[1] = 33;
-      mw_gui.pidI[1] = 30;
-      mw_gui.pidD[1] = 23;
-      mw_gui.pidP[2] = 68;
-      mw_gui.pidI[2] = 45;
-      mw_gui.pidD[2] = 0;
-      mw_gui.pidP[3] = 64;
-      mw_gui.pidI[3] = 25;
-      mw_gui.pidD[3] = 24;
-      mw_gui.pidP[4] = 11;
-      mw_gui.pidI[4] = 0;
-      //mw_gui.pidD[4] = 0;
-      mw_gui.pidP[5] = 20;
-      mw_gui.pidI[5] = 8;
-      mw_gui.pidD[5] = 45;
-      mw_gui.pidP[6] = 14;
-      mw_gui.pidI[6] = 20;
-      mw_gui.pidD[6] = 80;
-      mw_gui.pidP[7] = 90;
-      mw_gui.pidI[7] = 10;
-      mw_gui.pidD[7] = 100;
-      mw_gui.pidP[8] = 40;
-      //mw_gui.pidI[8] = 0;
-      //mw_gui.pidD[8] = 0;
-
+      for (int i = 0; i < iPidItems; i++)
+      {
+        mw_gui.pidP[i] = Pid[i].Pdef;
+        mw_gui.pidI[i] = Pid[i].Idef;
+        mw_gui.pidD[i] = Pid[i].Ddef;
+      }
       update_pid_panel();
     }
 
@@ -1158,11 +1243,14 @@ namespace MWGUI
         if (tb.Text.Length > 0 && !string.IsNullOrEmpty(tb.Text))
         {
           if (part == "P")
-            Pid[pid].P = (byte)double.Parse(tb.Text.Replace(".", ","));
+//          Pid[pid].P = (byte)double.Parse(tb.Text.Replace(".", ","));
+            mw_gui.pidP[pid] = (byte)double.Parse(tb.Text.Replace(".", ","));
           if (part == "I")
-            Pid[pid].I = (byte)double.Parse(tb.Text.Replace(".", ","));
+//            Pid[pid].I = (byte)double.Parse(tb.Text.Replace(".", ","));
+            mw_gui.pidI[pid] = (byte)double.Parse(tb.Text.Replace(".", ","));
           if (part == "D")
-            Pid[pid].D = (byte)double.Parse(tb.Text.Replace(".", ","));
+//            Pid[pid].D = (byte)double.Parse(tb.Text.Replace(".", ","));
+            mw_gui.pidD[pid] = (byte)double.Parse(tb.Text.Replace(".", ","));
         }
       }
       catch (Exception ex)
