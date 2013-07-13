@@ -63,6 +63,9 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="mw_data_struct.cs" />
+    <Compile Include="PictureButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">

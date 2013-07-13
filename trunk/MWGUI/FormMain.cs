@@ -82,10 +82,13 @@ namespace MWGUI
     static GUI_settings gui_settings;
     int command = 0;
 
-    static int iCheckBoxItems = 14;                          //number of checkboxItems (readed from optionsconfig.xml
+    static int iCheckBoxItems = 19;                          //number of checkboxItems (readed from optionsconfig.xml
 
     //PID values
     static PID[] Pid;
+
+    //AUX
+    //static AUX[] Aux;
 
     static byte pidIndex;
 
@@ -97,7 +100,25 @@ namespace MWGUI
     public MWSetup()
     {
       InitializeComponent();
+      PictureButton button = new PictureButton();
+      button.Parent = this;
+      button.Bounds = new Rectangle(10, 220, 150, 250);
+      button.ForeColor = Color.White;
+      button.BackgroundImage = MakeBitmap(Color.Blue, button.Width, button.Height);
+      button.PressedImage = MakeBitmap(Color.LightBlue, button.Width, button.Height);
+      button.Text = "click me";
     }
+    Bitmap MakeBitmap(Color color, int width, int height)
+    {
+      Bitmap bmp = new Bitmap(width, height);
+      Graphics g = Graphics.FromImage(bmp);
+      g.FillRectangle(new SolidBrush(color), 0, 0, bmp.Width, bmp.Height);
+      g.DrawEllipse(new Pen(Color.DarkGray), 3, 3, width - 6, height - 6);
+      g.Dispose();
+
+      return bmp;
+    }
+
 
     private void Form1_Load(object sender, EventArgs e)
     {
@@ -115,10 +136,17 @@ namespace MWGUI
         Pid[i] = new PID();
       }
 
+      //Aux = new AUX[iCheckBoxItems];
+
+      //for (int i = 0; i < iCheckBoxItems; i++)
+      //{
+      //  Aux[i] = new AUX();
+      //}
+
       gui_settings = new GUI_settings();
 
       mw_gui = new mw_data_gui(iPidItems, iCheckBoxItems, gui_settings.iSoftwareVersion);
-      mw_params = new mw_settings(iPidItems); //, iCheckBoxItems, gui_settings.iSoftwareVersion);
+      mw_params = new mw_settings(iPidItems, iCheckBoxItems, gui_settings.iSoftwareVersion);
 
 
       //TODO - read values from settings file
@@ -164,7 +192,7 @@ namespace MWGUI
       Pid[6].name = "Navigation Rate";
       Pid[7].name = "Level";
       Pid[8].name = "Mag";
-      Pid[9].name = "Velocity";
+      Pid[9].name = "";
 
       Pid[0].description = "Roll Rate control";
       Pid[1].description = "Pitch Rate control";
@@ -188,16 +216,16 @@ namespace MWGUI
       Pid[8].Pmin = 0;
       Pid[9].Pmin = 0;
       
-      Pid[0].Pmax = 20.0;
-      Pid[1].Pmax = 20.0;
-      Pid[2].Pmax = 20.0;
-      Pid[3].Pmax = 20.0;
-      Pid[4].Pmax = 2.54;
-      Pid[5].Pmax = 20.0;
-      Pid[6].Pmax = 20.0;
-      Pid[7].Pmax = 20.0;
-      Pid[8].Pmax = 20.0;
-      Pid[9].Pmax = 20.0;
+      Pid[0].Pmax = 20.0m;
+      Pid[1].Pmax = 20.0m;
+      Pid[2].Pmax = 20.0m;
+      Pid[3].Pmax = 20.0m;
+      Pid[4].Pmax = 2.54m;
+      Pid[5].Pmax = 20.0m;
+      Pid[6].Pmax = 20.0m;
+      Pid[7].Pmax = 20.0m;
+      Pid[8].Pmax = 20.0m;
+      Pid[9].Pmax = 20.0m;
 
       Pid[0].Imin = 0;
       Pid[1].Imin = 0;
@@ -210,16 +238,16 @@ namespace MWGUI
       Pid[8].Imin = 0;
       Pid[9].Imin = 0;
       
-      Pid[0].Imax = 0.250;
-      Pid[1].Imax = 0.250;
-      Pid[2].Imax = 0.250;
-      Pid[3].Imax = 0.250;
-      Pid[4].Imax = 2.54;
-      Pid[5].Imax = 2.54;
-      Pid[6].Imax = 2.54;
-      Pid[7].Imax = 2.54;
-      Pid[8].Imax = 2.54;
-      Pid[9].Imax = 2.54;
+      Pid[0].Imax = 0.250m;
+      Pid[1].Imax = 0.250m;
+      Pid[2].Imax = 0.250m;
+      Pid[3].Imax = 0.250m;
+      Pid[4].Imax = 2.54m;
+      Pid[5].Imax = 2.54m;
+      Pid[6].Imax = 2.54m;
+      Pid[7].Imax = 2.54m;
+      Pid[8].Imax = 2.54m;
+      Pid[9].Imax = 2.54m;
       
       Pid[0].Dmin = 0;
       Pid[1].Dmin = 0;
@@ -237,8 +265,8 @@ namespace MWGUI
       Pid[2].Dmax = 100;
       Pid[3].Dmax = 100;
       Pid[4].Dmax = 100;
-      Pid[5].Dmax = 0.254;
-      Pid[6].Dmax = 0.254;
+      Pid[5].Dmax = 0.254m;
+      Pid[6].Dmax = 0.254m;
       Pid[7].Dmax = 100;
       Pid[8].Dmax = 100;
       Pid[9].Dmax = 100;
@@ -270,7 +298,35 @@ namespace MWGUI
       Pid[8].Pdef = 40;
       //Pid[8].Idef = 0;
       //Pid[8].Ddef = 0;
-      
+
+      mw_gui.AUXName[0] = "ARM";
+      mw_gui.AUXName[1] = "ANGLE";
+      mw_gui.AUXName[2]= "HORIZON";
+      mw_gui.AUXName[3]= "BARO";
+      mw_gui.AUXName[4]= "VARIO";
+      mw_gui.AUXName[5]= "MAG";
+      mw_gui.AUXName[6]= "HEADFREE";
+      mw_gui.AUXName[7]= "HEADADJ";
+      mw_gui.AUXName[8]= "CAMSTAB";
+      mw_gui.AUXName[9]= "CAMTRIG";
+      mw_gui.AUXName[10]= "GPS HOME";
+      mw_gui.AUXName[11]= "GPS HOLD";
+      mw_gui.AUXName[12]= "PASSTHRU";
+      mw_gui.AUXName[13]= "BEEPER";
+      mw_gui.AUXName[14]= "LEDMAX";
+      mw_gui.AUXName[15]= "LEDLOW";
+      mw_gui.AUXName[16]= "LLIGHTS";
+      mw_gui.AUXName[17]= "CALIB";
+      mw_gui.AUXName[18] = "GOVERNOR";
+
+      labelAUX0.Text = mw_gui.AUXName[0];
+      labelAUX1.Text = mw_gui.AUXName[1];
+      labelAUX2.Text = mw_gui.AUXName[2];
+      labelAUX3.Text = mw_gui.AUXName[3];
+      labelAUX5.Text = mw_gui.AUXName[5];
+      labelAUX6.Text = mw_gui.AUXName[6];
+      labelAUX7.Text = mw_gui.AUXName[7];
+
       //Quick hack to get pid names to mw_params untill redo the structures
       for (int i = 0; i < iPidItems; i++)
       {
@@ -323,22 +379,11 @@ namespace MWGUI
       if (serialPort1.IsOpen)              //Disconnect
       {
         b_connect.Text = "Connect";
+        timer1.Enabled = false;
         //b_connect.Image = Properties.Resources.connect;
         isConnected = false;
-        //**timer_realtime.Stop();                       //Stop timer(s), whatever it takes
-        //timer_rc.Stop();
-        //**bkgWorker.CancelAsync();
-        //**System.Threading.Thread.Sleep(500);         //Wait bkworker to finish
         serialPort1.Close();
-
-        //Disable buttons that are not working here
-        /*b_reset.Enabled = false;
-        b_cal_acc.Enabled = false;
-        b_cal_mag.Enabled = false;
-        b_read_settings.Enabled = false;
-        b_write_settings.Enabled = false;
-        */
-
+        labelInfo.Text = string.Empty;
 
       }
       else                               //Connect
@@ -365,9 +410,6 @@ namespace MWGUI
         //**b_connect.Image = Properties.Resources.disconnect;
         isConnected = true;
 
-        serial_packet_count = 0;
-        serial_error_count = 0;
-
         //Enable buttons that are not working here
         /*b_reset.Enabled = true;
         b_cal_acc.Enabled = true;
@@ -376,35 +418,17 @@ namespace MWGUI
         b_write_settings.Enabled = true;
         
         */
-
-        //We have to do it for a couple of times to ensure that we will have parameters loaded 
-        /*        for (int i = 0; i < 10; i++)
-                {
-
-                  MSPquery(MSP_PID);
-                  MSPquery(MSP_RC_TUNING);
-                  MSPquery(MSP_IDENT);
-                  MSPquery(MSP_BOX);
-                  MSPquery(MSP_MISC);
-                }
-                */
-        /*
-        //Run BackgroundWorker
-        if (!bkgWorker.IsBusy) { bkgWorker.RunWorkerAsync(); }
-        */
         timer1.Enabled = true;
 
-        //System.Threading.Thread.Sleep(1000);
-
         //bOptions_needs_refresh = true;
-        //update_gui();
         MSPquery(MSP_IDENT);
+        MSPquery(MSP_PID);
+        MSPquery(MSP_RC_TUNING);
+        MSPquery(MSP_IDENT);
+        MSPquery(MSP_BOX);
+        MSPquery(MSP_MISC);
 
         isNeedUpdateInfoPanel = true;
-        //labelTextLastMessage.Text += "Data send";
-        //tabPage2.Show();
-        //tabPage3.Show();
-        //tabControl1.SelectedIndex = 1;
 
       }
     }
@@ -414,42 +438,6 @@ namespace MWGUI
       serialConnect();
     }
 
-
-
-
-    /*if (serialPort.BytesToRead == 0)
-    {
-
-      if ((iRefreshDivider % gui_settings.MSP_STATUS_rate_divider) == 0) MSPquery(MSP_STATUS);
-      if ((iRefreshDivider % gui_settings.MSP_RAW_IMU_rate_divider) == 0) MSPquery(MSP_RAW_IMU);
-      if ((iRefreshDivider % gui_settings.MSP_SERVO_rate_divider) == 0) MSPquery(MSP_SERVO);
-      if ((iRefreshDivider % gui_settings.MSP_MOTOR_rate_divider) == 0) MSPquery(MSP_MOTOR);
-      if ((iRefreshDivider % gui_settings.MSP_RAW_GPS_rate_divider) == 0) MSPquery(MSP_RAW_GPS);
-      if ((iRefreshDivider % gui_settings.MSP_COMP_GPS_rate_divider) == 0) MSPquery(MSP_COMP_GPS);
-      if ((iRefreshDivider % gui_settings.MSP_ATTITUDE_rate_divider) == 0) MSPquery(MSP_ATTITUDE);
-      if ((iRefreshDivider % gui_settings.MSP_ALTITUDE_rate_divider) == 0) MSPquery(MSP_ALTITUDE);
-      if ((iRefreshDivider % gui_settings.MSP_BAT_rate_divider) == 0) MSPquery(MSP_BAT);
-      if ((iRefreshDivider % gui_settings.MSP_RC_rate_divider) == 0) MSPquery(MSP_RC);
-      if ((iRefreshDivider % gui_settings.MSP_MISC_rate_divider) == 0) MSPquery(MSP_MISC);
-      if ((iRefreshDivider % gui_settings.MSP_DEBUG_rate_divider) == 0) MSPquery(MSP_DEBUG);
-
-      if ((mw_gui.mode & (1 << 5)) > 0)
-      {                         //armed
-        if ((iRefreshDivider % 20) == 0) MSPqueryWP(0);         //get home position
-      }
-      else { mw_gui.GPS_home_lon = 0; mw_gui.GPS_home_lat = 0; }
-
-      if ((mw_gui.mode & (1 << 7)) > 0)
-      {                         //poshold
-        if ((iRefreshDivider % 20) == 0) MSPqueryWP(16);         //get hold position
-      }
-      else { mw_gui.GPS_poshold_lon = 0; mw_gui.GPS_poshold_lat = 0; }
-
-    }
-    update_gui();
-    iRefreshDivider--;
-    if (iRefreshDivider == 0) iRefreshDivider = 20;      //reset
-    */
 
     private void MSPquery(int command)
     {
@@ -467,41 +455,11 @@ namespace MWGUI
       this.command = command;
     }
 
-    private delegate void SetTextDeleg(string text);
-
-
     private void FormMain_Closing(object sender, CancelEventArgs e)
     {
       if (serialPort1.IsOpen)
         serialPort1.Close();
     }
-
-
-    //private void timer1_Tick(object sender, EventArgs e)
-    //{
-    //  if (dataReceived)
-    //  {
-    //    string text = String.Empty;
-    //    for (int i = 0; i < bytes; i++)
-    //    {
-    //      text += inBuf[i];
-    //    }
-    //    dataReceived = false; ;
-    //    labelTextLastMessage.Invoke(new EventHandler(delegate
-    //    {
-    //      labelTextLastMessage.Text = "Data:";
-    //      labelTextLastMessage.Text += text;
-    //    }));
-    //  }
-    //  //  else
-    ////  {
-    ////    labelTextLastMessage.Invoke(new EventHandler(delegate
-    ////    {
-    ////      labelTextLastMessage.Text = cyklus++.ToString();
-    ////      labelTextLastMessage.Text += " no data";
-    ////    }));
-    ////  }
-    //}
 
     private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
     {
@@ -597,49 +555,17 @@ namespace MWGUI
         //bSerialError = true; //do nothing
         //return;
       }
-
-
-
-
-
-      /*
-      SerialPort sp = (SerialPort)sender;
-      //string indata = sp.ReadExisting();
-      int bytes = sp.BytesToRead;
-      //labelDataReceived.Text = bytes.ToString();
-
-      // Create a byte array buffer to hold the incoming data
-      byte[] buffer = new byte[bytes];
-
-      // Read the data from the port and store it in our buffer
-      sp.Read(inBuf, 0, bytes);
-      //serialPort1.WriteLine("Nova data na COM2");
-      string text = String.Empty;
-      for (int i = 0; i < bytes; i++)
-      {
-        text += buffer[i];
-      }
-      labelTextLastMessage.Invoke(new EventHandler(delegate
-      {
-        labelTextLastMessage.Text = "Data:";
-        labelTextLastMessage.Text += text;
-        labelTextLastMessage.Text = "\nResponse:";
-      }));
-      evaluate_command();
-       */
     }
 
 
     private void evaluate_command(byte cmd)
     {
-
       byte ptr;
 
       labelTextLastMessage.Invoke(new EventHandler(delegate
       {
         labelTextLastMessage.Text = cmd.ToString();
       }));
-
 
       switch (cmd)
       {
@@ -687,14 +613,14 @@ namespace MWGUI
           break;
         case MSP_RC:
           ptr = 0;
-          //mw_gui.rcRoll = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          //mw_gui.rcPitch = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          //mw_gui.rcYaw = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          //mw_gui.rcThrottle = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          //mw_gui.rcAux1 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          //mw_gui.rcAux2 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          //mw_gui.rcAux3 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
-          //mw_gui.rcAux4 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          mw_gui.rcRoll = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          mw_gui.rcPitch = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          mw_gui.rcYaw = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          mw_gui.rcThrottle = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          mw_gui.rcAux1 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          mw_gui.rcAux2 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          mw_gui.rcAux3 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          mw_gui.rcAux4 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
           break;
         case MSP_RAW_GPS:
           ptr = 0;
@@ -728,13 +654,13 @@ namespace MWGUI
           break;
         case MSP_RC_TUNING:
           ptr = 0;
-          //mw_gui.rcRate = (byte)inBuf[ptr++];
-          //mw_gui.rcExpo = (byte)inBuf[ptr++];
-          //mw_gui.RollPitchRate = (byte)inBuf[ptr++];
-          //mw_gui.YawRate = (byte)inBuf[ptr++];
-          //mw_gui.DynThrPID = (byte)inBuf[ptr++];
-          //mw_gui.ThrottleMID = (byte)inBuf[ptr++];
-          //mw_gui.ThrottleEXPO = (byte)inBuf[ptr++];
+          mw_gui.rcRate = (byte)inBuf[ptr++];
+          mw_gui.rcExpo = (byte)inBuf[ptr++];
+          mw_gui.RollPitchRate = (byte)inBuf[ptr++];
+          mw_gui.YawRate = (byte)inBuf[ptr++];
+          mw_gui.DynThrPID = (byte)inBuf[ptr++];
+          mw_gui.ThrottleMID = (byte)inBuf[ptr++];
+          mw_gui.ThrottleEXPO = (byte)inBuf[ptr++];
           break;
         case MSP_PID:
           ptr = 0;
@@ -793,10 +719,10 @@ namespace MWGUI
       if (isConnected)
       {
         MSPquery(MSP_PID);
-        /*MSPquery(MSP_RC_TUNING);
-        MSPquery(MSP_IDENT);
+        MSPquery(MSP_RC_TUNING);
+        //MSPquery(MSP_IDENT);
         MSPquery(MSP_BOX);
-        MSPquery(MSP_MISC);*/
+        //MSPquery(MSP_MISC);
       }
     }
 
@@ -812,10 +738,6 @@ namespace MWGUI
     {
       for (int i = 0; i < iPidItems; i++)
       {
-/*      mw_gui.pidP[i] = Pid[i].P;
-        mw_gui.pidI[i] = Pid[i].I;
-        mw_gui.pidD[i] = Pid[i].D;
-*/
         mw_params.pidP[i] = mw_gui.pidP[i];
         mw_params.pidI[i] = mw_gui.pidI[i];
         mw_params.pidD[i] = mw_gui.pidD[i];
@@ -832,33 +754,51 @@ namespace MWGUI
 
       //mw_params.PowerTrigger = (int)nPAlarm.Value;
 
-      //for (int b = 0; b < iCheckBoxItems; b++)
-      //{
-      //  mw_params.activation[b] = 0;
-      //  for (byte a = 0; a < 3; a++)
-      //  {
-      //    if (aux[0, a, b].Checked) mw_params.activation[b] += (short)(1 << a);
-      //    if (aux[1, a, b].Checked) mw_params.activation[b] += (short)(1 << (3 + a));
-      //    if (aux[2, a, b].Checked) mw_params.activation[b] += (short)(1 << (6 + a));
-      //    if (aux[3, a, b].Checked) mw_params.activation[b] += (short)(1 << (9 + a));
-
-      //  }
-      //}
-
+       mw_params.activation[0] = 0;
+       if (checkBoxAUX0L.Checked) mw_params.activation[0]  = 1;
+       if (checkBoxAUX0M.Checked) mw_params.activation[0] += 2;
+       if (checkBoxAUX0H.Checked) mw_params.activation[0] += 4;
+       mw_params.activation[1] = 0;
+       if (checkBoxAUX1L.Checked) mw_params.activation[1]  = 1;
+       if (checkBoxAUX1M.Checked) mw_params.activation[1] += 2;
+       if (checkBoxAUX1H.Checked) mw_params.activation[1] += 4;
+       mw_params.activation[2] = 0;
+       if (checkBoxAUX2L.Checked) mw_params.activation[2]  = 1;
+       if (checkBoxAUX2M.Checked) mw_params.activation[2] += 2;
+       if (checkBoxAUX2H.Checked) mw_params.activation[2] += 4;
+       mw_params.activation[3] = 0;
+       if (checkBoxAUX3L.Checked) mw_params.activation[3]  = 1;
+       if (checkBoxAUX3M.Checked) mw_params.activation[3] += 2;
+       if (checkBoxAUX3H.Checked) mw_params.activation[3] += 4;
+       mw_params.activation[5] = 0;
+       if (checkBoxAUX5L.Checked) mw_params.activation[5]  = 1;
+       if (checkBoxAUX5M.Checked) mw_params.activation[5] += 2;
+       if (checkBoxAUX5H.Checked) mw_params.activation[5] += 4;
+       mw_params.activation[6] = 0;
+       if (checkBoxAUX6L.Checked) mw_params.activation[6]  = 1;
+       if (checkBoxAUX6M.Checked) mw_params.activation[6] += 2;
+       if (checkBoxAUX6H.Checked) mw_params.activation[6] += 4;
+       mw_params.activation[7] = 0;
+       if (checkBoxAUX7L.Checked) mw_params.activation[7]  = 1;
+       if (checkBoxAUX7M.Checked) mw_params.activation[7] += 2;
+       if (checkBoxAUX7H.Checked) mw_params.activation[7] += 4;
     }
 
     private void timer1_Tick(object sender, EventArgs e)
     {
-      if (isNeedUpdatePIDPanel = !isNeedUpdatePIDPanel)
+      if (isNeedUpdatePIDPanel)
       {
+        isNeedUpdatePIDPanel = !isNeedUpdatePIDPanel;
         update_pid_panel();
       }
-      if (isNeedUpdateInfoPanel = !isNeedUpdateInfoPanel)
+      if (isNeedUpdateInfoPanel)
       {
+        isNeedUpdateInfoPanel = !isNeedUpdateInfoPanel;
         update_info_panel();
       }
-      if (isNeedUpdateAuxPanel = !isNeedUpdateAuxPanel)
+      if (isNeedUpdateAuxPanel)
       {
+        isNeedUpdateAuxPanel = !isNeedUpdateAuxPanel;
         update_aux_panel();
       }
     }
@@ -889,15 +829,18 @@ namespace MWGUI
 
       PMag.Text = ((decimal)mw_gui.pidP[8] / (decimal)Pid[8].Pprec).ToString("F1");
 
-      PVelocity.Text = ((decimal)mw_gui.pidP[9] / (decimal)Pid[9].Pprec).ToString("F1");
+      /*PVelocity.Text = ((decimal)mw_gui.pidP[9] / (decimal)Pid[9].Pprec).ToString("F1");
       IVelocity.Text = ((decimal)mw_gui.pidI[9] / (decimal)Pid[9].Iprec).ToString("F2");
       DVelocity.Text = ((decimal)mw_gui.pidD[9] / (decimal)Pid[9].Dprec).ToString("F0");
-
+      */
       RCExpo.Text = ((decimal)mw_gui.rcExpo / 100).ToString("F2");
       RCRate.Text = ((decimal)mw_gui.rcRate / 100).ToString("F2");
       RollPitchRate.Text = ((decimal)mw_gui.RollPitchRate / 100).ToString("F2");
       YawRate.Text = ((decimal)mw_gui.YawRate / 100).ToString("F2");
       ThrPIDAtt.Text = ((decimal)mw_gui.DynThrPID / 100).ToString("F2");
+
+      ThrMID.Text = ((decimal)mw_gui.ThrottleEXPO / 100).ToString("F2");
+      ThrEXPO.Text = ((decimal)mw_gui.ThrottleMID / 100).ToString("F2");
 
       /*      for (int i = 0; i < iPidItems; i++)
             {
@@ -950,44 +893,28 @@ namespace MWGUI
 
     private void update_aux_panel()
     {
-      for (int i = 0; i < iCheckBoxItems; i++)
-      {
-        //label21.Text += i.ToString();
-        //label21.Text += " ";
-        //aux[0, 0, i].Checked = (mw_gui.activation[i] & (1 << 0)) == 0 ? false : true;
-        //aux[0, 1, i].Checked = (mw_gui.activation[i] & (1 << 1)) == 0 ? false : true;
-        //aux[0, 2, i].Checked = (mw_gui.activation[i] & (1 << 2)) == 0 ? false : true;
-        //aux[1, 0, i].Checked = (mw_gui.activation[i] & (1 << 3)) == 0 ? false : true;
-        //aux[1, 1, i].Checked = (mw_gui.activation[i] & (1 << 4)) == 0 ? false : true;
-        //aux[1, 2, i].Checked = (mw_gui.activation[i] & (1 << 5)) == 0 ? false : true;
-        //aux[2, 0, i].Checked = (mw_gui.activation[i] & (1 << 6)) == 0 ? false : true;
-        //aux[2, 1, i].Checked = (mw_gui.activation[i] & (1 << 7)) == 0 ? false : true;
-        //aux[2, 2, i].Checked = (mw_gui.activation[i] & (1 << 8)) == 0 ? false : true;
-        //aux[3, 0, i].Checked = (mw_gui.activation[i] & (1 << 9)) == 0 ? false : true;
-        //aux[3, 1, i].Checked = (mw_gui.activation[i] & (1 << 10)) == 0 ? false : true;
-        //aux[3, 2, i].Checked = (mw_gui.activation[i] & (1 << 11)) == 0 ? false : true;
-      }
-
-      for (int i = 0; i < iCheckBoxItems; i++)
-      {
-
-        //aux[0, 0, i].IsHighlighted = (aux[0, 0, i].Checked == ((mw_gui.activation[i] & (1 << 0)) == 0)) ? true : false;
-        //aux[0, 1, i].IsHighlighted = (aux[0, 1, i].Checked == ((mw_gui.activation[i] & (1 << 1)) == 0)) ? true : false;
-        //aux[0, 2, i].IsHighlighted = (aux[0, 2, i].Checked == ((mw_gui.activation[i] & (1 << 2)) == 0)) ? true : false;
-        //aux[1, 0, i].IsHighlighted = (aux[1, 0, i].Checked == ((mw_gui.activation[i] & (1 << 3)) == 0)) ? true : false;
-        //aux[1, 1, i].IsHighlighted = (aux[1, 1, i].Checked == ((mw_gui.activation[i] & (1 << 4)) == 0)) ? true : false;
-        //aux[1, 2, i].IsHighlighted = (aux[1, 2, i].Checked == ((mw_gui.activation[i] & (1 << 5)) == 0)) ? true : false;
-        //aux[2, 0, i].IsHighlighted = (aux[2, 0, i].Checked == ((mw_gui.activation[i] & (1 << 6)) == 0)) ? true : false;
-        //aux[2, 1, i].IsHighlighted = (aux[2, 1, i].Checked == ((mw_gui.activation[i] & (1 << 7)) == 0)) ? true : false;
-        //aux[2, 2, i].IsHighlighted = (aux[2, 2, i].Checked == ((mw_gui.activation[i] & (1 << 8)) == 0)) ? true : false;
-        //aux[3, 0, i].IsHighlighted = (aux[3, 0, i].Checked == ((mw_gui.activation[i] & (1 << 9)) == 0)) ? true : false;
-        //aux[3, 1, i].IsHighlighted = (aux[3, 1, i].Checked == ((mw_gui.activation[i] & (1 << 10)) == 0)) ? true : false;
-        //aux[3, 2, i].IsHighlighted = (aux[3, 2, i].Checked == ((mw_gui.activation[i] & (1 << 11)) == 0)) ? true : false;
-      }
-
-
+      checkBoxAUX0L.Checked = (mw_gui.activation[0] & (1 << 0)) == 0 ? false : true;
+      checkBoxAUX0M.Checked = (mw_gui.activation[0] & (1 << 1)) == 0 ? false : true;
+      checkBoxAUX0H.Checked = (mw_gui.activation[0] & (1 << 2)) == 0 ? false : true;
+      checkBoxAUX1L.Checked = (mw_gui.activation[1] & (1 << 0)) == 0 ? false : true;
+      checkBoxAUX1M.Checked = (mw_gui.activation[1] & (1 << 1)) == 0 ? false : true;
+      checkBoxAUX1H.Checked = (mw_gui.activation[1] & (1 << 2)) == 0 ? false : true;
+      checkBoxAUX2L.Checked = (mw_gui.activation[2] & (1 << 0)) == 0 ? false : true;
+      checkBoxAUX2M.Checked = (mw_gui.activation[2] & (1 << 1)) == 0 ? false : true;
+      checkBoxAUX2H.Checked = (mw_gui.activation[2] & (1 << 2)) == 0 ? false : true;
+      checkBoxAUX3L.Checked = (mw_gui.activation[3] & (1 << 0)) == 0 ? false : true;
+      checkBoxAUX3M.Checked = (mw_gui.activation[3] & (1 << 1)) == 0 ? false : true;
+      checkBoxAUX3H.Checked = (mw_gui.activation[3] & (1 << 2)) == 0 ? false : true;
+      checkBoxAUX5L.Checked = (mw_gui.activation[5] & (1 << 0)) == 0 ? false : true;
+      checkBoxAUX5M.Checked = (mw_gui.activation[5] & (1 << 1)) == 0 ? false : true;
+      checkBoxAUX5H.Checked = (mw_gui.activation[5] & (1 << 2)) == 0 ? false : true;
+      checkBoxAUX6L.Checked = (mw_gui.activation[6] & (1 << 0)) == 0 ? false : true;
+      checkBoxAUX6M.Checked = (mw_gui.activation[6] & (1 << 1)) == 0 ? false : true;
+      checkBoxAUX6H.Checked = (mw_gui.activation[6] & (1 << 2)) == 0 ? false : true;
+      checkBoxAUX7L.Checked = (mw_gui.activation[7] & (1 << 0)) == 0 ? false : true;
+      checkBoxAUX7M.Checked = (mw_gui.activation[7] & (1 << 1)) == 0 ? false : true;
+      checkBoxAUX7H.Checked = (mw_gui.activation[7] & (1 << 2)) == 0 ? false : true;
     }
-
 
     private void end_Click(object sender, EventArgs e)
     {
@@ -1056,7 +983,7 @@ namespace MWGUI
         setP.Text = PMag.Text;
         pidIndex = 8;
       }
-      if (p.Name == "panelVel")
+      /*if (p.Name == "panelVel")
       {
         label19.Text = "Velocity";
         setP.Text = PVelocity.Text;
@@ -1064,18 +991,18 @@ namespace MWGUI
         setD.Text = DVelocity.Text;
         pidIndex = 9;
       }
+      */
 
-
-
-      tabControl1.SelectedIndex = 2;
+      tabControl1.SelectedIndex = 3;
     }
 
-    private void button8_Click(object sender, EventArgs e)
+    private void buttonSetPid_Click(object sender, EventArgs e)
     {
       mw_gui.pidP[pidIndex] = (byte)double.Parse(setP.Text.Replace(".", ","));
       mw_gui.pidI[pidIndex] = (byte)double.Parse(setI.Text.Replace(".", ","));
       mw_gui.pidD[pidIndex] = (byte)double.Parse(setD.Text.Replace(".", ","));
       tabControl1.SelectedIndex = 1;
+      update_pid_panel();
     }
 
     private void plusP_Click(object sender, EventArgs e)
@@ -1122,16 +1049,8 @@ namespace MWGUI
 
     }
 
-    private void button5_Click(object sender, EventArgs e)
-    {
-      if (isConnected)
-      {
-        MSPquery(MSP_BOX);
-        isNeedUpdateAuxPanel = true;
-      }
-    }
 
-    private void button6_Click(object sender, EventArgs e)
+    private void buttonSetDefaults_Click(object sender, EventArgs e)
     {
       for (int i = 0; i < iPidItems; i++)
       {
@@ -1139,6 +1058,9 @@ namespace MWGUI
         mw_gui.pidI[i] = Pid[i].Idef;
         mw_gui.pidD[i] = Pid[i].Ddef;
       }
+      mw_gui.DynThrPID = mw_gui.DynThrPIDDef;
+      mw_gui.RollPitchRate = mw_gui.RollPitchRateDef;
+      mw_gui.YawRate = mw_gui.YawRateDef;
       update_pid_panel();
     }
 
@@ -1259,5 +1181,9 @@ namespace MWGUI
       }
     }
 
+    private void buttonBack_Click(object sender, EventArgs e)
+    {
+      tabControl1.SelectedIndex = 1;
+    }
   }
 }
