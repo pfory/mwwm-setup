@@ -190,18 +190,30 @@ namespace MWGUI
 
     public PID()
     {
-      P = 0;
+      /*P = 0;
       I = 0;
-      D = 0;
+      D = 0;*/
     }
   }
-
-
-
-
-
   #endregion
 
+  //#region AUX
+
+  //public class AUX
+  //{
+  //  //public fields
+  //  public string name;
+  //  public string description;
+  //  public bool AUXL;
+  //  public bool AUXM;
+  //  public bool AUXH;
+
+  //  public AUX()
+  //  {
+  //  }
+  //}
+
+  //#endregion
 
   #region mw_settings
   public class mw_settings
@@ -333,22 +345,22 @@ namespace MWGUI
 
         //Then write checkboxitems
 
-        //bptr = 0;
-        //checksum = 0;
-        //buffer[bptr++] = (byte)'$';
-        //buffer[bptr++] = (byte)'M';
-        //buffer[bptr++] = (byte)'<';
-        //buffer[bptr++] = (byte)(2 * iCheckBoxItems);
-        //buffer[bptr++] = (byte)MSP_SET_BOX;
+        bptr = 0;
+        checksum = 0;
+        buffer[bptr++] = (byte)'$';
+        buffer[bptr++] = (byte)'M';
+        buffer[bptr++] = (byte)'<';
+        buffer[bptr++] = (byte)(2 * iCheckBoxItems);
+        buffer[bptr++] = (byte)MSP_SET_BOX;
 
-        //for (int i = 0; i < iCheckBoxItems; i++)
-        //{
-        //    buffer[bptr++] = (byte)(activation[i] & 0x00ff);
-        //    buffer[bptr++] = (byte)((activation[i] >> 8) & 0x00ff);
-        //}
-        //for (int i = 3; i < bptr; i++) checksum ^= buffer[i];
-        //buffer[bptr++] = checksum;
-        //serialport.Write(buffer, 0, bptr);
+        for (int i = 0; i < iCheckBoxItems; i++)
+        {
+          buffer[bptr++] = (byte)(activation[i] & 0x00ff);
+          buffer[bptr++] = (byte)((activation[i] >> 8) & 0x00ff);
+        }
+        for (int i = 3; i < bptr; i++) checksum ^= buffer[i];
+        buffer[bptr++] = checksum;
+        serialport.Write(buffer, 0, bptr);
 
 
         //
@@ -530,8 +542,8 @@ namespace MWGUI
     //public int heading;
     //public int[] servos;
     //public int[] motors;
-    //public int rcRoll, rcPitch, rcYaw, rcThrottle;
-    //public int rcAux1, rcAux2, rcAux3, rcAux4;
+    public int rcRoll, rcPitch, rcYaw, rcThrottle;
+    public int rcAux1, rcAux2, rcAux3, rcAux4;
     //public int present;            //What sensors are present?
     //public UInt32 mode;               //What mode are we in ?
     //public int i2cErrors;
@@ -545,14 +557,18 @@ namespace MWGUI
     public byte[] pidP;
     public byte[] pidI;
     public byte[] pidD;
+    public byte RollPitchRate;
+    public byte RollPitchRateDef = 0;
+    public byte YawRate;
+    public byte YawRateDef = 0;
     public byte rcRate;
     public byte rcExpo;
-    public byte RollPitchRate;
-    public byte YawRate;
     public byte DynThrPID;
-    //public byte ThrottleMID;
-    //public byte ThrottleEXPO;
+    public byte DynThrPIDDef = 0;
+    public byte ThrottleMID;
+    public byte ThrottleEXPO;
     public Int16[] activation;
+    public string[] AUXName;
     //public int GPS_distanceToHome;
     //public int GPS_directionToHome;
     //public byte GPS_numSat;
@@ -587,15 +603,12 @@ namespace MWGUI
       pidD = new byte[pidItems];
 
       activation = new Int16[checkboxItems];
+      AUXName = new string[checkboxItems];
 
       iPIDItems = pidItems;
       iCheckBoxItems = checkboxItems;
       iSwVer = iSoftwareVersion;
-
-
     }
-
-
   }
 }
-  #endregion
+#endregion
