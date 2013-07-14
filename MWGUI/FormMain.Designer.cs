@@ -34,14 +34,14 @@
       this.menuItem2 = new System.Windows.Forms.MenuItem();
       this.timer1 = new System.Windows.Forms.Timer();
       this.PIDS = new System.Windows.Forms.TabPage();
+      this.ThrPIDAtt = new System.Windows.Forms.Label();
+      this.label26 = new System.Windows.Forms.Label();
       this.panelAlt = new System.Windows.Forms.Panel();
       this.label4 = new System.Windows.Forms.Label();
       this.PAlt = new System.Windows.Forms.Label();
       this.DAlt = new System.Windows.Forms.Label();
       this.IAlt = new System.Windows.Forms.Label();
       this.panelMag = new System.Windows.Forms.Panel();
-      this.ThrPIDAtt = new System.Windows.Forms.Label();
-      this.label26 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
       this.PMag = new System.Windows.Forms.Label();
       this.panelLevel = new System.Windows.Forms.Panel();
@@ -89,13 +89,42 @@
       this.b_connect = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
       this.tabControl1 = new System.Windows.Forms.TabControl();
+      this.AUX = new System.Windows.Forms.TabPage();
+      this.labelAUX6 = new System.Windows.Forms.Label();
+      this.labelAUX5 = new System.Windows.Forms.Label();
+      this.labelAUX4 = new System.Windows.Forms.Label();
+      this.labelAUX3 = new System.Windows.Forms.Label();
+      this.labelAUX2 = new System.Windows.Forms.Label();
+      this.labelAUX1 = new System.Windows.Forms.Label();
+      this.labelAUX0 = new System.Windows.Forms.Label();
+      this.checkBoxAUX6H = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX5H = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX4H = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX3H = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX2H = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX1H = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX0H = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX6M = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX5M = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX4M = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX3M = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX2M = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX1M = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX0M = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX6L = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX5L = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX4L = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX3L = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX2L = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX1L = new System.Windows.Forms.CheckBox();
+      this.checkBoxAUX0L = new System.Windows.Forms.CheckBox();
       this.Set = new System.Windows.Forms.TabPage();
+      this.buttonSetPid = new System.Windows.Forms.Button();
       this.buttonBack = new System.Windows.Forms.Button();
-      this.button2 = new System.Windows.Forms.Button();
-      this.button3 = new System.Windows.Forms.Button();
+      this.minusR = new System.Windows.Forms.Button();
+      this.plusR = new System.Windows.Forms.Button();
       this.setRate = new System.Windows.Forms.TextBox();
       this.label20 = new System.Windows.Forms.Label();
-      this.buttonSetPid = new System.Windows.Forms.Button();
       this.setD = new System.Windows.Forms.TextBox();
       this.minusD = new System.Windows.Forms.Button();
       this.plusD = new System.Windows.Forms.Button();
@@ -109,35 +138,6 @@
       this.label18 = new System.Windows.Forms.Label();
       this.label17 = new System.Windows.Forms.Label();
       this.label16 = new System.Windows.Forms.Label();
-      this.AUX = new System.Windows.Forms.TabPage();
-      this.labelAUX7 = new System.Windows.Forms.Label();
-      this.labelAUX6 = new System.Windows.Forms.Label();
-      this.labelAUX5 = new System.Windows.Forms.Label();
-      this.labelAUX3 = new System.Windows.Forms.Label();
-      this.labelAUX2 = new System.Windows.Forms.Label();
-      this.labelAUX1 = new System.Windows.Forms.Label();
-      this.labelAUX0 = new System.Windows.Forms.Label();
-      this.checkBoxAUX7H = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX6H = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX5H = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX3H = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX2H = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX1H = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX0H = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX7M = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX6M = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX5M = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX3M = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX2M = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX1M = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX0M = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX7L = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX6L = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX5L = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX3L = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX2L = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX1L = new System.Windows.Forms.CheckBox();
-      this.checkBoxAUX0L = new System.Windows.Forms.CheckBox();
       this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
       this.buttonSetDefaults = new System.Windows.Forms.Button();
       this.bWrite = new System.Windows.Forms.Button();
@@ -152,8 +152,8 @@
       this.panelRC.SuspendLayout();
       this.Main.SuspendLayout();
       this.tabControl1.SuspendLayout();
-      this.Set.SuspendLayout();
       this.AUX.SuspendLayout();
+      this.Set.SuspendLayout();
       this.SuspendLayout();
       // 
       // mainMenu1
@@ -177,6 +177,8 @@
       // PIDS
       // 
       this.PIDS.BackColor = System.Drawing.Color.Black;
+      this.PIDS.Controls.Add(this.ThrPIDAtt);
+      this.PIDS.Controls.Add(this.label26);
       this.PIDS.Controls.Add(this.panelAlt);
       this.PIDS.Controls.Add(this.panelMag);
       this.PIDS.Controls.Add(this.panelLevel);
@@ -193,6 +195,23 @@
       this.PIDS.Name = "PIDS";
       this.PIDS.Size = new System.Drawing.Size(237, 273);
       this.PIDS.Text = "PID";
+      // 
+      // ThrPIDAtt
+      // 
+      this.ThrPIDAtt.BackColor = System.Drawing.Color.White;
+      this.ThrPIDAtt.Location = new System.Drawing.Point(187, 137);
+      this.ThrPIDAtt.Name = "ThrPIDAtt";
+      this.ThrPIDAtt.Size = new System.Drawing.Size(41, 20);
+      // 
+      // label26
+      // 
+      this.label26.BackColor = System.Drawing.Color.Black;
+      this.label26.ForeColor = System.Drawing.Color.White;
+      this.label26.Location = new System.Drawing.Point(103, 138);
+      this.label26.Name = "label26";
+      this.label26.Size = new System.Drawing.Size(82, 20);
+      this.label26.Text = "Thr.PID ATT";
+      this.label26.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // panelAlt
       // 
@@ -243,31 +262,12 @@
       // panelMag
       // 
       this.panelMag.BackColor = System.Drawing.Color.Black;
-      this.panelMag.Controls.Add(this.ThrPIDAtt);
-      this.panelMag.Controls.Add(this.label26);
       this.panelMag.Controls.Add(this.label6);
       this.panelMag.Controls.Add(this.PMag);
       this.panelMag.Location = new System.Drawing.Point(4, 137);
       this.panelMag.Name = "panelMag";
-      this.panelMag.Size = new System.Drawing.Size(233, 20);
+      this.panelMag.Size = new System.Drawing.Size(105, 20);
       this.panelMag.Click += new System.EventHandler(this.panel_Click);
-      // 
-      // ThrPIDAtt
-      // 
-      this.ThrPIDAtt.BackColor = System.Drawing.Color.White;
-      this.ThrPIDAtt.Location = new System.Drawing.Point(183, 0);
-      this.ThrPIDAtt.Name = "ThrPIDAtt";
-      this.ThrPIDAtt.Size = new System.Drawing.Size(41, 20);
-      // 
-      // label26
-      // 
-      this.label26.BackColor = System.Drawing.Color.Black;
-      this.label26.ForeColor = System.Drawing.Color.White;
-      this.label26.Location = new System.Drawing.Point(99, 3);
-      this.label26.Name = "label26";
-      this.label26.Size = new System.Drawing.Size(82, 20);
-      this.label26.Text = "Thr.PID ATT";
-      this.label26.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // label6
       // 
@@ -376,6 +376,7 @@
       this.YawRate.Location = new System.Drawing.Point(183, 0);
       this.YawRate.Name = "YawRate";
       this.YawRate.Size = new System.Drawing.Size(41, 20);
+      this.YawRate.TextChanged += new System.EventHandler(this.YawRate_TextChanged);
       // 
       // label3
       // 
@@ -476,6 +477,7 @@
       this.RollPitchRate.Location = new System.Drawing.Point(183, 0);
       this.RollPitchRate.Name = "RollPitchRate";
       this.RollPitchRate.Size = new System.Drawing.Size(41, 20);
+      this.RollPitchRate.TextChanged += new System.EventHandler(this.RollPitchRate_TextChanged);
       // 
       // label1
       // 
@@ -701,15 +703,268 @@
       this.tabControl1.Size = new System.Drawing.Size(237, 301);
       this.tabControl1.TabIndex = 0;
       // 
+      // AUX
+      // 
+      this.AUX.BackColor = System.Drawing.Color.Black;
+      this.AUX.Controls.Add(this.labelAUX6);
+      this.AUX.Controls.Add(this.labelAUX5);
+      this.AUX.Controls.Add(this.labelAUX4);
+      this.AUX.Controls.Add(this.labelAUX3);
+      this.AUX.Controls.Add(this.labelAUX2);
+      this.AUX.Controls.Add(this.labelAUX1);
+      this.AUX.Controls.Add(this.labelAUX0);
+      this.AUX.Controls.Add(this.checkBoxAUX6H);
+      this.AUX.Controls.Add(this.checkBoxAUX5H);
+      this.AUX.Controls.Add(this.checkBoxAUX4H);
+      this.AUX.Controls.Add(this.checkBoxAUX3H);
+      this.AUX.Controls.Add(this.checkBoxAUX2H);
+      this.AUX.Controls.Add(this.checkBoxAUX1H);
+      this.AUX.Controls.Add(this.checkBoxAUX0H);
+      this.AUX.Controls.Add(this.checkBoxAUX6M);
+      this.AUX.Controls.Add(this.checkBoxAUX5M);
+      this.AUX.Controls.Add(this.checkBoxAUX4M);
+      this.AUX.Controls.Add(this.checkBoxAUX3M);
+      this.AUX.Controls.Add(this.checkBoxAUX2M);
+      this.AUX.Controls.Add(this.checkBoxAUX1M);
+      this.AUX.Controls.Add(this.checkBoxAUX0M);
+      this.AUX.Controls.Add(this.checkBoxAUX6L);
+      this.AUX.Controls.Add(this.checkBoxAUX5L);
+      this.AUX.Controls.Add(this.checkBoxAUX4L);
+      this.AUX.Controls.Add(this.checkBoxAUX3L);
+      this.AUX.Controls.Add(this.checkBoxAUX2L);
+      this.AUX.Controls.Add(this.checkBoxAUX1L);
+      this.AUX.Controls.Add(this.checkBoxAUX0L);
+      this.AUX.Location = new System.Drawing.Point(0, 0);
+      this.AUX.Name = "AUX";
+      this.AUX.Size = new System.Drawing.Size(229, 270);
+      this.AUX.Text = "AUX";
+      // 
+      // labelAUX6
+      // 
+      this.labelAUX6.ForeColor = System.Drawing.Color.White;
+      this.labelAUX6.Location = new System.Drawing.Point(19, 177);
+      this.labelAUX6.Name = "labelAUX6";
+      this.labelAUX6.Size = new System.Drawing.Size(100, 20);
+      // 
+      // labelAUX5
+      // 
+      this.labelAUX5.ForeColor = System.Drawing.Color.White;
+      this.labelAUX5.Location = new System.Drawing.Point(19, 151);
+      this.labelAUX5.Name = "labelAUX5";
+      this.labelAUX5.Size = new System.Drawing.Size(100, 20);
+      // 
+      // labelAUX4
+      // 
+      this.labelAUX4.ForeColor = System.Drawing.Color.White;
+      this.labelAUX4.Location = new System.Drawing.Point(19, 125);
+      this.labelAUX4.Name = "labelAUX4";
+      this.labelAUX4.Size = new System.Drawing.Size(100, 20);
+      // 
+      // labelAUX3
+      // 
+      this.labelAUX3.ForeColor = System.Drawing.Color.White;
+      this.labelAUX3.Location = new System.Drawing.Point(19, 99);
+      this.labelAUX3.Name = "labelAUX3";
+      this.labelAUX3.Size = new System.Drawing.Size(100, 20);
+      // 
+      // labelAUX2
+      // 
+      this.labelAUX2.ForeColor = System.Drawing.Color.White;
+      this.labelAUX2.Location = new System.Drawing.Point(19, 73);
+      this.labelAUX2.Name = "labelAUX2";
+      this.labelAUX2.Size = new System.Drawing.Size(100, 20);
+      // 
+      // labelAUX1
+      // 
+      this.labelAUX1.ForeColor = System.Drawing.Color.White;
+      this.labelAUX1.Location = new System.Drawing.Point(19, 47);
+      this.labelAUX1.Name = "labelAUX1";
+      this.labelAUX1.Size = new System.Drawing.Size(100, 20);
+      // 
+      // labelAUX0
+      // 
+      this.labelAUX0.ForeColor = System.Drawing.Color.White;
+      this.labelAUX0.Location = new System.Drawing.Point(19, 21);
+      this.labelAUX0.Name = "labelAUX0";
+      this.labelAUX0.Size = new System.Drawing.Size(100, 20);
+      // 
+      // checkBoxAUX6H
+      // 
+      this.checkBoxAUX6H.Location = new System.Drawing.Point(188, 177);
+      this.checkBoxAUX6H.Name = "checkBoxAUX6H";
+      this.checkBoxAUX6H.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX6H.TabIndex = 23;
+      this.checkBoxAUX6H.Text = "checkBox15";
+      // 
+      // checkBoxAUX5H
+      // 
+      this.checkBoxAUX5H.Location = new System.Drawing.Point(188, 151);
+      this.checkBoxAUX5H.Name = "checkBoxAUX5H";
+      this.checkBoxAUX5H.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX5H.TabIndex = 22;
+      this.checkBoxAUX5H.Text = "checkBox16";
+      // 
+      // checkBoxAUX4H
+      // 
+      this.checkBoxAUX4H.Location = new System.Drawing.Point(188, 125);
+      this.checkBoxAUX4H.Name = "checkBoxAUX4H";
+      this.checkBoxAUX4H.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX4H.TabIndex = 21;
+      this.checkBoxAUX4H.Text = "checkBox17";
+      // 
+      // checkBoxAUX3H
+      // 
+      this.checkBoxAUX3H.Location = new System.Drawing.Point(188, 99);
+      this.checkBoxAUX3H.Name = "checkBoxAUX3H";
+      this.checkBoxAUX3H.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX3H.TabIndex = 20;
+      this.checkBoxAUX3H.Text = "checkBox18";
+      // 
+      // checkBoxAUX2H
+      // 
+      this.checkBoxAUX2H.Location = new System.Drawing.Point(188, 73);
+      this.checkBoxAUX2H.Name = "checkBoxAUX2H";
+      this.checkBoxAUX2H.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX2H.TabIndex = 19;
+      this.checkBoxAUX2H.Text = "checkBox19";
+      // 
+      // checkBoxAUX1H
+      // 
+      this.checkBoxAUX1H.Location = new System.Drawing.Point(188, 47);
+      this.checkBoxAUX1H.Name = "checkBoxAUX1H";
+      this.checkBoxAUX1H.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX1H.TabIndex = 18;
+      this.checkBoxAUX1H.Text = "checkBox20";
+      // 
+      // checkBoxAUX0H
+      // 
+      this.checkBoxAUX0H.Location = new System.Drawing.Point(188, 21);
+      this.checkBoxAUX0H.Name = "checkBoxAUX0H";
+      this.checkBoxAUX0H.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX0H.TabIndex = 17;
+      this.checkBoxAUX0H.Text = "checkBox21";
+      // 
+      // checkBoxAUX6M
+      // 
+      this.checkBoxAUX6M.Location = new System.Drawing.Point(158, 177);
+      this.checkBoxAUX6M.Name = "checkBoxAUX6M";
+      this.checkBoxAUX6M.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX6M.TabIndex = 16;
+      this.checkBoxAUX6M.Text = "checkBox8";
+      // 
+      // checkBoxAUX5M
+      // 
+      this.checkBoxAUX5M.Location = new System.Drawing.Point(158, 151);
+      this.checkBoxAUX5M.Name = "checkBoxAUX5M";
+      this.checkBoxAUX5M.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX5M.TabIndex = 15;
+      this.checkBoxAUX5M.Text = "checkBox9";
+      // 
+      // checkBoxAUX4M
+      // 
+      this.checkBoxAUX4M.Location = new System.Drawing.Point(158, 125);
+      this.checkBoxAUX4M.Name = "checkBoxAUX4M";
+      this.checkBoxAUX4M.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX4M.TabIndex = 14;
+      this.checkBoxAUX4M.Text = "checkBox10";
+      // 
+      // checkBoxAUX3M
+      // 
+      this.checkBoxAUX3M.Location = new System.Drawing.Point(158, 99);
+      this.checkBoxAUX3M.Name = "checkBoxAUX3M";
+      this.checkBoxAUX3M.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX3M.TabIndex = 13;
+      this.checkBoxAUX3M.Text = "checkBox11";
+      // 
+      // checkBoxAUX2M
+      // 
+      this.checkBoxAUX2M.Location = new System.Drawing.Point(158, 73);
+      this.checkBoxAUX2M.Name = "checkBoxAUX2M";
+      this.checkBoxAUX2M.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX2M.TabIndex = 12;
+      this.checkBoxAUX2M.Text = "checkBox12";
+      // 
+      // checkBoxAUX1M
+      // 
+      this.checkBoxAUX1M.Location = new System.Drawing.Point(158, 47);
+      this.checkBoxAUX1M.Name = "checkBoxAUX1M";
+      this.checkBoxAUX1M.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX1M.TabIndex = 11;
+      this.checkBoxAUX1M.Text = "checkBox13";
+      // 
+      // checkBoxAUX0M
+      // 
+      this.checkBoxAUX0M.Location = new System.Drawing.Point(158, 21);
+      this.checkBoxAUX0M.Name = "checkBoxAUX0M";
+      this.checkBoxAUX0M.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX0M.TabIndex = 10;
+      this.checkBoxAUX0M.Text = "checkBox14";
+      // 
+      // checkBoxAUX6L
+      // 
+      this.checkBoxAUX6L.Location = new System.Drawing.Point(128, 177);
+      this.checkBoxAUX6L.Name = "checkBoxAUX6L";
+      this.checkBoxAUX6L.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX6L.TabIndex = 9;
+      this.checkBoxAUX6L.Text = "checkBox7";
+      // 
+      // checkBoxAUX5L
+      // 
+      this.checkBoxAUX5L.Location = new System.Drawing.Point(128, 151);
+      this.checkBoxAUX5L.Name = "checkBoxAUX5L";
+      this.checkBoxAUX5L.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX5L.TabIndex = 8;
+      this.checkBoxAUX5L.Text = "checkBox6";
+      // 
+      // checkBoxAUX4L
+      // 
+      this.checkBoxAUX4L.Location = new System.Drawing.Point(128, 125);
+      this.checkBoxAUX4L.Name = "checkBoxAUX4L";
+      this.checkBoxAUX4L.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX4L.TabIndex = 7;
+      this.checkBoxAUX4L.Text = "checkBox5";
+      // 
+      // checkBoxAUX3L
+      // 
+      this.checkBoxAUX3L.Location = new System.Drawing.Point(128, 99);
+      this.checkBoxAUX3L.Name = "checkBoxAUX3L";
+      this.checkBoxAUX3L.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX3L.TabIndex = 6;
+      this.checkBoxAUX3L.Text = "checkBox4";
+      // 
+      // checkBoxAUX2L
+      // 
+      this.checkBoxAUX2L.Location = new System.Drawing.Point(128, 73);
+      this.checkBoxAUX2L.Name = "checkBoxAUX2L";
+      this.checkBoxAUX2L.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX2L.TabIndex = 5;
+      this.checkBoxAUX2L.Text = "checkBox3";
+      // 
+      // checkBoxAUX1L
+      // 
+      this.checkBoxAUX1L.Location = new System.Drawing.Point(128, 47);
+      this.checkBoxAUX1L.Name = "checkBoxAUX1L";
+      this.checkBoxAUX1L.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX1L.TabIndex = 4;
+      this.checkBoxAUX1L.Text = "checkBox2";
+      // 
+      // checkBoxAUX0L
+      // 
+      this.checkBoxAUX0L.Location = new System.Drawing.Point(128, 21);
+      this.checkBoxAUX0L.Name = "checkBoxAUX0L";
+      this.checkBoxAUX0L.Size = new System.Drawing.Size(24, 20);
+      this.checkBoxAUX0L.TabIndex = 3;
+      this.checkBoxAUX0L.Text = "checkBox1";
+      // 
       // Set
       // 
       this.Set.BackColor = System.Drawing.Color.Black;
+      this.Set.Controls.Add(this.buttonSetPid);
       this.Set.Controls.Add(this.buttonBack);
-      this.Set.Controls.Add(this.button2);
-      this.Set.Controls.Add(this.button3);
+      this.Set.Controls.Add(this.minusR);
+      this.Set.Controls.Add(this.plusR);
       this.Set.Controls.Add(this.setRate);
       this.Set.Controls.Add(this.label20);
-      this.Set.Controls.Add(this.buttonSetPid);
       this.Set.Controls.Add(this.setD);
       this.Set.Controls.Add(this.minusD);
       this.Set.Controls.Add(this.plusD);
@@ -725,71 +980,72 @@
       this.Set.Controls.Add(this.label16);
       this.Set.Location = new System.Drawing.Point(0, 0);
       this.Set.Name = "Set";
-      this.Set.Size = new System.Drawing.Size(237, 273);
+      this.Set.Size = new System.Drawing.Size(229, 270);
       this.Set.Text = "Set";
-      // 
-      // buttonBack
-      // 
-      this.buttonBack.BackColor = System.Drawing.Color.White;
-      this.buttonBack.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
-      this.buttonBack.ForeColor = System.Drawing.Color.Black;
-      this.buttonBack.Location = new System.Drawing.Point(92, 215);
-      this.buttonBack.Name = "buttonBack";
-      this.buttonBack.Size = new System.Drawing.Size(72, 50);
-      this.buttonBack.TabIndex = 28;
-      this.buttonBack.Text = "Back";
-      this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
-      // 
-      // button2
-      // 
-      this.button2.BackColor = System.Drawing.Color.White;
-      this.button2.ForeColor = System.Drawing.Color.Black;
-      this.button2.Location = new System.Drawing.Point(185, 200);
-      this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(35, 35);
-      this.button2.TabIndex = 22;
-      this.button2.Text = "-";
-      // 
-      // button3
-      // 
-      this.button3.BackColor = System.Drawing.Color.White;
-      this.button3.ForeColor = System.Drawing.Color.Black;
-      this.button3.Location = new System.Drawing.Point(185, 161);
-      this.button3.Name = "button3";
-      this.button3.Size = new System.Drawing.Size(35, 35);
-      this.button3.TabIndex = 21;
-      this.button3.Text = "+";
-      // 
-      // setRate
-      // 
-      this.setRate.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular);
-      this.setRate.Location = new System.Drawing.Point(99, 160);
-      this.setRate.Name = "setRate";
-      this.setRate.Size = new System.Drawing.Size(77, 35);
-      this.setRate.TabIndex = 20;
-      this.setRate.Text = "23";
-      // 
-      // label20
-      // 
-      this.label20.Font = new System.Drawing.Font("Tahoma", 20F, System.Drawing.FontStyle.Bold);
-      this.label20.ForeColor = System.Drawing.Color.White;
-      this.label20.Location = new System.Drawing.Point(7, 160);
-      this.label20.Name = "label20";
-      this.label20.Size = new System.Drawing.Size(83, 43);
-      this.label20.Text = "Rate";
-      this.label20.TextAlign = System.Drawing.ContentAlignment.TopCenter;
       // 
       // buttonSetPid
       // 
       this.buttonSetPid.BackColor = System.Drawing.Color.White;
       this.buttonSetPid.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
       this.buttonSetPid.ForeColor = System.Drawing.Color.Black;
-      this.buttonSetPid.Location = new System.Drawing.Point(11, 215);
+      this.buttonSetPid.Location = new System.Drawing.Point(7, 201);
       this.buttonSetPid.Name = "buttonSetPid";
-      this.buttonSetPid.Size = new System.Drawing.Size(72, 50);
+      this.buttonSetPid.Size = new System.Drawing.Size(112, 64);
       this.buttonSetPid.TabIndex = 13;
       this.buttonSetPid.Text = "Set";
       this.buttonSetPid.Click += new System.EventHandler(this.buttonSetPid_Click);
+      // 
+      // buttonBack
+      // 
+      this.buttonBack.BackColor = System.Drawing.Color.White;
+      this.buttonBack.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold);
+      this.buttonBack.ForeColor = System.Drawing.Color.Black;
+      this.buttonBack.Location = new System.Drawing.Point(122, 202);
+      this.buttonBack.Name = "buttonBack";
+      this.buttonBack.Size = new System.Drawing.Size(112, 63);
+      this.buttonBack.TabIndex = 28;
+      this.buttonBack.Text = "Back";
+      this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+      // 
+      // minusR
+      // 
+      this.minusR.BackColor = System.Drawing.Color.White;
+      this.minusR.ForeColor = System.Drawing.Color.Black;
+      this.minusR.Location = new System.Drawing.Point(170, 160);
+      this.minusR.Name = "minusR";
+      this.minusR.Size = new System.Drawing.Size(35, 35);
+      this.minusR.TabIndex = 22;
+      this.minusR.Text = "-";
+      this.minusR.Click += new System.EventHandler(this.minusR_Click);
+      // 
+      // plusR
+      // 
+      this.plusR.BackColor = System.Drawing.Color.White;
+      this.plusR.ForeColor = System.Drawing.Color.Black;
+      this.plusR.Location = new System.Drawing.Point(129, 160);
+      this.plusR.Name = "plusR";
+      this.plusR.Size = new System.Drawing.Size(35, 35);
+      this.plusR.TabIndex = 21;
+      this.plusR.Text = "+";
+      this.plusR.Click += new System.EventHandler(this.plusR_Click);
+      // 
+      // setRate
+      // 
+      this.setRate.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular);
+      this.setRate.Location = new System.Drawing.Point(43, 160);
+      this.setRate.Name = "setRate";
+      this.setRate.Size = new System.Drawing.Size(80, 35);
+      this.setRate.TabIndex = 20;
+      // 
+      // label20
+      // 
+      this.label20.Font = new System.Drawing.Font("Tahoma", 20F, System.Drawing.FontStyle.Bold);
+      this.label20.ForeColor = System.Drawing.Color.White;
+      this.label20.Location = new System.Drawing.Point(11, 156);
+      this.label20.Name = "label20";
+      this.label20.Size = new System.Drawing.Size(31, 43);
+      this.label20.Text = "R";
+      this.label20.TextAlign = System.Drawing.ContentAlignment.TopCenter;
       // 
       // setD
       // 
@@ -798,7 +1054,6 @@
       this.setD.Name = "setD";
       this.setD.Size = new System.Drawing.Size(80, 35);
       this.setD.TabIndex = 11;
-      this.setD.Text = "23";
       // 
       // minusD
       // 
@@ -829,7 +1084,6 @@
       this.setI.Name = "setI";
       this.setI.Size = new System.Drawing.Size(80, 35);
       this.setI.TabIndex = 8;
-      this.setI.Text = "0.023";
       // 
       // minusI
       // 
@@ -860,7 +1114,6 @@
       this.setP.Name = "setP";
       this.setP.Size = new System.Drawing.Size(80, 35);
       this.setP.TabIndex = 5;
-      this.setP.Text = "3.3";
       // 
       // minusP
       // 
@@ -898,7 +1151,7 @@
       // 
       this.label18.Font = new System.Drawing.Font("Tahoma", 20F, System.Drawing.FontStyle.Bold);
       this.label18.ForeColor = System.Drawing.Color.White;
-      this.label18.Location = new System.Drawing.Point(11, 120);
+      this.label18.Location = new System.Drawing.Point(11, 116);
       this.label18.Name = "label18";
       this.label18.Size = new System.Drawing.Size(31, 43);
       this.label18.Text = "D";
@@ -908,7 +1161,7 @@
       // 
       this.label17.Font = new System.Drawing.Font("Tahoma", 20F, System.Drawing.FontStyle.Bold);
       this.label17.ForeColor = System.Drawing.Color.White;
-      this.label17.Location = new System.Drawing.Point(11, 82);
+      this.label17.Location = new System.Drawing.Point(11, 78);
       this.label17.Name = "label17";
       this.label17.Size = new System.Drawing.Size(31, 43);
       this.label17.Text = "I";
@@ -923,259 +1176,6 @@
       this.label16.Size = new System.Drawing.Size(31, 35);
       this.label16.Text = "P";
       this.label16.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-      // 
-      // AUX
-      // 
-      this.AUX.BackColor = System.Drawing.Color.Black;
-      this.AUX.Controls.Add(this.labelAUX7);
-      this.AUX.Controls.Add(this.labelAUX6);
-      this.AUX.Controls.Add(this.labelAUX5);
-      this.AUX.Controls.Add(this.labelAUX3);
-      this.AUX.Controls.Add(this.labelAUX2);
-      this.AUX.Controls.Add(this.labelAUX1);
-      this.AUX.Controls.Add(this.labelAUX0);
-      this.AUX.Controls.Add(this.checkBoxAUX7H);
-      this.AUX.Controls.Add(this.checkBoxAUX6H);
-      this.AUX.Controls.Add(this.checkBoxAUX5H);
-      this.AUX.Controls.Add(this.checkBoxAUX3H);
-      this.AUX.Controls.Add(this.checkBoxAUX2H);
-      this.AUX.Controls.Add(this.checkBoxAUX1H);
-      this.AUX.Controls.Add(this.checkBoxAUX0H);
-      this.AUX.Controls.Add(this.checkBoxAUX7M);
-      this.AUX.Controls.Add(this.checkBoxAUX6M);
-      this.AUX.Controls.Add(this.checkBoxAUX5M);
-      this.AUX.Controls.Add(this.checkBoxAUX3M);
-      this.AUX.Controls.Add(this.checkBoxAUX2M);
-      this.AUX.Controls.Add(this.checkBoxAUX1M);
-      this.AUX.Controls.Add(this.checkBoxAUX0M);
-      this.AUX.Controls.Add(this.checkBoxAUX7L);
-      this.AUX.Controls.Add(this.checkBoxAUX6L);
-      this.AUX.Controls.Add(this.checkBoxAUX5L);
-      this.AUX.Controls.Add(this.checkBoxAUX3L);
-      this.AUX.Controls.Add(this.checkBoxAUX2L);
-      this.AUX.Controls.Add(this.checkBoxAUX1L);
-      this.AUX.Controls.Add(this.checkBoxAUX0L);
-      this.AUX.Location = new System.Drawing.Point(0, 0);
-      this.AUX.Name = "AUX";
-      this.AUX.Size = new System.Drawing.Size(229, 270);
-      this.AUX.Text = "AUX";
-      // 
-      // labelAUX7
-      // 
-      this.labelAUX7.ForeColor = System.Drawing.Color.White;
-      this.labelAUX7.Location = new System.Drawing.Point(19, 177);
-      this.labelAUX7.Name = "labelAUX7";
-      this.labelAUX7.Size = new System.Drawing.Size(100, 20);
-      // 
-      // labelAUX6
-      // 
-      this.labelAUX6.ForeColor = System.Drawing.Color.White;
-      this.labelAUX6.Location = new System.Drawing.Point(19, 151);
-      this.labelAUX6.Name = "labelAUX6";
-      this.labelAUX6.Size = new System.Drawing.Size(100, 20);
-      // 
-      // labelAUX5
-      // 
-      this.labelAUX5.ForeColor = System.Drawing.Color.White;
-      this.labelAUX5.Location = new System.Drawing.Point(19, 125);
-      this.labelAUX5.Name = "labelAUX5";
-      this.labelAUX5.Size = new System.Drawing.Size(100, 20);
-      // 
-      // labelAUX3
-      // 
-      this.labelAUX3.ForeColor = System.Drawing.Color.White;
-      this.labelAUX3.Location = new System.Drawing.Point(19, 99);
-      this.labelAUX3.Name = "labelAUX3";
-      this.labelAUX3.Size = new System.Drawing.Size(100, 20);
-      // 
-      // labelAUX2
-      // 
-      this.labelAUX2.ForeColor = System.Drawing.Color.White;
-      this.labelAUX2.Location = new System.Drawing.Point(19, 73);
-      this.labelAUX2.Name = "labelAUX2";
-      this.labelAUX2.Size = new System.Drawing.Size(100, 20);
-      // 
-      // labelAUX1
-      // 
-      this.labelAUX1.ForeColor = System.Drawing.Color.White;
-      this.labelAUX1.Location = new System.Drawing.Point(19, 47);
-      this.labelAUX1.Name = "labelAUX1";
-      this.labelAUX1.Size = new System.Drawing.Size(100, 20);
-      // 
-      // labelAUX0
-      // 
-      this.labelAUX0.ForeColor = System.Drawing.Color.White;
-      this.labelAUX0.Location = new System.Drawing.Point(19, 21);
-      this.labelAUX0.Name = "labelAUX0";
-      this.labelAUX0.Size = new System.Drawing.Size(100, 20);
-      // 
-      // checkBoxAUX7H
-      // 
-      this.checkBoxAUX7H.Location = new System.Drawing.Point(188, 177);
-      this.checkBoxAUX7H.Name = "checkBoxAUX7H";
-      this.checkBoxAUX7H.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX7H.TabIndex = 23;
-      this.checkBoxAUX7H.Text = "checkBox15";
-      // 
-      // checkBoxAUX6H
-      // 
-      this.checkBoxAUX6H.Location = new System.Drawing.Point(188, 151);
-      this.checkBoxAUX6H.Name = "checkBoxAUX6H";
-      this.checkBoxAUX6H.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX6H.TabIndex = 22;
-      this.checkBoxAUX6H.Text = "checkBox16";
-      // 
-      // checkBoxAUX5H
-      // 
-      this.checkBoxAUX5H.Location = new System.Drawing.Point(188, 125);
-      this.checkBoxAUX5H.Name = "checkBoxAUX5H";
-      this.checkBoxAUX5H.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX5H.TabIndex = 21;
-      this.checkBoxAUX5H.Text = "checkBox17";
-      // 
-      // checkBoxAUX3H
-      // 
-      this.checkBoxAUX3H.Location = new System.Drawing.Point(188, 99);
-      this.checkBoxAUX3H.Name = "checkBoxAUX3H";
-      this.checkBoxAUX3H.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX3H.TabIndex = 20;
-      this.checkBoxAUX3H.Text = "checkBox18";
-      // 
-      // checkBoxAUX2H
-      // 
-      this.checkBoxAUX2H.Location = new System.Drawing.Point(188, 73);
-      this.checkBoxAUX2H.Name = "checkBoxAUX2H";
-      this.checkBoxAUX2H.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX2H.TabIndex = 19;
-      this.checkBoxAUX2H.Text = "checkBox19";
-      // 
-      // checkBoxAUX1H
-      // 
-      this.checkBoxAUX1H.Location = new System.Drawing.Point(188, 47);
-      this.checkBoxAUX1H.Name = "checkBoxAUX1H";
-      this.checkBoxAUX1H.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX1H.TabIndex = 18;
-      this.checkBoxAUX1H.Text = "checkBox20";
-      // 
-      // checkBoxAUX0H
-      // 
-      this.checkBoxAUX0H.Location = new System.Drawing.Point(188, 21);
-      this.checkBoxAUX0H.Name = "checkBoxAUX0H";
-      this.checkBoxAUX0H.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX0H.TabIndex = 17;
-      this.checkBoxAUX0H.Text = "checkBox21";
-      // 
-      // checkBoxAUX7M
-      // 
-      this.checkBoxAUX7M.Location = new System.Drawing.Point(158, 177);
-      this.checkBoxAUX7M.Name = "checkBoxAUX7M";
-      this.checkBoxAUX7M.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX7M.TabIndex = 16;
-      this.checkBoxAUX7M.Text = "checkBox8";
-      // 
-      // checkBoxAUX6M
-      // 
-      this.checkBoxAUX6M.Location = new System.Drawing.Point(158, 151);
-      this.checkBoxAUX6M.Name = "checkBoxAUX6M";
-      this.checkBoxAUX6M.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX6M.TabIndex = 15;
-      this.checkBoxAUX6M.Text = "checkBox9";
-      // 
-      // checkBoxAUX5M
-      // 
-      this.checkBoxAUX5M.Location = new System.Drawing.Point(158, 125);
-      this.checkBoxAUX5M.Name = "checkBoxAUX5M";
-      this.checkBoxAUX5M.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX5M.TabIndex = 14;
-      this.checkBoxAUX5M.Text = "checkBox10";
-      // 
-      // checkBoxAUX3M
-      // 
-      this.checkBoxAUX3M.Location = new System.Drawing.Point(158, 99);
-      this.checkBoxAUX3M.Name = "checkBoxAUX3M";
-      this.checkBoxAUX3M.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX3M.TabIndex = 13;
-      this.checkBoxAUX3M.Text = "checkBox11";
-      // 
-      // checkBoxAUX2M
-      // 
-      this.checkBoxAUX2M.Location = new System.Drawing.Point(158, 73);
-      this.checkBoxAUX2M.Name = "checkBoxAUX2M";
-      this.checkBoxAUX2M.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX2M.TabIndex = 12;
-      this.checkBoxAUX2M.Text = "checkBox12";
-      // 
-      // checkBoxAUX1M
-      // 
-      this.checkBoxAUX1M.Location = new System.Drawing.Point(158, 47);
-      this.checkBoxAUX1M.Name = "checkBoxAUX1M";
-      this.checkBoxAUX1M.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX1M.TabIndex = 11;
-      this.checkBoxAUX1M.Text = "checkBox13";
-      // 
-      // checkBoxAUX0M
-      // 
-      this.checkBoxAUX0M.Location = new System.Drawing.Point(158, 21);
-      this.checkBoxAUX0M.Name = "checkBoxAUX0M";
-      this.checkBoxAUX0M.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX0M.TabIndex = 10;
-      this.checkBoxAUX0M.Text = "checkBox14";
-      // 
-      // checkBoxAUX7L
-      // 
-      this.checkBoxAUX7L.Location = new System.Drawing.Point(128, 177);
-      this.checkBoxAUX7L.Name = "checkBoxAUX7L";
-      this.checkBoxAUX7L.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX7L.TabIndex = 9;
-      this.checkBoxAUX7L.Text = "checkBox7";
-      // 
-      // checkBoxAUX6L
-      // 
-      this.checkBoxAUX6L.Location = new System.Drawing.Point(128, 151);
-      this.checkBoxAUX6L.Name = "checkBoxAUX6L";
-      this.checkBoxAUX6L.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX6L.TabIndex = 8;
-      this.checkBoxAUX6L.Text = "checkBox6";
-      // 
-      // checkBoxAUX5L
-      // 
-      this.checkBoxAUX5L.Location = new System.Drawing.Point(128, 125);
-      this.checkBoxAUX5L.Name = "checkBoxAUX5L";
-      this.checkBoxAUX5L.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX5L.TabIndex = 7;
-      this.checkBoxAUX5L.Text = "checkBox5";
-      // 
-      // checkBoxAUX3L
-      // 
-      this.checkBoxAUX3L.Location = new System.Drawing.Point(128, 99);
-      this.checkBoxAUX3L.Name = "checkBoxAUX3L";
-      this.checkBoxAUX3L.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX3L.TabIndex = 6;
-      this.checkBoxAUX3L.Text = "checkBox4";
-      // 
-      // checkBoxAUX2L
-      // 
-      this.checkBoxAUX2L.Location = new System.Drawing.Point(128, 73);
-      this.checkBoxAUX2L.Name = "checkBoxAUX2L";
-      this.checkBoxAUX2L.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX2L.TabIndex = 5;
-      this.checkBoxAUX2L.Text = "checkBox3";
-      // 
-      // checkBoxAUX1L
-      // 
-      this.checkBoxAUX1L.Location = new System.Drawing.Point(128, 47);
-      this.checkBoxAUX1L.Name = "checkBoxAUX1L";
-      this.checkBoxAUX1L.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX1L.TabIndex = 4;
-      this.checkBoxAUX1L.Text = "checkBox2";
-      // 
-      // checkBoxAUX0L
-      // 
-      this.checkBoxAUX0L.Location = new System.Drawing.Point(128, 21);
-      this.checkBoxAUX0L.Name = "checkBoxAUX0L";
-      this.checkBoxAUX0L.Size = new System.Drawing.Size(24, 20);
-      this.checkBoxAUX0L.TabIndex = 3;
-      this.checkBoxAUX0L.Text = "checkBox1";
       // 
       // serialPort1
       // 
@@ -1240,8 +1240,8 @@
       this.panelRC.ResumeLayout(false);
       this.Main.ResumeLayout(false);
       this.tabControl1.ResumeLayout(false);
-      this.Set.ResumeLayout(false);
       this.AUX.ResumeLayout(false);
+      this.Set.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -1313,8 +1313,8 @@
     private System.Windows.Forms.Button buttonSetPid;
     private System.Windows.Forms.Panel panelRoll;
     private System.Windows.Forms.Panel panelPitch;
-    private System.Windows.Forms.Button button2;
-    private System.Windows.Forms.Button button3;
+    private System.Windows.Forms.Button minusR;
+    private System.Windows.Forms.Button plusR;
     private System.Windows.Forms.TextBox setRate;
     private System.Windows.Forms.Label label20;
     private System.Windows.Forms.Panel panelYaw;
@@ -1331,30 +1331,30 @@
     private System.Windows.Forms.Label ThrEXPO;
     private System.Windows.Forms.Label ThrMID;
     private System.Windows.Forms.Label labelAUX0;
-    private System.Windows.Forms.Label labelAUX7;
     private System.Windows.Forms.Label labelAUX6;
     private System.Windows.Forms.Label labelAUX5;
+    private System.Windows.Forms.Label labelAUX4;
     private System.Windows.Forms.Label labelAUX3;
     private System.Windows.Forms.Label labelAUX2;
     private System.Windows.Forms.Label labelAUX1;
-    private System.Windows.Forms.CheckBox checkBoxAUX7H;
     private System.Windows.Forms.CheckBox checkBoxAUX6H;
     private System.Windows.Forms.CheckBox checkBoxAUX5H;
+    private System.Windows.Forms.CheckBox checkBoxAUX4H;
     private System.Windows.Forms.CheckBox checkBoxAUX3H;
     private System.Windows.Forms.CheckBox checkBoxAUX2H;
     private System.Windows.Forms.CheckBox checkBoxAUX1H;
     private System.Windows.Forms.CheckBox checkBoxAUX0H;
-    private System.Windows.Forms.CheckBox checkBoxAUX7M;
     private System.Windows.Forms.CheckBox checkBoxAUX6M;
     private System.Windows.Forms.CheckBox checkBoxAUX5M;
+    private System.Windows.Forms.CheckBox checkBoxAUX4M;
     private System.Windows.Forms.CheckBox checkBoxAUX3M;
     private System.Windows.Forms.CheckBox checkBoxAUX2M;
     private System.Windows.Forms.CheckBox checkBoxAUX1M;
     private System.Windows.Forms.CheckBox checkBoxAUX0M;
     private System.Windows.Forms.CheckBox checkBoxAUX0L;
-    private System.Windows.Forms.CheckBox checkBoxAUX7L;
     private System.Windows.Forms.CheckBox checkBoxAUX6L;
     private System.Windows.Forms.CheckBox checkBoxAUX5L;
+    private System.Windows.Forms.CheckBox checkBoxAUX4L;
     private System.Windows.Forms.CheckBox checkBoxAUX3L;
     private System.Windows.Forms.CheckBox checkBoxAUX2L;
     private System.Windows.Forms.CheckBox checkBoxAUX1L;

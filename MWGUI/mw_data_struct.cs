@@ -197,24 +197,6 @@ namespace MWGUI
   }
   #endregion
 
-  //#region AUX
-
-  //public class AUX
-  //{
-  //  //public fields
-  //  public string name;
-  //  public string description;
-  //  public bool AUXL;
-  //  public bool AUXM;
-  //  public bool AUXH;
-
-  //  public AUX()
-  //  {
-  //  }
-  //}
-
-  //#endregion
-
   #region mw_settings
   public class mw_settings
   {
@@ -306,24 +288,24 @@ namespace MWGUI
       {
 
         //Write RC_TUNING
-        //bptr = 0;
-        //checksum = 0;
-        //buffer[bptr++] = (byte)'$';
-        //buffer[bptr++] = (byte)'M';
-        //buffer[bptr++] = (byte)'<';
-        //buffer[bptr++] = 7;
-        //buffer[bptr++] = (byte)MSP_SET_RC_TUNING;
+        bptr = 0;
+        checksum = 0;
+        buffer[bptr++] = (byte)'$';
+        buffer[bptr++] = (byte)'M';
+        buffer[bptr++] = (byte)'<';
+        buffer[bptr++] = 7;
+        buffer[bptr++] = (byte)MSP_SET_RC_TUNING;
 
-        //buffer[bptr++] = rcRate;
-        //buffer[bptr++] = rcExpo;
-        //buffer[bptr++] = RollPitchRate;
-        //buffer[bptr++] = YawRate;
-        //buffer[bptr++] = DynThrPID;
-        //buffer[bptr++] = ThrottleMID;
-        //buffer[bptr++] = ThrottleEXPO;
-        //for (int i = 3; i < bptr; i++) checksum ^= buffer[i];
-        //buffer[bptr++] = checksum;
-        //serialport.Write(buffer, 0, bptr);
+        buffer[bptr++] = rcRate;
+        buffer[bptr++] = rcExpo;
+        buffer[bptr++] = RollPitchRate;
+        buffer[bptr++] = YawRate;
+        buffer[bptr++] = DynThrPID;
+        buffer[bptr++] = ThrottleMID;
+        buffer[bptr++] = ThrottleEXPO;
+        for (int i = 3; i < bptr; i++) checksum ^= buffer[i];
+        buffer[bptr++] = checksum;
+        serialport.Write(buffer, 0, bptr);
 
         //Write PID's 
         bptr = 0;
@@ -398,123 +380,123 @@ namespace MWGUI
       }
     }
 
-    public void save_to_xml(string filename)
-    {
-      XmlTextWriter tw = new XmlTextWriter(filename, null);
-      tw.Formatting = Formatting.Indented;
-      tw.Indentation = 4;
-      tw.WriteStartDocument();
+    //public void save_to_xml(string filename)
+    //{
+    //  XmlTextWriter tw = new XmlTextWriter(filename, null);
+    //  tw.Formatting = Formatting.Indented;
+    //  tw.Indentation = 4;
+    //  tw.WriteStartDocument();
 
-      // Get the name and version of the current assembly.
-      Assembly assem = Assembly.GetExecutingAssembly();
-      AssemblyName assemName = assem.GetName();
-      Version ver = assemName.Version;
-      tw.WriteComment(String.Format("{0}, Version {1}", assemName.Name, ver.ToString()));
-      tw.WriteComment("MultiWii FC Parameters file");
-      tw.WriteComment("MultiWii FC software revision 2.1dev");
+    //  // Get the name and version of the current assembly.
+    //  Assembly assem = Assembly.GetExecutingAssembly();
+    //  AssemblyName assemName = assem.GetName();
+    //  Version ver = assemName.Version;
+    //  tw.WriteComment(String.Format("{0}, Version {1}", assemName.Name, ver.ToString()));
+    //  tw.WriteComment("MultiWii FC Parameters file");
+    //  tw.WriteComment("MultiWii FC software revision 2.1dev");
 
-      tw.WriteStartElement("PARAMETERS");
+    //  tw.WriteStartElement("PARAMETERS");
 
-      tw.WriteStartElement("VERSION value=\"" + iSwVer + "\""); tw.WriteEndElement();
+    //  tw.WriteStartElement("VERSION value=\"" + iSwVer + "\""); tw.WriteEndElement();
 
-      for (int i = 0; i < iPIDItems; i++)
-      {
-        tw.WriteStartElement("PID id=\"" + i + "\" name=\"" + pidnames[i] + "\" p=\"" + Convert.ToString(pidP[i]) + "\" i=\"" + Convert.ToString(pidI[i]) + "\" d=\"" + Convert.ToString(pidD[i]) + "\"");
-        tw.WriteEndElement();
+    //  for (int i = 0; i < iPIDItems; i++)
+    //  {
+    //    tw.WriteStartElement("PID id=\"" + i + "\" name=\"" + pidnames[i] + "\" p=\"" + Convert.ToString(pidP[i]) + "\" i=\"" + Convert.ToString(pidI[i]) + "\" d=\"" + Convert.ToString(pidD[i]) + "\"");
+    //    tw.WriteEndElement();
 
-      }
+    //  }
 
-      for (int i = 0; i < iCheckBoxItems; i++)
-      {
-        tw.WriteStartElement("AUXFUNC id=\"" + i + "\" aux1234=\"" + activation[i] + "\"");
-        tw.WriteEndElement();
-      }
+    //  for (int i = 0; i < iCheckBoxItems; i++)
+    //  {
+    //    tw.WriteStartElement("AUXFUNC id=\"" + i + "\" aux1234=\"" + activation[i] + "\"");
+    //    tw.WriteEndElement();
+    //  }
 
-      tw.WriteStartElement("RCRATE value=\"" + rcRate + "\""); tw.WriteEndElement();
-      tw.WriteStartElement("RCEXPO value=\"" + rcExpo + "\""); tw.WriteEndElement();
-      tw.WriteStartElement("THMID value=\"" + ThrottleMID + "\""); tw.WriteEndElement();
-      tw.WriteStartElement("THEXPO value=\"" + ThrottleMID + "\""); tw.WriteEndElement();
-      tw.WriteStartElement("ROLLPITCHRATE value=\"" + RollPitchRate + "\""); tw.WriteEndElement();
-      tw.WriteStartElement("YAWRATE value=\"" + YawRate + "\""); tw.WriteEndElement();
-      tw.WriteStartElement("DYNTHRPID value=\"" + DynThrPID + "\""); tw.WriteEndElement();
-      tw.WriteStartElement("POWERTRIGGER value=\"" + PowerTrigger + "\""); tw.WriteEndElement();
-      tw.WriteStartElement("COMMENT value=\"" + comment + "\""); tw.WriteEndElement();
+    //  tw.WriteStartElement("RCRATE value=\"" + rcRate + "\""); tw.WriteEndElement();
+    //  tw.WriteStartElement("RCEXPO value=\"" + rcExpo + "\""); tw.WriteEndElement();
+    //  tw.WriteStartElement("THMID value=\"" + ThrottleMID + "\""); tw.WriteEndElement();
+    //  tw.WriteStartElement("THEXPO value=\"" + ThrottleMID + "\""); tw.WriteEndElement();
+    //  tw.WriteStartElement("ROLLPITCHRATE value=\"" + RollPitchRate + "\""); tw.WriteEndElement();
+    //  tw.WriteStartElement("YAWRATE value=\"" + YawRate + "\""); tw.WriteEndElement();
+    //  tw.WriteStartElement("DYNTHRPID value=\"" + DynThrPID + "\""); tw.WriteEndElement();
+    //  tw.WriteStartElement("POWERTRIGGER value=\"" + PowerTrigger + "\""); tw.WriteEndElement();
+    //  tw.WriteStartElement("COMMENT value=\"" + comment + "\""); tw.WriteEndElement();
 
-      tw.WriteEndElement();
-      tw.WriteEndDocument();
-      tw.Close();
-    }
+    //  tw.WriteEndElement();
+    //  tw.WriteEndDocument();
+    //  tw.Close();
+    //}
 
-    public bool read_from_xml(string filename)
-    {
+    //public bool read_from_xml(string filename)
+    //{
 
-      XmlTextReader reader = new XmlTextReader(filename);
-      //MessageBox.Show("Options file " + sOptionsConfigFilename + " does not found", "File not found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-      try
-      {
-        while (reader.Read())
-        {
-          switch (reader.NodeType)
-          {
-            case XmlNodeType.Element:
+    //  XmlTextReader reader = new XmlTextReader(filename);
+    //  //MessageBox.Show("Options file " + sOptionsConfigFilename + " does not found", "File not found", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+    //  try
+    //  {
+    //    while (reader.Read())
+    //    {
+    //      switch (reader.NodeType)
+    //      {
+    //        case XmlNodeType.Element:
 
-              if (String.Compare(reader.Name, "version", true) == 0 && reader.HasAttributes)
-              {
-                if (Convert.ToInt16(reader.GetAttribute("value")) != iSwVer)
-                {
-                  throw new System.InvalidOperationException("Version of settings file does not match with the version set in GUI");
-                }
-              }
-              if (String.Compare(reader.Name, "pid", true) == 0 && reader.HasAttributes)
-              {
-                int tpidID = 0; byte tpidP = 0; byte tpidI = 0; byte tpidD = 0;
+    //          if (String.Compare(reader.Name, "version", true) == 0 && reader.HasAttributes)
+    //          {
+    //            if (Convert.ToInt16(reader.GetAttribute("value")) != iSwVer)
+    //            {
+    //              throw new System.InvalidOperationException("Version of settings file does not match with the version set in GUI");
+    //            }
+    //          }
+    //          if (String.Compare(reader.Name, "pid", true) == 0 && reader.HasAttributes)
+    //          {
+    //            int tpidID = 0; byte tpidP = 0; byte tpidI = 0; byte tpidD = 0;
 
-                tpidID = Convert.ToInt16(reader.GetAttribute("id"));
-                tpidP = Convert.ToByte(reader.GetAttribute("p"));
-                tpidI = Convert.ToByte(reader.GetAttribute("i"));
-                tpidD = Convert.ToByte(reader.GetAttribute("d"));
-                pidP[tpidID] = tpidP;
-                pidI[tpidID] = tpidI;
-                pidD[tpidID] = tpidD;
-              }
-              if (String.Compare(reader.Name, "auxfunc", true) == 0 && reader.HasAttributes)
-              {
-                int auxID = 0; short a1 = 0;
-                auxID = Convert.ToInt16(reader.GetAttribute("id"));
-                a1 = Convert.ToInt16(reader.GetAttribute("aux1234"));
-                activation[auxID] = a1;
-              }
-              if (String.Compare(reader.Name, "rcrate", true) == 0 && reader.HasAttributes) { rcRate = Convert.ToByte(reader.GetAttribute("value")); }
-              if (String.Compare(reader.Name, "rcexpo", true) == 0 && reader.HasAttributes) { rcExpo = Convert.ToByte(reader.GetAttribute("value")); }
-              if (String.Compare(reader.Name, "thmid", true) == 0 && reader.HasAttributes) { ThrottleMID = Convert.ToByte(reader.GetAttribute("value")); }
-              if (String.Compare(reader.Name, "thexpo", true) == 0 && reader.HasAttributes) { ThrottleEXPO = Convert.ToByte(reader.GetAttribute("value")); }
-              if (String.Compare(reader.Name, "rollpitchrate", true) == 0 && reader.HasAttributes) { RollPitchRate = Convert.ToByte(reader.GetAttribute("value")); }
-              if (String.Compare(reader.Name, "yawrate", true) == 0 && reader.HasAttributes) { YawRate = Convert.ToByte(reader.GetAttribute("value")); }
-              if (String.Compare(reader.Name, "dynthrpid", true) == 0 && reader.HasAttributes) { DynThrPID = Convert.ToByte(reader.GetAttribute("value")); }
-              if (String.Compare(reader.Name, "powertrigger", true) == 0 && reader.HasAttributes) { PowerTrigger = Convert.ToByte(reader.GetAttribute("value")); }
-              if (String.Compare(reader.Name, "comment", true) == 0 && reader.HasAttributes) { comment = reader.GetAttribute("value"); }
-              break;
-          }
-        }
-      }
-      catch (System.InvalidOperationException e)
-      {
-        //                    MessageBoxEx.Show(e.Message,"Version mismatch",MessageBoxButtons.OK,MessageBoxIcon.Error);
-        return (false);
-      }
-      catch
-      {
-        //                    MessageBoxEx.Show("Options file contains invalid data around Line : " + reader.LineNumber, "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-        return (false);
-      }
+    //            tpidID = Convert.ToInt16(reader.GetAttribute("id"));
+    //            tpidP = Convert.ToByte(reader.GetAttribute("p"));
+    //            tpidI = Convert.ToByte(reader.GetAttribute("i"));
+    //            tpidD = Convert.ToByte(reader.GetAttribute("d"));
+    //            pidP[tpidID] = tpidP;
+    //            pidI[tpidID] = tpidI;
+    //            pidD[tpidID] = tpidD;
+    //          }
+    //          if (String.Compare(reader.Name, "auxfunc", true) == 0 && reader.HasAttributes)
+    //          {
+    //            int auxID = 0; short a1 = 0;
+    //            auxID = Convert.ToInt16(reader.GetAttribute("id"));
+    //            a1 = Convert.ToInt16(reader.GetAttribute("aux1234"));
+    //            activation[auxID] = a1;
+    //          }
+    //          if (String.Compare(reader.Name, "rcrate", true) == 0 && reader.HasAttributes) { rcRate = Convert.ToByte(reader.GetAttribute("value")); }
+    //          if (String.Compare(reader.Name, "rcexpo", true) == 0 && reader.HasAttributes) { rcExpo = Convert.ToByte(reader.GetAttribute("value")); }
+    //          if (String.Compare(reader.Name, "thmid", true) == 0 && reader.HasAttributes) { ThrottleMID = Convert.ToByte(reader.GetAttribute("value")); }
+    //          if (String.Compare(reader.Name, "thexpo", true) == 0 && reader.HasAttributes) { ThrottleEXPO = Convert.ToByte(reader.GetAttribute("value")); }
+    //          if (String.Compare(reader.Name, "rollpitchrate", true) == 0 && reader.HasAttributes) { RollPitchRate = Convert.ToByte(reader.GetAttribute("value")); }
+    //          if (String.Compare(reader.Name, "yawrate", true) == 0 && reader.HasAttributes) { YawRate = Convert.ToByte(reader.GetAttribute("value")); }
+    //          if (String.Compare(reader.Name, "dynthrpid", true) == 0 && reader.HasAttributes) { DynThrPID = Convert.ToByte(reader.GetAttribute("value")); }
+    //          if (String.Compare(reader.Name, "powertrigger", true) == 0 && reader.HasAttributes) { PowerTrigger = Convert.ToByte(reader.GetAttribute("value")); }
+    //          if (String.Compare(reader.Name, "comment", true) == 0 && reader.HasAttributes) { comment = reader.GetAttribute("value"); }
+    //          break;
+    //      }
+    //    }
+    //  }
+    //  catch (System.InvalidOperationException e)
+    //  {
+    //    //                    MessageBoxEx.Show(e.Message,"Version mismatch",MessageBoxButtons.OK,MessageBoxIcon.Error);
+    //    return (false);
+    //  }
+    //  catch
+    //  {
+    //    //                    MessageBoxEx.Show("Options file contains invalid data around Line : " + reader.LineNumber, "Invalid Data", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+    //    return (false);
+    //  }
 
-      finally
-      {
-        if (reader != null)
-          reader.Close();
-      }
-      return (true);
-    }
+    //  finally
+    //  {
+    //    if (reader != null)
+    //      reader.Close();
+    //  }
+    //  return (true);
+    //}
 
 
 

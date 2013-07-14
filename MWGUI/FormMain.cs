@@ -323,9 +323,9 @@ namespace MWGUI
       labelAUX1.Text = mw_gui.AUXName[1];
       labelAUX2.Text = mw_gui.AUXName[2];
       labelAUX3.Text = mw_gui.AUXName[3];
-      labelAUX5.Text = mw_gui.AUXName[5];
-      labelAUX6.Text = mw_gui.AUXName[6];
-      labelAUX7.Text = mw_gui.AUXName[7];
+      labelAUX4.Text = mw_gui.AUXName[5];
+      labelAUX5.Text = mw_gui.AUXName[6];
+      labelAUX6.Text = mw_gui.AUXName[7];
 
       //Quick hack to get pid names to mw_params untill redo the structures
       for (int i = 0; i < iPidItems; i++)
@@ -405,31 +405,30 @@ namespace MWGUI
           //serial_ports_enumerate();
           //return; //Exit without connecting;
         }
-        //Set button text and status
-        b_connect.Text = "Disconnect";
-        //**b_connect.Image = Properties.Resources.disconnect;
-        isConnected = true;
+        if (serialPort1.IsOpen)
+        {
 
-        //Enable buttons that are not working here
-        /*b_reset.Enabled = true;
-        b_cal_acc.Enabled = true;
-        b_cal_mag.Enabled = true;
-        b_read_settings.Enabled = true;
-        b_write_settings.Enabled = true;
+          //Set button text and status
+          b_connect.Text = "Disconnect";
+          //**b_connect.Image = Properties.Resources.disconnect;
+          isConnected = true;
+
+          //Enable buttons that are not working here
+          /*b_reset.Enabled = true;
+          b_cal_acc.Enabled = true;
+          b_cal_mag.Enabled = true;
+          b_read_settings.Enabled = true;
+          b_write_settings.Enabled = true;
         
-        */
-        timer1.Enabled = true;
+          */
+          timer1.Enabled = true;
 
-        //bOptions_needs_refresh = true;
-        MSPquery(MSP_IDENT);
-        MSPquery(MSP_PID);
-        MSPquery(MSP_RC_TUNING);
-        MSPquery(MSP_IDENT);
-        MSPquery(MSP_BOX);
-        MSPquery(MSP_MISC);
-
-        isNeedUpdateInfoPanel = true;
-
+          //bOptions_needs_refresh = true;
+          MSPquery(MSP_IDENT);
+          MSPquery(MSP_PID);
+          MSPquery(MSP_RC_TUNING);
+          MSPquery(MSP_BOX);
+        }
       }
     }
 
@@ -575,6 +574,7 @@ namespace MWGUI
           mw_gui.multiType = (byte)inBuf[ptr];
           mw_gui.protocol_version = (byte)inBuf[ptr++];
           mw_gui.capability = BitConverter.ToInt32(inBuf, ptr); ptr += 4;
+          isNeedUpdateInfoPanel = true;
           break;
         case MSP_STATUS:
           ptr = 0;
@@ -621,6 +621,7 @@ namespace MWGUI
           mw_gui.rcAux2 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
           mw_gui.rcAux3 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
           mw_gui.rcAux4 = BitConverter.ToInt16(inBuf, ptr); ptr += 2;
+          isNeedUpdateAuxPanel = true;
           break;
         case MSP_RAW_GPS:
           ptr = 0;
@@ -661,6 +662,7 @@ namespace MWGUI
           mw_gui.DynThrPID = (byte)inBuf[ptr++];
           mw_gui.ThrottleMID = (byte)inBuf[ptr++];
           mw_gui.ThrottleEXPO = (byte)inBuf[ptr++];
+          isNeedUpdatePIDPanel = true;
           break;
         case MSP_PID:
           ptr = 0;
@@ -720,9 +722,8 @@ namespace MWGUI
       {
         MSPquery(MSP_PID);
         MSPquery(MSP_RC_TUNING);
-        //MSPquery(MSP_IDENT);
+        MSPquery(MSP_IDENT);
         MSPquery(MSP_BOX);
-        //MSPquery(MSP_MISC);
       }
     }
 
@@ -732,6 +733,9 @@ namespace MWGUI
       update_params();
       mw_params.write_settings(serialPort1);
       timer1.Enabled = true;
+      isNeedUpdatePIDPanel = true;
+      isNeedUpdateAuxPanel = true;
+      isNeedUpdateInfoPanel = true;
     }
 
     private void update_params()
@@ -770,6 +774,10 @@ namespace MWGUI
        if (checkBoxAUX3L.Checked) mw_params.activation[3]  = 1;
        if (checkBoxAUX3M.Checked) mw_params.activation[3] += 2;
        if (checkBoxAUX3H.Checked) mw_params.activation[3] += 4;
+       mw_params.activation[4] = 0;
+       if (checkBoxAUX4L.Checked) mw_params.activation[4]  = 1;
+       if (checkBoxAUX4M.Checked) mw_params.activation[4] += 2;
+       if (checkBoxAUX4H.Checked) mw_params.activation[4] += 4;
        mw_params.activation[5] = 0;
        if (checkBoxAUX5L.Checked) mw_params.activation[5]  = 1;
        if (checkBoxAUX5M.Checked) mw_params.activation[5] += 2;
@@ -778,28 +786,49 @@ namespace MWGUI
        if (checkBoxAUX6L.Checked) mw_params.activation[6]  = 1;
        if (checkBoxAUX6M.Checked) mw_params.activation[6] += 2;
        if (checkBoxAUX6H.Checked) mw_params.activation[6] += 4;
-       mw_params.activation[7] = 0;
-       if (checkBoxAUX7L.Checked) mw_params.activation[7]  = 1;
-       if (checkBoxAUX7M.Checked) mw_params.activation[7] += 2;
-       if (checkBoxAUX7H.Checked) mw_params.activation[7] += 4;
     }
 
     private void timer1_Tick(object sender, EventArgs e)
     {
-      if (isNeedUpdatePIDPanel)
+      if (serialPort1.IsOpen)
       {
-        isNeedUpdatePIDPanel = !isNeedUpdatePIDPanel;
-        update_pid_panel();
-      }
-      if (isNeedUpdateInfoPanel)
-      {
-        isNeedUpdateInfoPanel = !isNeedUpdateInfoPanel;
-        update_info_panel();
-      }
-      if (isNeedUpdateAuxPanel)
-      {
-        isNeedUpdateAuxPanel = !isNeedUpdateAuxPanel;
-        update_aux_panel();
+        if (isNeedUpdatePIDPanel)
+        {
+          isNeedUpdatePIDPanel = !isNeedUpdatePIDPanel;
+          update_pid_panel();
+          ThrEXPO.BackColor = Color.White;
+          PRoll.BackColor = Color.White;
+          DRoll.BackColor = Color.White;
+          IRoll.BackColor = Color.White;
+          PPitch.BackColor = Color.White;
+          IPitch.BackColor = Color.White;
+          DPitch.BackColor = Color.White;
+          PYaw.BackColor = Color.White;
+          IYaw.BackColor = Color.White;
+          DYaw.BackColor = Color.White;
+          PAlt.BackColor = Color.White;
+          IAlt.BackColor = Color.White;
+          DAlt.BackColor = Color.White;
+          PLevel.BackColor = Color.White;
+          ILevel.BackColor = Color.White;
+          DLevel.BackColor = Color.White;
+          RCExpo.BackColor = Color.White;
+          RCRate.BackColor = Color.White;
+          RollPitchRate.BackColor = Color.White;
+          YawRate.BackColor = Color.White;
+          ThrPIDAtt.BackColor = Color.White;
+          ThrMID.BackColor = Color.White;
+        }
+        if (isNeedUpdateInfoPanel)
+        {
+          isNeedUpdateInfoPanel = !isNeedUpdateInfoPanel;
+          update_info_panel();
+        }
+        if (isNeedUpdateAuxPanel)
+        {
+          isNeedUpdateAuxPanel = !isNeedUpdateAuxPanel;
+          update_aux_panel();
+        }
       }
     }
 
@@ -828,57 +857,15 @@ namespace MWGUI
       DLevel.Text = ((decimal)mw_gui.pidD[7] / (decimal)Pid[7].Dprec).ToString("F0");
 
       PMag.Text = ((decimal)mw_gui.pidP[8] / (decimal)Pid[8].Pprec).ToString("F1");
+      PMag.BackColor = Color.White;
 
-      /*PVelocity.Text = ((decimal)mw_gui.pidP[9] / (decimal)Pid[9].Pprec).ToString("F1");
-      IVelocity.Text = ((decimal)mw_gui.pidI[9] / (decimal)Pid[9].Iprec).ToString("F2");
-      DVelocity.Text = ((decimal)mw_gui.pidD[9] / (decimal)Pid[9].Dprec).ToString("F0");
-      */
       RCExpo.Text = ((decimal)mw_gui.rcExpo / 100).ToString("F2");
       RCRate.Text = ((decimal)mw_gui.rcRate / 100).ToString("F2");
       RollPitchRate.Text = ((decimal)mw_gui.RollPitchRate / 100).ToString("F2");
       YawRate.Text = ((decimal)mw_gui.YawRate / 100).ToString("F2");
       ThrPIDAtt.Text = ((decimal)mw_gui.DynThrPID / 100).ToString("F2");
-
       ThrMID.Text = ((decimal)mw_gui.ThrottleEXPO / 100).ToString("F2");
       ThrEXPO.Text = ((decimal)mw_gui.ThrottleMID / 100).ToString("F2");
-
-      /*      for (int i = 0; i < iPidItems; i++)
-            {
-              if (Pid[i].Pshown) { Pid[i].Pfield.Value = (decimal)mw_gui.pidP[i] / Pid[i].Pprec; Pid[i].Pfield.BackColor = Color.White; }
-              if (Pid[i].Ishown) { Pid[i].Ifield.Value = (decimal)mw_gui.pidI[i] / Pid[i].Iprec; Pid[i].Ifield.BackColor = Color.White; }
-              if (Pid[i].Dshown) { Pid[i].Dfield.Value = (decimal)mw_gui.pidD[i] / Pid[i].Dprec; Pid[i].Dfield.BackColor = Color.White; }
-
-            }
-
-            nRATE_rp.Value = (decimal)mw_gui.RollPitchRate / 100;
-            nRATE_rp.BackColor = Color.White;
-            nRATE_yaw.Value = (decimal)mw_gui.YawRate / 100;
-            nRATE_yaw.BackColor = Color.White;
-            nRATE_tpid.Value = (decimal)mw_gui.DynThrPID / 100;
-            nRATE_tpid.BackColor = Color.White;
-
-            trackbar_RC_Expo.Value = mw_gui.rcExpo;
-            nRCExpo.Value = (decimal)mw_gui.rcExpo / 100;
-            nRCExpo.BackColor = Color.White;
-            trackbar_RC_Rate.Value = mw_gui.rcRate;
-            nRCRate.Value = (decimal)mw_gui.rcRate / 100;
-            nRCRate.BackColor = Color.White;
-
-            rc_expo_control1.SetRCExpoParameters((double)mw_gui.rcRate / 100, (double)mw_gui.rcExpo / 100);
-
-            nTEXPO.Value = (decimal)mw_gui.ThrottleEXPO / 100;
-            nTEXPO.BackColor = Color.White;
-            trackBar_T_EXPO.Value = mw_gui.ThrottleEXPO;
-            nTMID.Value = (decimal)mw_gui.ThrottleMID / 100;
-            nTMID.BackColor = Color.White;
-            trackBar_T_MID.Value = mw_gui.ThrottleMID;
-            throttle_expo_control1.SetRCExpoParameters((double)mw_gui.ThrottleMID / 100, (double)mw_gui.ThrottleEXPO / 100, mw_gui.rcThrottle);
-
-            nPAlarm.Value = mw_gui.powerTrigger;
-            nPAlarm.BackColor = Color.White;
-            */
-
-
     }
 
 
@@ -905,15 +892,15 @@ namespace MWGUI
       checkBoxAUX3L.Checked = (mw_gui.activation[3] & (1 << 0)) == 0 ? false : true;
       checkBoxAUX3M.Checked = (mw_gui.activation[3] & (1 << 1)) == 0 ? false : true;
       checkBoxAUX3H.Checked = (mw_gui.activation[3] & (1 << 2)) == 0 ? false : true;
+      checkBoxAUX4L.Checked = (mw_gui.activation[4] & (1 << 0)) == 0 ? false : true;
+      checkBoxAUX4M.Checked = (mw_gui.activation[4] & (1 << 1)) == 0 ? false : true;
+      checkBoxAUX4H.Checked = (mw_gui.activation[4] & (1 << 2)) == 0 ? false : true;
       checkBoxAUX5L.Checked = (mw_gui.activation[5] & (1 << 0)) == 0 ? false : true;
       checkBoxAUX5M.Checked = (mw_gui.activation[5] & (1 << 1)) == 0 ? false : true;
       checkBoxAUX5H.Checked = (mw_gui.activation[5] & (1 << 2)) == 0 ? false : true;
       checkBoxAUX6L.Checked = (mw_gui.activation[6] & (1 << 0)) == 0 ? false : true;
       checkBoxAUX6M.Checked = (mw_gui.activation[6] & (1 << 1)) == 0 ? false : true;
       checkBoxAUX6H.Checked = (mw_gui.activation[6] & (1 << 2)) == 0 ? false : true;
-      checkBoxAUX7L.Checked = (mw_gui.activation[7] & (1 << 0)) == 0 ? false : true;
-      checkBoxAUX7M.Checked = (mw_gui.activation[7] & (1 << 1)) == 0 ? false : true;
-      checkBoxAUX7H.Checked = (mw_gui.activation[7] & (1 << 2)) == 0 ? false : true;
     }
 
     private void end_Click(object sender, EventArgs e)
@@ -924,12 +911,24 @@ namespace MWGUI
     private void panel_Click(object sender, EventArgs e)
     {
       Panel p = (Panel)sender;
+      setRate.Visible = false;
+      plusR.Visible = false;
+      minusR.Visible = false;
+      setI.Visible = true;
+      setD.Visible = true;
+      plusI.Visible = true;
+      plusD.Visible = true;
       if (p.Name == "panelRoll")
       {
         label19.Text = "Roll";
         setP.Text = PRoll.Text;
         setI.Text = IRoll.Text;
         setD.Text = DRoll.Text;
+        setRate.Text = RollPitchRate.Text;
+        setRate.Visible = true;
+        plusR.Visible = true;
+        minusR.Visible = true;
+
         pidIndex = 0;
       }
       if (p.Name == "panelPitch")
@@ -938,6 +937,10 @@ namespace MWGUI
         setP.Text = PPitch.Text;
         setI.Text = IPitch.Text;
         setD.Text = DPitch.Text;
+        setRate.Text = RollPitchRate.Text;
+        setRate.Visible = true;
+        plusR.Visible = true;
+        minusR.Visible = true;
         pidIndex = 1;
       }
       if (p.Name == "panelYaw")
@@ -946,6 +949,10 @@ namespace MWGUI
         setP.Text = PYaw.Text;
         setI.Text = IYaw.Text;
         setD.Text = DYaw.Text;
+        setRate.Text = YawRate.Text;
+        setRate.Visible = true;
+        plusR.Visible = true;
+        minusR.Visible = true;
         pidIndex = 2;
       }
       if (p.Name == "panelAlt")
@@ -981,18 +988,12 @@ namespace MWGUI
       {
         label19.Text = "Mag";
         setP.Text = PMag.Text;
+        setI.Visible = false;
+        setD.Visible = false;
+        plusI.Visible = false;
+        plusD.Visible = false;
         pidIndex = 8;
       }
-      /*if (p.Name == "panelVel")
-      {
-        label19.Text = "Velocity";
-        setP.Text = PVelocity.Text;
-        setI.Text = IVelocity.Text;
-        setD.Text = DVelocity.Text;
-        pidIndex = 9;
-      }
-      */
-
       tabControl1.SelectedIndex = 3;
     }
 
@@ -1001,6 +1002,14 @@ namespace MWGUI
       mw_gui.pidP[pidIndex] = (byte)double.Parse(setP.Text.Replace(".", ","));
       mw_gui.pidI[pidIndex] = (byte)double.Parse(setI.Text.Replace(".", ","));
       mw_gui.pidD[pidIndex] = (byte)double.Parse(setD.Text.Replace(".", ","));
+      if (pidIndex == 0 || pidIndex == 1)
+      {
+        mw_gui.RollPitchRate = (byte)double.Parse(setRate.Text.Replace(".", ","));
+      }
+      if (pidIndex == 2)
+      {
+        mw_gui.YawRate = (byte)double.Parse(setRate.Text.Replace(".", ","));
+      }
       tabControl1.SelectedIndex = 1;
       update_pid_panel();
     }
@@ -1009,13 +1018,13 @@ namespace MWGUI
     {
       if (setP.Text == string.Empty)
         setP.Text = "0";
-      setP.Text = (Convert.ToDouble(setP.Text) + (1.0 / Pid[pidIndex].Pprec)).ToString();
+      setP.Text = (Convert.ToDouble(setP.Text) + (1.0 / Pid[pidIndex].Pprec)).ToString("F1");
       //TODO omezeni rozsahu
     }
 
     private void minusP_Click(object sender, EventArgs e)
     {
-      setP.Text = (Convert.ToDouble(setP.Text) - (1.0 / Pid[pidIndex].Pprec)).ToString();
+      setP.Text = (Convert.ToDouble(setP.Text) - (1.0 / Pid[pidIndex].Pprec)).ToString("F1");
       //TODO omezeni rozsahu
     }
 
@@ -1023,13 +1032,13 @@ namespace MWGUI
     {
       if (setI.Text == string.Empty)
         setI.Text = "0";
-      setI.Text = (Convert.ToDouble(setI.Text) + (1.0 / Pid[pidIndex].Iprec)).ToString();
+      setI.Text = (Convert.ToDouble(setI.Text) + (1.0 / Pid[pidIndex].Iprec)).ToString("F3");
       //TODO omezeni rozsahu
     }
 
     private void minusI_Click(object sender, EventArgs e)
     {
-      setI.Text = (Convert.ToDouble(setI.Text) - (1.0 / Pid[pidIndex].Iprec)).ToString();
+      setI.Text = (Convert.ToDouble(setI.Text) - (1.0 / Pid[pidIndex].Iprec)).ToString("F3");
       //TODO omezeni rozsahu
     }
 
@@ -1037,18 +1046,36 @@ namespace MWGUI
     {
       if (setD.Text == string.Empty)
         setD.Text = "0";
-      setD.Text = (Convert.ToDouble(setD.Text) + (1.0 / Pid[pidIndex].Dprec)).ToString();
+      setD.Text = (Convert.ToDouble(setD.Text) + (1.0 / Pid[pidIndex].Dprec)).ToString("F0");
       //TODO omezeni rozsahu
 
     }
 
     private void minusD_Click(object sender, EventArgs e)
     {
-      setD.Text = (Convert.ToDouble(setD.Text) - (1.0 / Pid[pidIndex].Dprec)).ToString();
+      setD.Text = (Convert.ToDouble(setD.Text) - (1.0 / Pid[pidIndex].Dprec)).ToString("F0");
       //TODO omezeni rozsahu
 
     }
 
+    private void plusR_Click(object sender, EventArgs e)
+    {
+      if (setRate.Text == string.Empty)
+        setRate.Text = "0";
+      if (pidIndex == 0 || pidIndex == 1)
+        setRate.Text = (Convert.ToDouble(setRate.Text) + (1.0 / 100)).ToString("F2");
+      if (pidIndex == 2)
+        setRate.Text = (Convert.ToDouble(setRate.Text) + (1.0 / 100)).ToString("F2");
+      //TODO omezeni rozsahu
+    }
+
+    private void minusR_Click(object sender, EventArgs e)
+    {
+      if (pidIndex == 0 || pidIndex == 1)
+        setRate.Text = (Convert.ToDouble(setRate.Text) - (1.0 / 100)).ToString("F2");
+      if (pidIndex == 2)
+        setRate.Text = (Convert.ToDouble(setRate.Text) - (1.0 / 100)).ToString("F2");
+    }
 
     private void buttonSetDefaults_Click(object sender, EventArgs e)
     {
@@ -1155,13 +1182,28 @@ namespace MWGUI
     }
 
     //Pid[9].name = "Velocity";
+    private void RollPitchRate_TextChanged(object sender, EventArgs e)
+    {
+      Label tb = (Label)sender;
+      tb.BackColor = Color.Yellow;
+      if (tb.Text.Length > 0 && !string.IsNullOrEmpty(tb.Text))
+      mw_gui.RollPitchRate = (byte)double.Parse(tb.Text.Replace(".", ","));
+    }
 
+    private void YawRate_TextChanged(object sender, EventArgs e)
+    {
+      Label tb = (Label)sender;
+      tb.BackColor = Color.Yellow;
+      if (tb.Text.Length > 0 && !string.IsNullOrEmpty(tb.Text))
+        mw_gui.YawRate = (byte)double.Parse(tb.Text.Replace(".", ","));
+    }
 
     private void textPIDChange(object sender, int pid, string part)
     {
       try
       {
         Label tb = (Label)sender;
+        tb.BackColor = Color.Yellow;
         if (tb.Text.Length > 0 && !string.IsNullOrEmpty(tb.Text))
         {
           if (part == "P")
